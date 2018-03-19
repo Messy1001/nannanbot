@@ -29,7 +29,7 @@ for (const file of commandFiles) {
 }
 
 client.on('ready', () => {
-    console.log('Ready!');
+    console.log('Ready now!');
 });
 
 client.on('message', message => {
