@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const http = require('http');
+const dotenv = require('dotenv').config()
 
 app.get("/", (request, response) => {
   console.log(Date.now() + " Ping Received");
@@ -55,4 +56,4 @@ client.on('message', message => {
 	}
 });
 
-client.login(token);
+client.login(process.env.TOKEN);
