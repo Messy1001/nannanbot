@@ -2,9 +2,7 @@ const express = require('express')
 const app = express()
 const http = require('http');
 const dotenv = require('dotenv').config()
-
-
-
+const fs = require('fs');
 
 
 
@@ -17,7 +15,6 @@ setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 280000);
 
-const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 
@@ -52,6 +49,11 @@ client.on('message', message => {
 
   if (command.guildOnly && message.channel.type !== 'text') {
     return message.reply('I can\'t execute that command inside DMs!');
+  }
+
+  if (command.modOnly && !message.guild.members.get(message.author.id).hasPermission('DELETE_MESSAGES'))
+  {
+    return message.reply('You don\'t have the necessary permissions to use this command!');    
   }
 
   if (command.args && !args.length) {
