@@ -1,4 +1,6 @@
 const Discord = require('discord.js');
+const helper = require('../helpers.js');
+
 
 
 module.exports = {
@@ -40,6 +42,7 @@ null,
 credentials.private_key,
 ['https://www.googleapis.com/auth/spreadsheets']);
 jwt.authorize(function(err, result) {
+	
   console.log(result.access_token)
   console.log(oauth2Client.credentials.access_token)
   oauth2Client.credentials.access_token = result.access_token;
@@ -56,12 +59,14 @@ service.spreadsheets.values.get({
    } else {
        console.log(response.values);
        desc = response.values[0];
+       response.values.shift();
+       helper.data.queryToJSON(desc, response.values, "cards");  
        console.log("Desc: "+ desc[3])
        for (let row of response.values) {
        	   console.log('%s, %s', row[0], row[1]);
        	   for (let i = 0; i < row.length;i++)
            {
-           		if (row[i] == args[1]+ " " + args[2])
+           		if (row[i].toLowerCase().startsWith(args[1].toLowerCase()))
            		  cards.push(row);
            		
 
@@ -71,9 +76,11 @@ service.spreadsheets.values.get({
        }
    }
     
+    if (cards.length)
+    {
   	let str = "";
-  	let cardnumber = args[3];
-  	if (args[3] === undefined || args[3] > cards.length-1 || args[3] < 0)
+  	let cardnumber = args[args.length-1];
+  	if (args[args.length-1] === undefined || args[args.length-1] > cards.length-1 || args[args.length-1] < 0 || isNaN(args[args.length-1]))
   		cardnumber = 0;
     for (let i=0; i < desc.length;i++)
     {
@@ -85,12 +92,20 @@ service.spreadsheets.values.get({
 	 		desctemp = "";
 	 	if (cardtemp === undefined)
 	 		cardtemp = "";
-	 	str += "**"+desctemp+":** " + cardtemp+ "\n";
-	  	
+	 	if (cardtemp != "" && desctemp !="")
+	 		{
+	 			str += "**"+desctemp+":** " + cardtemp+ "\n";
+	 		}
+	 			  	
     }
 	const embed = new Discord.RichEmbed()
 	.setDescription(str);
     message.channel.send(embed);
+	}
+    else
+    {
+    	message.channel.send("No results found for this request!");
+    }
 });
 
 
