@@ -23,7 +23,7 @@
 					fs.writeFile(filename+".json", str);
 	},
 
-	readSpreadsheet : function readSpreadsheet(spreadsheet, filename) {
+	readSpreadsheet : function readSpreadsheet(spreadsheet, filename, range) {
 		let privatekey = require("./privatekey.json");
 		var googleapis = require('googleapis');
 		var googleAuth = require('google-auth-library');
@@ -68,7 +68,7 @@
 		service.spreadsheets.values.get({
 		   auth: oauth2Client,
 		   spreadsheetId: spreadsheet,
-		   range: 'A1:Z'
+		   range: range
 		}, function (err, response) {
 		   if (err) {
 		       console.log('The API returned an error: ' + err);

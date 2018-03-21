@@ -9,7 +9,7 @@ module.exports = {
     execute(message, args) {
 
 
-       helper.data.readSpreadsheet("146vKsT5WoNeE4fO68kGNpng1KnqnBYjENe_rZpHSVvc", "cards");
+       helper.data.readSpreadsheet("146vKsT5WoNeE4fO68kGNpng1KnqnBYjENe_rZpHSVvc", "cards", "CardList!A:Z");
 
        var re = /lim(ited)?/; 
        var str = 'limitedited and rare';
