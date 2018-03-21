@@ -59,10 +59,7 @@
 		['https://www.googleapis.com/auth/spreadsheets']);
 		jwt.authorize(function(err, result) {
 			
-		  console.log(result.access_token)
-		  console.log(oauth2Client.credentials.access_token)
 		  oauth2Client.credentials.access_token = result.access_token;
-		  console.log(oauth2Client.credentials.access_token);
 
 		var service = googleapis.sheets('v4');
 		service.spreadsheets.values.get({
@@ -73,7 +70,6 @@
 		   if (err) {
 		       console.log('The API returned an error: ' + err);
 		   } else {
-		       console.log(response.values);
 		       desc = response.values[0];
 		       response.values.shift();
 		       helper.data.queryToJSON(desc, response.values, filename);  
