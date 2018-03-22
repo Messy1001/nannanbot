@@ -17,9 +17,7 @@ module.exports = {
         const fs = require('fs');
 
         let rawdata = fs.readFileSync('./cards.json');  
-           let obj = JSON.parse(rawdata);  
-
-        
+        let obj = JSON.parse(rawdata);  
 
         var query = message.content;
         query = query.toLowerCase()
@@ -30,8 +28,29 @@ module.exports = {
         var digit = 1;
         var name;
 
+        */ THIS IS FOR THE BANNER FUNCTION!!!
+        var arr = []
+        
+        for (id in obj['objects'])
+        {
+            if (obj['objects'][id]['Start Date'] != 'undefined')
+                arr.push(obj['objects'][id])
+        }
+        console.log(arr.length)
 
-        re = /( )?lim(ited)?( )?/
+
+        arr.sort(function(a, b) {
+        var dateA = new Date(a['Release Date']), dateB = new Date(b['Release Date']);
+        return dateA - dateB;
+        });
+
+        for (let i=0;i<arr.length;i++)
+        {
+            console.log(arr[i]['Start Date'])
+        }
+       */
+       
+        var re = /( )?lim(ited)?( )?/
         var limited = query.search(re);
         if (limited != -1)
         {
@@ -140,12 +159,22 @@ module.exports = {
         {
             splitQuery = obj['objects'][ID]['Name'].split(" ");
             
-            if (splitQuery[1] == undefined)
+            if (splitQuery[1] == undefined || splitQuery[1] == null)
                 splitQuery[1] = splitQuery[0];
-
-            if (query.includes(splitQuery[0].toLowerCase()) || query.includes(splitQuery[1].toLowerCase())) 
+            
+            if (query.split(" ").length == 1)
             {
-                cards.push(obj['objects'][ID]);
+                if (query.includes(splitQuery[0].toLowerCase()) || query.includes(splitQuery[1].toLowerCase())) 
+                {
+                    cards.push(obj['objects'][ID]);
+                }
+            }
+            else 
+            {
+                if (query.includes(splitQuery[0].toLowerCase()) && query.includes(splitQuery[1].toLowerCase())) 
+                {
+                    cards.push(obj['objects'][ID]);
+                }
             }
 
            
@@ -154,7 +183,7 @@ module.exports = {
         var temp = []
         if (rarity != undefined)
         {
-            for (row in cards)
+            for (let row in cards)
             {
                 if (cards[row]["Rarity"] == rarity)
                 temp.push(cards[row])
@@ -165,7 +194,7 @@ module.exports = {
         temp = []
         if (availability != undefined)
         {
-            for (row in cards)
+            for (let row in cards)
             {
                 if (cards[row]["Availability"] == availability)
                 temp.push(cards[row])
@@ -217,7 +246,7 @@ module.exports = {
         {
             var str = "";
             var count = 0;
-            for (card in cards)
+            for (let card in cards)
             {
                 if (card != digit)
                 {
