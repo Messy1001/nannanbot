@@ -3,13 +3,14 @@ module.exports = {
     usage: "<option>",
     name: 'rps',
     description: 'Rock, Paper, Scissors',
-    cooldown: 15,
+    cooldown: 5,
     execute(message, args) {
        
         var items = Array("rock", "paper", "scissors");
 
 		var item = items[Math.floor(Math.random()*items.length)];
 		var emoji;
+		args[0] = args[0].toLowerCase();
 
 		if (item === "rock")
 		{

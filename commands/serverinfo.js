@@ -18,7 +18,7 @@ module.exports = {
       }
 });
         
-  const embed = new Discord.RichEmbed()
+   const embed = new Discord.RichEmbed()
    
   .setColor(0x00AE86)
  
