@@ -9,7 +9,6 @@ module.exports = {
     usage: '<name><optional: id, rarity, type>',
     execute(message, args) {
 
-
         helper.data.readSpreadsheet("146vKsT5WoNeE4fO68kGNpng1KnqnBYjENe_rZpHSVvc", "cards", "CardList!A:Z");
 
         var cards = []
@@ -27,29 +26,7 @@ module.exports = {
         var rarity;
         var digit = 1;
         var name;
-
-        */ THIS IS FOR THE BANNER FUNCTION!!!
-        var arr = []
         
-        for (id in obj['objects'])
-        {
-            if (obj['objects'][id]['Start Date'] != 'undefined')
-                arr.push(obj['objects'][id])
-        }
-        console.log(arr.length)
-
-
-        arr.sort(function(a, b) {
-        var dateA = new Date(a['Release Date']), dateB = new Date(b['Release Date']);
-        return dateA - dateB;
-        });
-
-        for (let i=0;i<arr.length;i++)
-        {
-            console.log(arr[i]['Start Date'])
-        }
-       */
-       
         var re = /( )?lim(ited)?( )?/
         var limited = query.search(re);
         if (limited != -1)
@@ -74,7 +51,7 @@ module.exports = {
             query = query.replace(re, "");
         }
 
-        re = /()?event()?/
+        re = /( )?event( )?/
         var event = query.search(re)
          if (event != -1)
         {
@@ -202,7 +179,7 @@ module.exports = {
 
                 if (availability == "Event")
                 {
-                    if (cards[row]["Availability"].includes(availability))
+                    if (cards[row]["Availability"].includes("availability"))
                     {
                        temp.push(cards[row])
                     }
