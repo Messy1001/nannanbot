@@ -11,9 +11,11 @@ module.exports = {
         const data = [];
 
         if (!args.length) {
-          data.push('Here\'s a list of all my commands:');
-          data.push(commands.map(command => command.name).join(', '));
+          data.push('Here\'s a list of all my commands: ');
+          data.push(commands.map("\`" +command => command.name).join(', ') +"\`");
           data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
+
+          data.push("\n\n Special thanks to the people contributing to this project listed here: https://goo.gl/prihtA")
         }
         else {
           if (!commands.has(args[0])) {
@@ -30,11 +32,10 @@ module.exports = {
 
           data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
         }
-        message.author.send(data, { split: true })
+        message.channel.send(data, { split: true })
         .then(() => {
-          if (message.channel.type !== 'dm') {
-            message.channel.send('I\'ve sent you a DM with all my commands!');
-          }
+         
+           
         })
         .catch(() => message.reply('it seems like I can\'t DM you!'));
     },

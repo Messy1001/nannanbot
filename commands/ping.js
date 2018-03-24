@@ -5,8 +5,9 @@ module.exports = {
     description: 'Ping!',
     execute(message, args) {
     	console.log(helper)
-
-       message.channel.send('Pong.');
+    	helper.data.saveIcon(args[0])
+    	message.guild.setIcon("./images/icon.png")
+       //message.channel.send('Pong.');
        
     },
 };

@@ -205,18 +205,18 @@ module.exports = {
           
         const embed1 = new Discord.RichEmbed()
 
-        .setColor("#b5b1e1")
+        embed1.setColor("#b5b1e1")
 
-        .setImage("http://imas.gamedbs.jp/mlth/image/card/icon/" + cards[digit]['Icon Filename'] + ".png")
+        embed1.setImage("http://imas.gamedbs.jp/mlth/image/card/icon/" + cards[digit]['Icon Filename'] + ".png")
 
-        .setTimestamp()
-        .setTitle(`[${cards[digit]["Rarity"]}] "${cards[digit]["Title"]}" ${cards[digit]["Name"]}`)
-        .addField("Max Stats: ", "**Li/Da/Vo/Vi (Total)**\n" + `${cards[digit]['Life']} / ${cards[digit]['Max Dance']} / ${cards[digit]['Max Vocal']} / ${cards[digit]['Max Visual']} **(${cards[digit]['Total']})**`, true)
-        .addField("Master Stats: ", "**Li/Da/Vo/Vi (Total)**\n" + `${cards[digit]['Life']} / ${cards[digit]['Master Dance']} / ${cards[digit]['Master Vocal']} / ${cards[digit]['Master Visual']} **(${cards[digit]['Master Total']})**`, true)
+        embed1.setTimestamp()
+        embed1.setTitle(`[${cards[digit]["Rarity"]}] "${cards[digit]["Title"]}" ${cards[digit]["Name"]}`)
+        embed1.addField("Max Stats: ", "**Li/Da/Vo/Vi (Total)**\n" + `${cards[digit]['Life']} / ${cards[digit]['Max Dance']} / ${cards[digit]['Max Vocal']} / ${cards[digit]['Max Visual']} **(${cards[digit]['Total']})**`, true)
+        embed1.addField("Master Stats: ", "**Li/Da/Vo/Vi (Total)**\n" + `${cards[digit]['Life']} / ${cards[digit]['Master Dance']} / ${cards[digit]['Master Vocal']} / ${cards[digit]['Master Visual']} **(${cards[digit]['Master Total']})**`, true)
         
-        .addField("Skill: " + cards[digit]['Skill Type'], cards[digit]['Skill'], false)
-        .addField("Leader Skill: ", cards[digit]['Center Skill'], true)
-        .addBlankField()
+        embed1.addField("Skill: " + cards[digit]['Skill Type'], cards[digit]['Skill'], false)
+        embed1.addField("Leader Skill: ", cards[digit]['Center Skill'], true)
+        embed1.addBlankField()
         message.channel.send(embed1);
         
         if (Object.keys(cards).length > 1)
@@ -234,8 +234,8 @@ module.exports = {
                         
             const embed2 = new Discord.RichEmbed()
 
-            .setColor("#b5b1e1")
-            .addField("Other cards which match this query: ", str)
+            embed2.setColor("#b5b1e1")
+            embed2.addField("Other cards which match this query: ", str)
             message.channel.send(embed2);
 
         }

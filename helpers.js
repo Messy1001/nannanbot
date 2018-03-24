@@ -1,27 +1,85 @@
-
 	var methods = {
-	 queryToJSON: function queryToJSON(descriptions, rows, filename) {
-					var str = "{\n\"objects\":[\n";
-					for (let i = 0; i < rows.length; i++)		
-					{
-						str += "{\"ID\" : " + i + ","; 
-						for (let j=0; j < descriptions.length; j++)
+
+		
+
+		saveIcon: function saveIcon(url){
+
+			function download(uri, filename, callback){
+			const request = require('request')
+			const fs = require('fs')
+			request.head(uri, function(err, res, body){
+		    console.log('content-type:', res.headers['content-type']);
+		    console.log('content-length:', res.headers['content-length']);
+
+		    request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+		  	});
+			};
+
+			download(url, './images/icon.png', function(){
+			console.log('done');
+			});
+		},
+	    	
+
+			
+
+		secondsToString: function secondsToString(seconds)
+
+		{
+
+			var numdays = Math.floor(seconds / 86400);
+
+			var numhours = Math.floor((seconds % 86400) / 3600);
+
+			var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
+
+			var day
+			var hour
+			var min
+
+			if(numdays == 1)
+				day = "day"
+			else
+				day = "days"
+			if(numhours == 1)
+				hour = "hour"
+			else
+				hour = "hours"
+			if(numminutes == 1)
+				min = "minute"
+			else
+				min = "minutes"
+
+			return numdays + " "+day+" "+numhours+ " "+hour+" "+numminutes+" "+min;
+
+		},
+
+		getRandomInt: function getRandomInt(min, max) {
+    		return Math.floor(Math.random() * (max - min + 1)) + min;
+		},
+
+		queryToJSON: function queryToJSON(descriptions, rows, filename) {
+						var str = "{\n\"objects\":[\n";
+						for (let i = 0; i < rows.length; i++)		
 						{
-							str += "\""+descriptions[j]+"\"" + ":" + "\""+rows[i][j]+"\""
-							if (j != descriptions.length -1)
-								str += ","
+							str += "{\"ID\" : " + i + ","; 
+							for (let j=0; j < descriptions.length; j++)
+							{
+								str += "\""+descriptions[j]+"\"" + ":" + "\""+rows[i][j]+"\""
+								if (j != descriptions.length -1)
+									str += ","
+							}
+							if (i != rows.length -1)
+								str += "},\n"
+							else
+								str += "}\n"
 						}
-						if (i != rows.length -1)
-							str += "},\n"
-						else
-							str += "}\n"
-					}
 
-					str += "]}"
+						str += "]}"
 
-					var fs = require('fs');
-					fs.writeFile(filename+".json", str);
-	},
+						var fs = require('fs');
+						fs.writeFile(filename+".json", str);
+		},
 
 	readSpreadsheet : function readSpreadsheet(spreadsheet, filename, range) {
 		let privatekey = require("./privatekey.json");
@@ -77,9 +135,12 @@
 		    
 		   
 		});
-		});
 
+		});
+    
 		};
+
+		
 		})();
 
 	}

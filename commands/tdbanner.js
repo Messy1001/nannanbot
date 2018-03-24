@@ -111,7 +111,7 @@ module.exports = {
         event = new Date(event)
         
         var testdate = new Date(filarr[digit-1]['End Date'] + " 15:00:00")      
-        remaining = Math.abs(Math.trunc((event.getTime() - testdate.getTime()) / 1000/60/60)) + "Hours left";
+        remaining = helper.data.secondsToString(Math.abs(Math.trunc((event.getTime() - (testdate.getTime()))))/1000) + " left";
                 console.log("time difference" + ((event.getTime() - testdate.getTime())  / 1000/60/60))
 
         }
@@ -121,10 +121,10 @@ module.exports = {
         }
                 
         const embed = new Discord.RichEmbed()
-
-            .setColor("#b5b1e1")
-            .setImage("http://imas.gamedbs.jp/mlth/image/card/info/"+filarr[digit-1]['Banner Filename']+".png")
-            .addField(filarr[digit-1]['Banner'] +" - "+ remaining, `${filarr[digit-1]['Start Date']} 15:00:00 JST - ${filarr[digit-1]['End Date']} 14:59:59 JST \n ${str}`)
+            
+            embed.setColor("#b5b1e1")
+            embed.setImage("http://imas.gamedbs.jp/mlth/image/card/info/"+filarr[digit-1]['Banner Filename']+".png")
+            embed.addField(filarr[digit-1]['Banner'] +" - "+ remaining, `${filarr[digit-1]['Start Date']} 15:00:00 JST - ${filarr[digit-1]['End Date']} 14:59:59 JST \n ${str}`)
             
             message.channel.send(embed);
         
