@@ -59,7 +59,7 @@ app.get("/", (request, response) => {
    let date = event.getDate() +" "+month[event.getMonth()]
    s
 
-   if (event.getHours() == "" && event.getMinutes() <= "2")
+   if (event.getHours() == "0" && event.getMinutes() == "0" && event.getSeconds() <= "10")
    {
      let rawdata = fs.readFileSync('./seiyuu.json');  
      let obj = JSON.parse(rawdata); 

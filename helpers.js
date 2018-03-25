@@ -2,7 +2,7 @@
 
 		
 
-		saveIcon: function saveIcon(url){
+		saveImage: function saveIcon(url, filename){
 
 			function download(uri, filename, callback){
 			const request = require('request')
@@ -15,7 +15,7 @@
 		  	});
 			};
 
-			download(url, './images/icon.png', function(){
+			download(url, './images/'+filename+'icon.png', function(){
 			console.log('done');
 			});
 		},

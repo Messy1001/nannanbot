@@ -1,6 +1,7 @@
 module.exports = {
     name: 'prune',
     description: 'Prunes messages',
+    usage: '<amount>',
     guildOnly: true,
     modOnly: true,
     execute(message, args) {
