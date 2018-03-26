@@ -5,8 +5,8 @@ const { prefix, token } = require('../config.json');
 
 module.exports = {
     name: 'seiyuuimage',
-    description: 'Returns random image of an Idolm@ster Seiyuu!',
-    usage: "<name> <franchise>",
+    description: 'Returns a random image of an idolm@ster Seiyuu!',
+    usage: "<optional: name> <optional: franchise>",
     aliases: ['simg', 'img', 'image', 'cvimg', 'cvimage', 'vaimg', 'vaimage'],
     cooldown: 5,
     execute(message, args) {
@@ -27,6 +27,7 @@ module.exports = {
 
         let images = []
         let arr = []
+        var nickarray = []
 
         var franchise
         var query = message.content;
@@ -78,16 +79,17 @@ module.exports = {
 
         for (var ID in obj['objects'])
         {	
-        	if ((obj['objects'][ID]['Other Image'].search("-") == -1 || obj['objects'][ID]['MAL Image'].search("-"))&& obj['objects'][ID]['Other Image'] !== 'undefined' )	
+        	if ((obj['objects'][ID]['Other Image'] !== "-" || obj['objects'][ID]['MAL Image'].search("-"))&& obj['objects'][ID]['Other Image'] !== 'undefined' )	
         		arr.push(obj['objects'][ID])
         }
       
         if (!arr.length)
         	return console.log("Error")
-        console.log(arr.length)
+        
         let seiyuudigit;
         var arrtemp = arr;
         console.log("Q: " +query)
+        query = query.trim()
         if (!args.length)
         {
         }
@@ -139,19 +141,26 @@ module.exports = {
 	                }              
 	                
 	            }
-	            splitQuery = arrtemp[id]['Nickname'].replace(" ", "").replace(/( )?\*/, "").split("/")
+	            splitQuery = arrtemp[id]['Nick Query'].replace(" ", "").replace(/( )?\*/, "").split("/")
 	            
-	            if(query.split(" ").length ==1 && !arr.length)
+             
+	            if(query.split(" ").length ==1)
 	            {
 	              for (var i=0; i < splitQuery.length;i++)
 	              {
-	                if(splitQuery[i].toLowerCase().trim() == query.trim())
-	                  arr.push(arrtemp[id]);
+	                
+                  if(splitQuery[i].toLowerCase().trim() == query.trim())                  
+	                  nickarray.push(arrtemp[id]);
 	              }
 	            }
 	        	}
         }
-
+       
+        if (nickarray.length)
+        {
+          arr = []
+          arr = nickarray
+        }
         var arrfiltered = []
 
         if (franchise != null)
@@ -167,11 +176,12 @@ module.exports = {
 
     	seiyuudigit = helper.data.getRandomInt(0, arrfiltered.length-1)
 
-    	console.log(arrfiltered)
-
-        if (arrfiltered[seiyuudigit]['Other Image'] !== 'undefined' && arrfiltered[seiyuudigit]['Other Image'] !== "-")
+       if(!arrfiltered.length)
+        	return message.reply("There are no images available yet which match your query! Please check for typos, try again at a later time or submit images to <@155038103281729536>!")
+      
+       if (arrfiltered[seiyuudigit]['Other Image'] !== 'undefined' && arrfiltered[seiyuudigit]['Other Image'] !== "-")
         	images = arrfiltered[seiyuudigit]['Other Image'].split("|")
-        else if (arrfiltered[seiyuudigit]['MAL Image'] !== 'undefined' && arrfiltered[seiyuudigit]['MAL Image'] !== "-")
+       else if (arrfiltered[seiyuudigit]['MAL Image'] !== 'undefined' && arrfiltered[seiyuudigit]['MAL Image'] !== "-")
         	images[0] = "https://myanimelist.cdn-dena.com/images/voiceactors/"+arrfiltered[seiyuudigit]['MAL Image']+".jpg"
 
         var imagedigit = helper.data.getRandomInt(0, images.length-1)
@@ -179,7 +189,30 @@ module.exports = {
        
         if(images[imagedigit] === 'undefined')
         	return message.reply("There are no images available yet which match your query! Please check for typos, try again at a later time or submit images to <@155038103281729536>!")
-      	return message.reply("**"+arrfiltered[seiyuudigit]["Seiyuu Name"]+"** "+images[helper.data.getRandomInt(0, images.length-1)])
+        message.reply("**"+arrfiltered[seiyuudigit]["Seiyuu Name"]+"** ("+arrfiltered[seiyuudigit]["Character"]+") ["+arrfiltered[seiyuudigit]["Franchise"]+ "]\n"+images[helper.data.getRandomInt(0, images.length-1)])
+        if (arrfiltered.length > 1 && (query != this.name || !this.aliases.includes(query)))
+        {
+            var str = "";
+            
+            for (let id in arrfiltered)
+            {
+                if (id != seiyuudigit)
+                {
+                   str+= `**${arrfiltered[id]["Seiyuu Name"]}** (${arrfiltered[id]["Character"]}) [${arrfiltered[id]["Franchise"]}] \n`
+                }
+               
+            }
+            if (query != this.name && !this.aliases.includes(query) && query !== "")
+            {
+            const embed2 = new Discord.RichEmbed()
+
+            embed2.setColor("#b5b1e1")
+            embed2.addField("Other seiyuu who match this query: ", str)
+            message.channel.send(embed2);
+            }
+
+        }
+
        
     },
 };

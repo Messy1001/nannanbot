@@ -210,6 +210,7 @@ module.exports = {
         embed1.setImage("http://imas.gamedbs.jp/mlth/image/card/icon/" + cards[digit]['Icon Filename'] + ".png")
 
         embed1.setTimestamp()
+        embed1.setFooter("Heavily inspired by the same functionality by the user Z-ON(Donuts)")
         embed1.setTitle(`[${cards[digit]["Rarity"]}] "${cards[digit]["Title"]}" ${cards[digit]["Name"]}`)
         embed1.addField("Max Stats: ", "**Li/Da/Vo/Vi (Total)**\n" + `${cards[digit]['Life']} / ${cards[digit]['Max Dance']} / ${cards[digit]['Max Vocal']} / ${cards[digit]['Max Visual']} **(${cards[digit]['Total']})**`, true)
         embed1.addField("Master Stats: ", "**Li/Da/Vo/Vi (Total)**\n" + `${cards[digit]['Life']} / ${cards[digit]['Master Dance']} / ${cards[digit]['Master Vocal']} / ${cards[digit]['Master Visual']} **(${cards[digit]['Master Total']})**`, true)

@@ -6,9 +6,9 @@ const { prefix, token } = require('../config.json');
 module.exports = {
     name: 'seiyuufact',
     description: 'Returns random trivia about an Idolm@ster Seiyuu!',
-    usage: "<name> <franchise>",
+    usage: "<optional: name> <optional: franchise>",
     aliases: ['sf', 'fact', 'funfact', 'cvfact', 'vafact'],
-    cooldown: 5,
+    
     execute(message, args) {
       const fs = require('fs');
       let rawdata
@@ -27,6 +27,7 @@ module.exports = {
 
         let facts = []
         let arr = []
+        var nickarray = []
 
         var franchise
         var query = message.content;
@@ -78,16 +79,17 @@ module.exports = {
 
         for (var ID in obj['objects'])
         {	
-        	if (obj['objects'][ID]['Fun Facts'].search("-") == -1 && obj['objects'][ID]['Fun Facts'] !== 'undefined' )	
+        	if (obj['objects'][ID]['Fun Facts'] !== "-" && obj['objects'][ID]['Fun Facts'] !== 'undefined' )	
         		arr.push(obj['objects'][ID])
         }
       
         if (!arr.length)
         	return console.log("Error")
-        console.log(arr.length)
+        
         let seiyuudigit;
         var arrtemp = arr;
         console.log("Q: " +query)
+        query = query.trim()
         if (!args.length)
         {
         }
@@ -97,7 +99,7 @@ module.exports = {
         	for (var id in arrtemp)
         	{
         		var splitQuery = arrtemp[id]['Seiyuu Name'].split(" ");
-            
+              console.log("SQ: " +splitQuery)
 	            if (splitQuery[1] == undefined || splitQuery[1] == null)
 	                splitQuery[1] = splitQuery[0];
 	                        
@@ -139,17 +141,24 @@ module.exports = {
 	                }              
 	                
 	            }
-	            splitQuery = arrtemp[id]['Nickname'].replace(" ", "").replace(/( )?\*/, "").split("/")
+	            splitQuery = arrtemp[id]['Nick Query'].replace(" ", "").replace(/( )?\*/, "").split("/")
 	            
-	            if(query.split(" ").length ==1 && !arr.length)
+	            if(query.split(" ").length ==1)
 	            {
 	              for (var i=0; i < splitQuery.length;i++)
 	              {
-	                if(splitQuery[i].toLowerCase().trim() == query.trim())
-	                  arr.push(arrtemp[id]);
+	                console.log("SQ" + splitQuery[i])
+                  if(splitQuery[i].toLowerCase().trim() == query.trim())                  
+	                  nickarray.push(arrtemp[id]);
 	              }
 	            }
 	        	}
+        }
+       
+        if (nickarray.length)
+        {
+          arr = []
+          arr = nickarray
         }
 
         var arrfiltered = []
@@ -164,14 +173,16 @@ module.exports = {
         }
         else
             arrfiltered = arr
-
+      console.log(arr)
     	seiyuudigit = helper.data.getRandomInt(0, arrfiltered.length-1)
 
-    	console.log(arrfiltered)
-
+      if(!arrfiltered.length)
+        	return message.reply("There are no facts available yet which match your query! Please check for typos, try again at a later time or submit facts to <@155038103281729536>!")
+      
         if (arrfiltered[seiyuudigit]['Fun Facts'] != undefined)
         	facts = arrfiltered[seiyuudigit]['Fun Facts'].split("|")
 
+        
         var factdigit = helper.data.getRandomInt(0, facts.length-1)
         var poss = ""
         if (facts[factdigit].search(/( )?\§/) != -1)
@@ -179,11 +190,30 @@ module.exports = {
         	poss = "'s"
         	facts[factdigit] = facts[factdigit].replace(/( )?\§/, "")
         }
+        
+      	message.reply("Did you know that **" +arrfiltered[seiyuudigit]['Seiyuu Name']+poss+"** ("+arrfiltered[seiyuudigit]['Character']+") " +facts[factdigit].trim()+"?")
+        if (arrfiltered.length > 1 && (query != this.name || !this.aliases.includes(query)))
+        {
+            var str = "";
+            
+            for (let id in arrfiltered)
+            {
+                if (id != seiyuudigit)
+                {
+                   str+= `**${arrfiltered[id]["Seiyuu Name"]}** (${arrfiltered[id]["Character"]}) [${arrfiltered[id]["Franchise"]}] \n`
+                }
+               
+            }
+            if (query != this.name && !this.aliases.includes(query) && query !== "")
+            {
+            const embed2 = new Discord.RichEmbed()
 
+            embed2.setColor("#b5b1e1")
+            embed2.addField("Other seiyuu who match this query: ", str)
+            message.channel.send(embed2);
+            }
 
-        if(facts[factdigit] === 'undefined')
-        	return message.reply("There are no facts available yet which match your query! Please check for typos, try again at a later time or submit facts to <@155038103281729536>!")
-      	return message.reply("Did you know that **" +arrfiltered[seiyuudigit]['Seiyuu Name']+poss+"** ("+arrfiltered[seiyuudigit]['Character']+") " +facts[helper.data.getRandomInt(0, facts.length-1)].trim()+"?")
+        }
        
     },
 };

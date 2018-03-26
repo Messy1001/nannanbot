@@ -4,9 +4,9 @@ const { prefix, token } = require('../config.json');
 
 module.exports = {
     name: 'seiyuuinfo',
-    description: 'Retrieves basic information aboaut an imas Seiyuu',
+    description: 'Retrieves basic information about an idolm@ster seiyuu',
     aliases: ['seiyuu', 'si', 'va', 'cv'],
-    usage: "<name><optional: id>",
+    usage: "<optional: name><optional: id>",
     cooldown: 10,
     execute(message, args) {
         console.log(helper)
@@ -50,7 +50,7 @@ module.exports = {
         event = new Date(event)
         let date = event.getDate() +" "+month[event.getMonth()]
         
-        var re = /( )?\d(.)?( )?\b/
+        var re = /\b[^\-]\d(\d)?(?!\-)\b/
         digit = parseInt(query.match(re));
         
         if (digit == null || isNaN(digit))
@@ -61,7 +61,7 @@ module.exports = {
         {
             query = query.replace(re, "");
         }
-
+        console.log("digit"+digit)
         var re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/
         var as = query.search(re);
         if (as != -1)
@@ -108,7 +108,7 @@ module.exports = {
         let rawdata = fs.readFileSync('./seiyuu.json');  
         let obj = JSON.parse(rawdata);  
 
-        
+        query = query.trim()
         for (var ID in obj['objects'])
         {
         var splitQuery = obj['objects'][ID]['Seiyuu Name'].split(" ");
@@ -154,7 +154,7 @@ module.exports = {
                 }              
                 
             }
-            splitQuery = obj['objects'][ID]['Nickname'].replace(" ", "").replace(/( )?\*/, "").split("/")
+            splitQuery = obj['objects'][ID]['Nick Query'].replace(" ", "").replace(/( )?\*/, "").split("/")
             
             if(query.split(" ").length ==1 && !seiyuu.length)
             {
@@ -166,16 +166,29 @@ module.exports = {
             }
             
         }   
+      
+        var nicktemp = []
+         for (var id in obj['objects'])
+              {
+                splitQuery = obj['objects'][id]['Nick Query'].replace(" ", "").replace(/( )?\*/, "").split("/")
+                for (var i=0; i < splitQuery.length;i++)
+                {
+                  if(splitQuery[i].toLowerCase().trim() == query.trim())
+                    nicktemp.push(obj['objects'][id]);
+                }
+              }
+        if(nicktemp.length)
+        {
+          seiyuu = []
+          seiyuu = nicktemp
+        }
         if(!seiyuu.length)
             return message.reply("I could not find a Seiyuu matching that name. Please check for errors and try again!")
 
         var seiyuufiltered = []
         
-        if(!args.length)
-        {          
-          seiyuufiltered.push(seiyuu[helper.data.getRandomInt(0, seiyuu.length-1)])
-        }
-        else if (franchise != null)
+       
+       if (franchise != null)
         {
             for (var id in seiyuu)
             {
@@ -185,6 +198,15 @@ module.exports = {
         }
         else
             seiyuufiltered = seiyuu
+
+
+        var seiytemp = []
+        if(query.trim() == "")
+        {          
+          seiytemp.push(seiyuufiltered[helper.data.getRandomInt(0, seiyuufiltered.length-1)])
+          seiyuufiltered = []
+          seiyuufiltered = seiytemp
+        }
 
         if (digit > seiyuufiltered.length-1)
         digit = 0;
@@ -276,17 +298,18 @@ module.exports = {
         embed.setTitle(`${seiyuufiltered[digit]['Seiyuu Name']} - ${seiyuufiltered[digit]['Character']}`)
         embed.setImage(image)
         
-        embed.addField("Nickname: ",`${seiyuufiltered[digit]['Nickname'].replace(/( )?\*/,"")}`, true)
+        embed.addField("Nickname: ",`${seiyuufiltered[digit]['Nickname'].replace(/( )?\*/,"").replace(/( )?\/( )?/g, ", ")}`, true)
         embed.addField("Birthday: ",`${seiyuufiltered[digit]['Birthday']}${birthday}`, true)
         embed.addField("Hometown:", `${seiyuufiltered[digit]['Birthplace']}`)
         
+        
         if(seiyuufiltered[digit]['Skills'] != "-") 
         {
-            embed.addField("Skills :", seiyuu[digit]['Skills'])  
+            embed.addField("Skills :", seiyuu[digit]['Skills'].replace(/( )?\/( )?/g, ", "))  
         }
         if(seiyuufiltered[digit]['Hobbies'] != "-") 
         {            
-            embed.addField("Hobbies :", seiyuufiltered[digit]['Hobbies'])  
+            embed.addField("Hobbies :", seiyuufiltered[digit]['Hobbies'].replace(/( )?\/( )?/g, ", "))
         }
         embed.addBlankField()
         embed.addField("Twitter :", "["+twitter+"]("+seiyuufiltered[digit]['Twitter Account']+")",true)
@@ -297,9 +320,9 @@ module.exports = {
         embed.addField("Agency :", "["+agency+"]("+seiyuufiltered[digit]['Agency URL']+")",true) 
         
         
-        embed.setThumbnail("https://abload.de/img/tsumuoxu1s.png")
+        //embed.setThumbnail("https://abload.de/img/tsumuoxu1s.png")
         
-        embed.addBlankField()
+        
         
         embed.setTimestamp()
         embed.setFooter("Special thanks to the people helping with this project: goo.gl/prihtA")
@@ -315,7 +338,7 @@ module.exports = {
             {
                 if (id != digit)
                 {
-                   str+= `**${seiyuufiltered[id]["Seiyuu Name"]}** -  ${seiyuufiltered[id]["Character"]} **${count}**\n`
+                   str+= `**${seiyuufiltered[id]["Seiyuu Name"]}** (${seiyuufiltered[id]["Character"]}) [${seiyuufiltered[id]["Franchise"]}] **${count}**\n`
                 }
                 count++
             }
@@ -323,7 +346,7 @@ module.exports = {
             const embed2 = new Discord.RichEmbed()
 
             embed2.setColor("#b5b1e1")
-            embed2.addField("Other seiyuu who match this query: ", str)
+            embed2.setDescription("**Other seiyuu who match this query: **\n" + str)
             message.channel.send(embed2);
 
         }

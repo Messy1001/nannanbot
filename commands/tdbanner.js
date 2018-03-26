@@ -7,7 +7,7 @@ module.exports = {
     description: 'Shows information about a TD Gacha banner.',
     usage: "<id>",
     execute(message, args) {
-    	
+      
 
         helper.data.readSpreadsheet("146vKsT5WoNeE4fO68kGNpng1KnqnBYjENe_rZpHSVvc", "cards", "CardList!A:Z");
 
@@ -57,21 +57,21 @@ module.exports = {
         var bannercardslim = []
         for (let id in obj['objects'])
         {                    
-          if (obj['objects'][id]['Release Date'] === filarr[digit-1]['Start Date'] &&  obj['objects'][id]['Availability'] == "Limited")
+          if (obj['objects'][id]['Release Date'] === filarr[digit-1]['Start Date'].substring(0, filarr[digit-1]['Start Date'].indexOf("T")) &&  obj['objects'][id]['Availability'] == "Limited")
             bannercardslim.push(obj['objects'][id])
         }
         
         var bannercardsperm = []
         for (let id in obj['objects'])
         {
-          if (obj['objects'][id]['Release Date'] === filarr[digit-1]['Start Date']  && obj['objects'][id]['Availability'] == "Permanent")
+          if (obj['objects'][id]['Release Date'] === filarr[digit-1]['Start Date'].substring(0, filarr[digit-1]['Start Date'].indexOf("T"))  && obj['objects'][id]['Availability'] == "Permanent")
             bannercardsperm.push(obj['objects'][id])
         }
         
         var bannercardsfes = []
         for (let id in obj['objects'])
         {
-          if (obj['objects'][id]['Release Date'] === filarr[digit-1]['Start Date']  && obj['objects'][id]['Availability'] == "Millifes")
+          if (obj['objects'][id]['Release Date'] === filarr[digit-1]['Start Date'].substring(0, filarr[digit-1]['Start Date'].indexOf("T"))  && obj['objects'][id]['Availability'] == "Millifes")
             bannercardsfes.push(obj['objects'][id])
         }
         
@@ -109,22 +109,32 @@ module.exports = {
         event = event.replace(/-/g, "/", 1);
         console.log("Time: "+event);        
         event = new Date(event)
+          
+        var datesplit = filarr[digit-1]['End Date'].replace("T", " ")
         
-        var testdate = new Date(filarr[digit-1]['End Date'] + " 15:00:00")      
+        console.log("ds:"+ datesplit)
+        
+        var testdate = new Date(datesplit)   
+        console.log("event" + ((event) ))
+        console.log("test" + ((testdate)) )
         remaining = helper.data.secondsToString(Math.abs(Math.trunc((event.getTime() - (testdate.getTime()))))/1000) + " left";
-                console.log("time difference" + ((event.getTime() - testdate.getTime())  / 1000/60/60))
+        console.log("time difference" + ((event.getTime() - testdate.getTime())  / 1000/60/60))
 
         }
         else
         {
         remaining = ""
         }
+      
+        console.log(str)
                 
         const embed = new Discord.RichEmbed()
             
             embed.setColor("#b5b1e1")
+            embed.setFooter("Heavily inspired by the same functionality by the user Z-ON(Donuts)")
+
             embed.setImage("http://imas.gamedbs.jp/mlth/image/card/info/"+filarr[digit-1]['Banner Filename']+".png")
-            embed.addField(filarr[digit-1]['Banner'] +" - "+ remaining, `${filarr[digit-1]['Start Date']} 15:00:00 JST - ${filarr[digit-1]['End Date']} 14:59:59 JST \n ${str}`)
+            embed.addField(filarr[digit-1]['Banner'] +" - "+ remaining, `${filarr[digit-1]['Start Date'].replace("T"," ")} JST  -  ${filarr[digit-1]['End Date'].replace("T"," ")} JST \n ${str}`)
             
             message.channel.send(embed);
         
