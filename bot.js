@@ -5,7 +5,6 @@ const dotenv = require('dotenv').config()
 const fs = require('fs');
 const helper = require('./helpers.js');
 
-
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 
@@ -17,9 +16,11 @@ const cooldowns = new Discord.Collection();
 
 const donutschannel = []
 const messychannel = []
-const messyserver = null
+let messyserver
 var donutsserver
+let strykeserver
 var donutsbotchannel 
+let strykebotchannel
 
 const month = new Array();
     month[0] = "January";
@@ -45,6 +46,8 @@ for (const file of commandFiles) {
 
 app.get("/", (request, response) => {
   console.log(Date.now() + " Ping Received");
+  
+
   helper.data.readSpreadsheet("1mFTCIxa-FlRAWT70M7lC82bx-HRvDm_lovUJLL4FlN8", "icon", "ServerIcon!A:Z")
   var rawdataicon
   var objicon
@@ -110,7 +113,7 @@ app.get("/", (request, response) => {
   let str = "HBD"
   let nick =""
   
-  let count = 1
+  let count = 0
   for (let id in birthdays)
   {
       var image
@@ -133,11 +136,23 @@ app.get("/", (request, response) => {
     str += "_"+nick.trim()
     console.log(str.split("\_")[count])
     if (birthdays[id]['Franchise'] != "SideM")
-      donutschannel[count-1].setName("HBD\_"+str.split("\_")[count]);
-    messychannel[count-1].setName("HBD\_"+str.split("\_")[count]);
+      donutschannel[count].setName("HBD\_"+str.split("\_")[count+1]);
+    messychannel[id].setName("HBD\_"+str.split("\_")[count+1]);
     if (birthdays[id]['Franchise'] != "SideM")
+    {
       donutsserver.setIcon("./images/icon.png")
-    count++
+      count++
+    }
+    
+    for(let i = 3; i>count;i--)
+    {
+      if (i == 3)
+        donutschannel[2].setName("event_chat")
+      if (i == 2)
+        donutschannel[1].setName("general")
+      if (i == 1)
+        donutschannel[0].setName("imas_talk")
+    }
   }
     
   }
@@ -153,14 +168,16 @@ setInterval(() => {
 client.on('ready', () => {
     console.log('Ready now');
     donutsserver = client.guilds.get('394781096929132554')
+    messyserver = client.guilds.get('425272007408484353')
+
     messychannel.push(client.channels.get('426547787946131478'))
     messychannel.push(client.channels.get('427137127260749825'))
     donutschannel.push(client.channels.get('398042378759307274'))
     donutschannel.push(client.channels.get('394781096929132556'))
     donutschannel.push(client.channels.get('397203874173157376'))
     donutsbotchannel = client.channels.get('397264569069862912')
-  
-    client.user.setPresence({ game: { name: '?help for commands', type: 0 } });
+    
+    client.user.setPresence({ game: { name: '>help for commands', type: 0 } });
     
 });
 
@@ -180,7 +197,7 @@ client.on('message', message => {
     return message.reply('You don\'t have the necessary permissions to use this command!');    
   }
  
-  if (message.channel === donutsbotchannel || message.guild != donutsserver || command.modOnly)
+  if (message.channel === donutsbotchannel || message.channel === strykebotchannel || (message.guild != donutsserver && message.guild != strykeserver)|| command.modOnly)
   {
  
 

@@ -13,7 +13,9 @@ module.exports = {
       const fs = require('fs');
       let rawdata
       let obj
-      
+      var count
+      var name = this.name
+      var aliases = this.aliases
         
       
     	helper.data.readSpreadsheet("1mFTCIxa-FlRAWT70M7lC82bx-HRvDm_lovUJLL4FlN8", "seiyuu", "SeiyuuInfo!A:Z")
@@ -175,44 +177,85 @@ module.exports = {
             arrfiltered = arr
 
     	seiyuudigit = helper.data.getRandomInt(0, arrfiltered.length-1)
+    	sendInfo(seiyuudigit)
 
-       if(!arrfiltered.length)
-        	return message.reply("There are no images available yet which match your query! Please check for typos, try again at a later time or submit images to <@155038103281729536>!")
-      
-       if (arrfiltered[seiyuudigit]['Other Image'] !== 'undefined' && arrfiltered[seiyuudigit]['Other Image'] !== "-")
-        	images = arrfiltered[seiyuudigit]['Other Image'].split("|")
-       else if (arrfiltered[seiyuudigit]['MAL Image'] !== 'undefined' && arrfiltered[seiyuudigit]['MAL Image'] !== "-")
-        	images[0] = "https://myanimelist.cdn-dena.com/images/voiceactors/"+arrfiltered[seiyuudigit]['MAL Image']+".jpg"
+      	function sendInfo(digit) {
+      		var str = "";
+          let artistname = false
+          if (arrfiltered[digit]['Artist Name'] != "-")
+            artistname = true
+         
+      		images = []
+	  		if(!arrfiltered.length)
+	        	return message.reply("There are no images available yet which match your query! Please check for typos, try again at a later time or submit images to <@155038103281729536>!")
+	      
+	       	if (arrfiltered[digit]['Other Image'] !== 'undefined' && arrfiltered[digit]['Other Image'] !== "-")
+	        	images = arrfiltered[digit]['Other Image'].split("|")
+	      	else if (arrfiltered[digit]['MAL Image'] !== 'undefined' && arrfiltered[digit]['MAL Image'] !== "-")
+	        	images[0] = "https://myanimelist.cdn-dena.com/images/voiceactors/"+arrfiltered[digit]['MAL Image']+".jpg"
 
-        var imagedigit = helper.data.getRandomInt(0, images.length-1)
-        var poss = ""
-       
-        if(images[imagedigit] === 'undefined')
-        	return message.reply("There are no images available yet which match your query! Please check for typos, try again at a later time or submit images to <@155038103281729536>!")
-        message.reply("**"+arrfiltered[seiyuudigit]["Seiyuu Name"]+"** ("+arrfiltered[seiyuudigit]["Character"]+") ["+arrfiltered[seiyuudigit]["Franchise"]+ "]\n"+images[helper.data.getRandomInt(0, images.length-1)])
-        if (arrfiltered.length > 1 && (query != this.name || !this.aliases.includes(query)))
+	        var imagedigit = helper.data.getRandomInt(0, images.length-1)
+	        var poss = ""
+	       
+	        if(images[imagedigit] === 'undefined')
+	        	return message.reply("There are no images available yet which match your query! Please check for typos, try again at a later time or submit images to <@155038103281729536>!")
+          if (artistname)
+	          message.reply("**"+arrfiltered[digit]['Artist Name']+"** ("+arrfiltered[digit]["Character"]+") ["+arrfiltered[digit]["Franchise"]+ "]\n"+images[helper.data.getRandomInt(0, images.length-1)])
+	        else
+            message.reply("**"+arrfiltered[digit]["Seiyuu Name"]+"** ("+arrfiltered[digit]["Character"]+") ["+arrfiltered[digit]["Franchise"]+ "]\n"+images[helper.data.getRandomInt(0, images.length-1)])
+          if (arrfiltered.length > 1 && (query != this.name || !this.aliases.includes(query)))
+	        {
+	            
+	            count = 1;
+	            for (let id in arrfiltered)
+	            {
+	                if (id != digit)
+	                {
+	                    if (arrfiltered[id]['Artist Name'] != "-")  
+                        str+= `**${arrfiltered[id]['Artist Name']}** (${arrfiltered[id]["Character"]}) [${arrfiltered[id]["Franchise"]}] **${count}** \n`
+                      else
+                        str+= `**${arrfiltered[id]["Seiyuu Name"]}** (${arrfiltered[id]["Character"]}) [${arrfiltered[id]["Franchise"]}] **${count}** \n`
+	                   count ++
+                  }
+	               	
+	            }
+	            if (query != name && !aliases.includes(query) && query !== "")
+	            {
+	            const embed2 = new Discord.RichEmbed()
+
+	            embed2.setColor("#b5b1e1")
+	            embed2.addField("Other seiyuu who match this query: ", str)
+	            message.channel.send(embed2);
+	            }
+
+	        }
+      	}
+        
+        if (query !== this.name && this.aliases.includes(query) == false)
         {
-            var str = "";
-            
-            for (let id in arrfiltered)
-            {
-                if (id != seiyuudigit)
-                {
-                   str+= `**${arrfiltered[id]["Seiyuu Name"]}** (${arrfiltered[id]["Character"]}) [${arrfiltered[id]["Franchise"]}] \n`
-                }
-               
-            }
-            if (query != this.name && !this.aliases.includes(query) && query !== "")
-            {
-            const embed2 = new Discord.RichEmbed()
+        const filter = m =>m.author.id === message.author.id
+        var collector
+        if (collector == null)
+            collector = message.channel.createMessageCollector(filter, { time: 30000 });
 
-            embed2.setColor("#b5b1e1")
-            embed2.addField("Other seiyuu who match this query: ", str)
-            message.channel.send(embed2);
+        collector.on('collect', m => {
+            console.log("Message: "+m)
+            if (m.content.match(/^(\d)+/) != null && m < arrfiltered.length && m>0)
+            {
+                arrfiltered = helper.data.sortArray(arrfiltered, seiyuudigit)
+                seiyuudigit = m-1     
+                sendInfo(seiyuudigit)
             }
+            else if (m.content.match(/^(\d)+/) != null && (m >= arrfiltered.length || m < 1))
+                message.reply("Please enter a valid number for this request! (0 - "+(count-1)+")")
+            else
+                collector.stop()
+        })
 
+        collector.on('end', collected => {
+            console.log(`Collected ${collected.size} items`);
+        })        
         }
-
        
     },
 };

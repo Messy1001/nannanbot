@@ -1,4 +1,4 @@
-const helper = require('../helpers.js');
+/**const helper = require('../helpers.js');
 const Discord = require('discord.js');
 const { prefix, token } = require('../config.json');
 
@@ -244,4 +244,4 @@ module.exports = {
 
       
     },
-};
+};**/

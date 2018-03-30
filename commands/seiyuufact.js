@@ -13,6 +13,9 @@ module.exports = {
       const fs = require('fs');
       let rawdata
       let obj
+      var aliases = this.aliases
+      var name = this.name
+      var count = 0
       
         
       
@@ -85,6 +88,22 @@ module.exports = {
       
         if (!arr.length)
         	return console.log("Error")
+      
+        let randomquery = true
+        var re = /( )?\b\d(\d)?\b( )?/
+        let factdigit 
+        
+        if (query.match(re) == null)
+        {
+            factdigit = helper.data.getRandomInt(0, facts.length-1)
+            
+        }
+        else
+        {                        
+            factdigit = parseInt(query.match(re)[0].trim())            
+            query = query.replace(re, "");
+            randomquery = false
+        }
         
         let seiyuudigit;
         var arrtemp = arr;
@@ -174,37 +193,50 @@ module.exports = {
         else
             arrfiltered = arr
       console.log(arr)
-    	seiyuudigit = helper.data.getRandomInt(0, arrfiltered.length-1)
+      seiyuudigit = helper.data.getRandomInt(0, arrfiltered.length-1)
+        
+      console.log("FD"+factdigit)
+      sendInfo(seiyuudigit)
+     
+    function sendInfo(digit) {
+     	
 
-      if(!arrfiltered.length)
+    	if(!arrfiltered.length)
         	return message.reply("There are no facts available yet which match your query! Please check for typos, try again at a later time or submit facts to <@155038103281729536>!")
       
-        if (arrfiltered[seiyuudigit]['Fun Facts'] != undefined)
-        	facts = arrfiltered[seiyuudigit]['Fun Facts'].split("|")
-
+        if (arrfiltered[digit]['Fun Facts'] != undefined)
+        	facts = arrfiltered[digit]['Fun Facts'].split("|")
         
-        var factdigit = helper.data.getRandomInt(0, facts.length-1)
         var poss = ""
+        if (randomquery || factdigit > facts.length-1)
+            factdigit = helper.data.getRandomInt(0, facts.length-1)
+        
         if (facts[factdigit].search(/( )?\§/) != -1)
         {
         	poss = "'s"
         	facts[factdigit] = facts[factdigit].replace(/( )?\§/, "")
         }
-        
-      	message.reply("Did you know that **" +arrfiltered[seiyuudigit]['Seiyuu Name']+poss+"** ("+arrfiltered[seiyuudigit]['Character']+") " +facts[factdigit].trim()+"?")
+      
+        let displayedname
+        if (arrfiltered[digit]['Artist Name'] == "-")
+          displayedname = arrfiltered[digit]['Seiyuu Name']
+        else
+          displayedname = arrfiltered[digit]['Artist Name']
+      	message.reply("Did you know that **" +displayedname+poss+"** ("+arrfiltered[digit]['Character']+") " +facts[factdigit].trim()+"?")
         if (arrfiltered.length > 1 && (query != this.name || !this.aliases.includes(query)))
         {
             var str = "";
-            
+            count = 1
             for (let id in arrfiltered)
             {
-                if (id != seiyuudigit)
+                if (id != digit)
                 {
-                   str+= `**${arrfiltered[id]["Seiyuu Name"]}** (${arrfiltered[id]["Character"]}) [${arrfiltered[id]["Franchise"]}] \n`
+                   str+= `**${arrfiltered[id]["Seiyuu Name"]}** (${arrfiltered[id]["Character"]}) [${arrfiltered[id]["Franchise"]}] **${count}** \n`
+                   count ++
                 }
-               
+                
             }
-            if (query != this.name && !this.aliases.includes(query) && query !== "")
+            if (query != name && !aliases.includes(query) && query !== "")
             {
             const embed2 = new Discord.RichEmbed()
 
@@ -213,6 +245,33 @@ module.exports = {
             message.channel.send(embed2);
             }
 
+        }
+     }
+        console.log("Q:"+query)
+        if (query !== this.name && this.aliases.includes(query) == false)
+        {
+        const filter = m =>m.author.id === message.author.id
+        var collector
+        if (collector == null)
+            collector = message.channel.createMessageCollector(filter, { time: 30000 });
+
+        collector.on('collect', m => {
+            console.log("Message: "+m)
+            if (m.content.match(/^(\d)+/) != null && m < arrfiltered.length && m>0)
+            {
+                arrfiltered = helper.data.sortArray(arrfiltered, seiyuudigit)
+                seiyuudigit = m-1     
+                sendInfo(seiyuudigit)
+            }
+            else if (m.content.match(/^(\d)+/) != null && (m >= arrfiltered.length || m < 1))
+                message.reply("Please enter a valid number for this request! (0 - "+(count-1)+")")
+            else
+                collector.stop()
+        })
+
+        collector.on('end', collected => {
+            console.log(`Collected ${collected.size} items`);
+        })        
         }
        
     },

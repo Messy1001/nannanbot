@@ -16,7 +16,7 @@ module.exports = {
           data.push('Here\'s a list of all my commands: \n');
           data.push("**User Commands: **")
           commands.map(command =>{
-              if(!command.modOnly)
+              if(!command.modOnly && command.name != "undefined")
               userstr+= command.name+", "
 
           })
@@ -35,8 +35,8 @@ module.exports = {
           data.push(modstr)
 
           data.push(` \nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
-
-          data.push("\n\n Special thanks to the people contributing to this project listed here: https://goo.gl/prihtA")
+          data.push("\n\nFor questions, bug reports, feature requests or just general feedback please feel free to contact me on Discord: <@155038103281729536>!")
+          data.push("\nSpecial thanks to the people contributing to this project listed here: https://goo.gl/prihtA")
         }
         else {
           var aliascheck = false

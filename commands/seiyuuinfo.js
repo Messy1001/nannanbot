@@ -18,6 +18,7 @@ module.exports = {
         var birthday = ""
         var query = message.content;
         var franchise
+        var count = 0;
       
         query = query.toLowerCase()
         query = query.replace(prefix, "");
@@ -214,143 +215,193 @@ module.exports = {
         
       
 
-        var color = seiyuufiltered[digit]['Image Color'] 
-        if (color === "TBA")
-            color = "#b5b1e1"
-        var image
-        if (seiyuufiltered[digit]['MAL Image'] != "-")
-          image = "https://myanimelist.cdn-dena.com/images/voiceactors/"+seiyuufiltered[digit]['MAL Image']+".jpg"
-        else 
-          image = "https://abload.de/img/000000-0.0s3ssy.png"
-        if (seiyuufiltered[digit]['Other Image'] != "-" && seiyuufiltered[digit]['Other Image'] !== "undefined")
-        {
-          image = seiyuufiltered[digit]['Other Image'].split("|")[0].trim()
-        }
+       
       
-        var twitter = seiyuufiltered[digit]['Twitter Account'].split("/")
-        if ( twitter != "-")
-          twitter = "@"+twitter[twitter.length-1]
-        else
-          twitter = "n/a"
-        var blog = seiyuufiltered[digit]['Blog']
-        if( blog == "-")
-          blog = "n/a"
-      
-        if(date == seiyuufiltered[digit]['Birthday'])
-          birthday  = " **🎉Today is their birthday**🎉"
-      
-        var mal 
-         if (seiyuufiltered[digit]['MAL Page'] != "-")
-           mal = "[MAL](https://myanimelist.net/people/"+seiyuufiltered[digit]['MAL Page']+")"
-         else
-           mal = "n/a"
-        console.log("Agency: "+seiyuufiltered[digit]['Agency'])
-        var agency
-        if (seiyuufiltered[digit]['Agency'].match(/( )?-( )?/) == null && seiyuufiltered[digit]['Agency'].toLowerCase().match(/( )?\bf\b( )?/) == null)
-        {
-          agency = seiyuufiltered[digit]['Agency']
-        }
-        else if(seiyuufiltered[digit]['Agency'].toLowerCase().match(/( )?\bf\b( )?/) != null)
-          agency = "-"
-        else
-          agency = "n/a"
+       
+        sendInfo(digit);
+       
         
-        var website = []
-        var websiteurl = []
-        if (seiyuufiltered[digit]['Website'] != "-" )
-        {
-            website = seiyuufiltered[digit]['Website'].split("/")
-            websiteurl = seiyuufiltered[digit]['Website URL'].split("|")
-        }                                             
-        
-        var webstr = ""
-        if(!website.length)
-          webstr="n/a"
-        for(var id in website)
-        {
-            webstr += "["+website[id]+"]("+websiteurl[id]+")"
-            if (id != website.length-1)
-              webstr += " / "
-        }
-        
-        var media = []
-        var mediaurl = []
-        if (seiyuufiltered[digit]['Other Media'] != "-" )
-        {
-            media = seiyuufiltered[digit]['Other Media'].split("/")
-            mediaurl = seiyuufiltered[digit]['Other Media URL'].split("|")
-        }                                             
-        
-        var mediastr = ""
-        if(!media.length)
-          mediastr="n/a"
-        for(var id in media)
-        {
-            mediastr += "["+media[id]+"]("+mediaurl[id]+")"
-            if (id != media.length-1)
-              mediastr += " / "
-        }
-      
-        
-        const embed = new Discord.RichEmbed()
+        function sendInfo(digit) { 
+            const embed = new Discord.RichEmbed()            
 
-        embed.setColor(color)
-        embed.setTitle(`${seiyuufiltered[digit]['Seiyuu Name']} - ${seiyuufiltered[digit]['Character']}`)
-        embed.setImage(image)
-        
-        embed.addField("Nickname: ",`${seiyuufiltered[digit]['Nickname'].replace(/( )?\*/,"").replace(/( )?\/( )?/g, ", ")}`, true)
-        embed.addField("Birthday: ",`${seiyuufiltered[digit]['Birthday']}${birthday}`, true)
-        embed.addField("Hometown:", `${seiyuufiltered[digit]['Birthplace']}`)
-        
-        
-        if(seiyuufiltered[digit]['Skills'] != "-") 
-        {
-            embed.addField("Skills :", seiyuu[digit]['Skills'].replace(/( )?\/( )?/g, ", "))  
-        }
-        if(seiyuufiltered[digit]['Hobbies'] != "-") 
-        {            
-            embed.addField("Hobbies :", seiyuufiltered[digit]['Hobbies'].replace(/( )?\/( )?/g, ", "))
-        }
-        embed.addBlankField()
-        embed.addField("Twitter :", "["+twitter+"]("+seiyuufiltered[digit]['Twitter Account']+")",true)
-        embed.addField("Blog :", "["+blog+"]("+seiyuufiltered[digit]['Blog URL']+")",true)
-        embed.addField("Other Media :", mediastr,true)
-        embed.addField("Website :", webstr,true)
-        embed.addField("MAL :", mal,true)
-        embed.addField("Agency :", "["+agency+"]("+seiyuufiltered[digit]['Agency URL']+")",true) 
-        
-        
-        //embed.setThumbnail("https://abload.de/img/tsumuoxu1s.png")
-        
-        
-        
-        embed.setTimestamp()
-        embed.setFooter("Special thanks to the people helping with this project: goo.gl/prihtA")
-        
-
-        message.channel.send(embed);
-        
-        if (seiyuufiltered.length > 1)
-        {
-            var str = "";
-            var count = 0;
-            for (let id in seiyuufiltered)
+            var color = seiyuufiltered[digit]['Image Color'] 
+            if (color === "TBA")
+                color = "#b5b1e1"
+            var image
+            if (seiyuufiltered[digit]['MAL Image'] != "-")
+              image = "https://myanimelist.cdn-dena.com/images/voiceactors/"+seiyuufiltered[digit]['MAL Image']+".jpg"
+            else 
+              image = "https://abload.de/img/000000-0.0s3ssy.png"
+            if (seiyuufiltered[digit]['Other Image'] != "-" && seiyuufiltered[digit]['Other Image'] !== "undefined")
             {
-                if (id != digit)
-                {
-                   str+= `**${seiyuufiltered[id]["Seiyuu Name"]}** (${seiyuufiltered[id]["Character"]}) [${seiyuufiltered[id]["Franchise"]}] **${count}**\n`
-                }
-                count++
+              image = seiyuufiltered[digit]['Other Image'].split("|")[0].trim()
             }
-                        
-            const embed2 = new Discord.RichEmbed()
 
-            embed2.setColor("#b5b1e1")
-            embed2.setDescription("**Other seiyuu who match this query: **\n" + str)
-            message.channel.send(embed2);
 
+           var twittersplit = seiyuufiltered[digit]['Twitter Account'].split("|")
+            var twitterstr = ""
+            var twitter
+            for(let id in twittersplit)
+            {
+                twitter = twittersplit[id].split("/")
+                if ( twitter != "-")
+                    twitterstr += "[@"+twitter[twitter.length-1].trim()+"]"+"("+twittersplit[id].trim()+")"
+                else
+                    twitterstr += "n/a"
+
+                if (id != twittersplit.length-1)
+                    twitterstr += ",\n"
+
+            }
+            
+            var blog = seiyuufiltered[digit]['Blog']
+            if( blog == "-")
+              blog = "n/a"
+          
+            if(date == seiyuufiltered[digit]['Birthday'])
+              birthday  = " **🎉Today is their birthday**🎉"
+          
+            var mal 
+             if (seiyuufiltered[digit]['MAL Page'] != "-")
+               mal = "[MAL](https://myanimelist.net/people/"+seiyuufiltered[digit]['MAL Page']+")"
+             else
+               mal = "n/a"
+            console.log("Agency: "+seiyuufiltered[digit]['Agency'])
+            var agency
+            if (seiyuufiltered[digit]['Agency'].match(/( )?-( )?/) == null && seiyuufiltered[digit]['Agency'].toLowerCase().match(/( )?\bf\b( )?/) == null)
+            {
+              agency = seiyuufiltered[digit]['Agency']
+            }
+            else if(seiyuufiltered[digit]['Agency'].toLowerCase().match(/( )?\bf\b( )?/) != null)
+              agency = "-"
+            else
+              agency = "n/a"
+            
+            var website = []
+            var websiteurl = []
+            if (seiyuufiltered[digit]['Website'] != "-" )
+            {
+                website = seiyuufiltered[digit]['Website'].split("/")
+                websiteurl = seiyuufiltered[digit]['Website URL'].split("|")
+            }                                             
+            
+            var webstr = ""
+            if(!website.length)
+              webstr="n/a"
+            for(var id in website)
+            {
+                webstr += "["+website[id]+"]("+websiteurl[id]+")"
+                if (id != website.length-1)
+                  webstr += " / "
+            }
+            
+            var media = []
+            var mediaurl = []
+            if (seiyuufiltered[digit]['Other Media'] != "-" )
+            {
+                media = seiyuufiltered[digit]['Other Media'].split("/")
+                mediaurl = seiyuufiltered[digit]['Other Media URL'].split("|")
+            }                                             
+            
+            var mediastr = ""
+            if(!media.length)
+              mediastr="n/a"
+            for(var id in media)
+            {
+                mediastr += "["+media[id]+"]("+mediaurl[id]+")"
+                if (id != media.length-1)
+                  mediastr += " / "
+            }
+
+            var name
+            if(seiyuufiltered[digit]['Artist Name']!= "-")
+                name = seiyuufiltered[digit]['Seiyuu Name'].split(" ")[0] + " \""+seiyuufiltered[digit]['Artist Name']+"\" " + seiyuufiltered[digit]['Seiyuu Name'].split(" ")[1]
+            else
+                name = seiyuufiltered[digit]['Seiyuu Name']
+            
+
+            embed.setColor(color)
+            embed.setTitle(`${name} - ${seiyuufiltered[digit]['Character']}`)
+            embed.setImage(image)
+            
+            embed.addField("Nickname: ",`${seiyuufiltered[digit]['Nickname'].replace(/( )?\*/,"").replace(/( )?\/( )?/g, ", ")}`, true)
+            embed.addField("Birthday: ",`${seiyuufiltered[digit]['Birthday']}${birthday}`, true)
+            embed.addField("Birthplace:", `${seiyuufiltered[digit]['Birthplace']}`)
+            
+            
+            if(seiyuufiltered[digit]['Skills'] != "-") 
+            {
+                embed.addField("Skills :", seiyuu[digit]['Skills'].replace(/( )?\|( )?/g, ", "))  
+            }
+            if(seiyuufiltered[digit]['Hobbies'] != "-") 
+            {            
+                embed.addField("Hobbies :", seiyuufiltered[digit]['Hobbies'].replace(/( )?\|( )?/g, ", "))
+            }
+            embed.addBlankField()
+            embed.addField("Twitter :", twitterstr,true)
+            embed.addField("Blog :", "["+blog+"]("+seiyuufiltered[digit]['Blog URL']+")",true)
+            embed.addField("Other Media :", mediastr,true)
+            embed.addField("Website :", webstr,true)
+            embed.addField("MAL :", mal,true)
+            embed.addField("Agency :", "["+agency+"]("+seiyuufiltered[digit]['Agency URL']+")",true) 
+            
+            embed.setTimestamp()
+            embed.setFooter("Special thanks to the people helping with this project: goo.gl/prihtA")
+            
+
+            message.channel.send(embed);
+
+            if (seiyuufiltered.length > 1)
+            {
+                var str = "";
+                count = 1
+                for (let id in seiyuufiltered)
+                {
+                    if (id != digit)
+                    {
+                       str+= `**${seiyuufiltered[id]["Seiyuu Name"]}** (${seiyuufiltered[id]["Character"]}) [${seiyuufiltered[id]["Franchise"]}] **${count}**\n`
+                       count++
+                    }
+                    
+                }
+
+                const embed2 = new Discord.RichEmbed()
+
+                embed2.setColor("#b5b1e1")
+                embed2.setDescription("**Other seiyuu who match this query: **\n" + str)
+                message.channel.send(embed2);
+            }
         }
-                
+      
+              if (query !== this.name && this.aliases.includes(query) == false)
+              {
+                const filter = m =>m.author.id === message.author.id
+                var collector
+                if (collector == null)
+                    collector = message.channel.createMessageCollector(filter, { time: 30000 });
+
+                collector.on('collect', m => {
+                    console.log("Message: "+m)
+                    if (m.content.match(/^(\d)+/) != null && (m < seiyuufiltered.length & m > 0))
+                    {
+                        seiyuufiltered  = helper.data.sortArray(seiyuufiltered, digit)
+                        digit = m-1                      
+                        let i = 0
+                                               
+                        sendInfo(digit)
+                                                         
+                        
+                    }
+                    else if (m.content.match(/^(\d)+/) != null && (m >= seiyuufiltered.length || m < 1)) 
+                        message.reply("Please enter a valid number for this request! (1 - "+(count-1)+")")
+                    else
+                        collector.stop()
+                })
+
+                collector.on('end', collected => {
+                    console.log(`Collected ${collected.size} items`);
+                })   
+              }
         
        
     },
