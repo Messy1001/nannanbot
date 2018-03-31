@@ -9,32 +9,72 @@ module.exports = {
     execute(message, args) {
         const { commands } = message.client;
         const data = [];
+        var userstr = "\`"
+        var modstr = "\`"
 
         if (!args.length) {
-          data.push('Here\'s a list of all my commands:');
-          data.push(commands.map(command => command.name).join(', '));
-          data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
+          data.push('Here\'s a list of all my commands: \n');
+          data.push("**User Commands: **")
+          commands.map(command =>{
+              if(!command.modOnly && command.name != "undefined")
+              userstr+= command.name+", "
+
+          })
+          userstr = userstr.substring(0, userstr.length - 2);
+          userstr+="\`"
+          data.push(userstr)
+
+          data.push("\n**Mod Commands: **")
+          commands.map(command =>{
+              if(command.modOnly)
+              modstr+= command.name+", "
+
+          })
+          modstr = modstr.substring(0, modstr.length - 2);
+          modstr+="\`"
+          data.push(modstr)
+
+          data.push(` \nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
+          data.push("\n\nFor questions, bug reports, feature requests or just general feedback please feel free to contact me on Discord: <@155038103281729536>!")
+          data.push("\nSpecial thanks to the people contributing to this project listed here: https://goo.gl/prihtA")
         }
         else {
-          if (!commands.has(args[0])) {
+          var aliascheck = false
+          var command
+         commands.forEach(function(id) {
+               
+                for (var value in id['aliases'])
+                {
+                  if (id['aliases'][value] == args[0])
+                  {
+                  aliascheck = true
+                  command = id['name']
+                  }
+                }
+          })
+
+          if (!commands.has(args[0]) && aliascheck == false) {
           return message.reply('that\'s not a valid command!');
           }
+          console.log(command)
 
-          const command = commands.get(args[0]);
+          if(!aliascheck)
+            command = commands.get(args[0]);
+          else
+            command = commands.get(command)
 
-          data.push(`**Name:** ${command.name}`);
+          data.push(`\n**Name:** \t\t\t\t\`${command.name}\``);
 
-          if (command.description) data.push(`**Description:** ${command.description}`);
-          if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}`);
-          if (command.usage) data.push(`**Usage:** ${prefix}${command.name} ${command.usage}`);
+          if (command.description) data.push(`**Description:**  \t\`${command.description}\``);
+          if (command.aliases) data.push(`**Aliases:**  \t\t\t\`${command.aliases.join(', ')}\``);
+          if (command.usage) data.push(`**Usage:**\t\t\t\t\`${prefix}${command.name} ${command.usage}\``);
 
-          data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
+          data.push(`**Cooldown:** \t\t\`${command.cooldown || 3} second(s)\``);
         }
-        message.author.send(data, { split: true })
+        message.reply(data, { split: true })
         .then(() => {
-          if (message.channel.type !== 'dm') {
-            message.channel.send('I\'ve sent you a DM with all my commands!');
-          }
+         
+           
         })
         .catch(() => message.reply('it seems like I can\'t DM you!'));
     },

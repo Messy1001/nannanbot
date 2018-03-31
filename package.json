@@ -18,6 +18,8 @@
     "express": "^4.16.3",
     "google-auth-library": "^0.12.0",
     "google-spreadsheet": "^2.0.3",
-    "googleapis": "^25.0.0"
+    "googleapis": "^25.0.0",
+    "npm": "^5.8.0",
+    "request": "^2.85.0"
   }
 }

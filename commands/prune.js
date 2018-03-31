@@ -1,8 +1,10 @@
 module.exports = {
     name: 'prune',
     description: 'Prunes messages',
+    usage: '<amount>',
     guildOnly: true,
     modOnly: true,
+    permissions: 'MANAGE_MESSAGES',
     execute(message, args) {
 		const amount = parseInt(args[0]) + 1;
 

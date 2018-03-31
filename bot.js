@@ -3,8 +3,7 @@ const app = express()
 const http = require('http');
 const dotenv = require('dotenv').config()
 const fs = require('fs');
-
-
+const helper = require('./helpers.js');
 
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
@@ -15,7 +14,15 @@ client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands');
 const cooldowns = new Discord.Collection();
 
-var month = new Array();
+const donutschannel = []
+const messychannel = []
+let messyserver
+var donutsserver
+let strykeserver
+var donutsbotchannel 
+let strykebotchannel
+
+const month = new Array();
     month[0] = "January";
     month[1] = "February";
     month[2] = "March";
@@ -39,45 +46,115 @@ for (const file of commandFiles) {
 
 app.get("/", (request, response) => {
   console.log(Date.now() + " Ping Received");
-  var channel = client.channels.get('426547787946131478')
+  
+
+  helper.data.readSpreadsheet("1mFTCIxa-FlRAWT70M7lC82bx-HRvDm_lovUJLL4FlN8", "icon", "ServerIcon!A:Z")
+  var rawdataicon
+  var objicon
+  
+  rawdataicon = fs.readFileSync('./icon.json');
+  objicon = JSON.parse(rawdataicon) 
+  console.log(objicon['objects']['Icon'])
   var event = new Date()
   event = event.toLocaleString('zh-cn', { timeZone: 'Asia/Tokyo' });
-        event = event.replace(/-/g, "/", 1);
-        console.log("Time: "+event);        
-        event = new Date(event)
-        let date = event.getDate() +" "+month[event.getMonth()]
-     if (event.getHours() == "0" && event.getMinutes() <= "2")
-     {
+  event = event.replace(/-/g, "/", 1);
+  console.log("Time: "+event);        
+  event = new Date(event)
+  let date = event.getDate() +" "+month[event.getMonth()]
+  
+  if(event.getHours() == "23" && event.getMinutes() == "59" && event.getSeconds() <= "10")
+  {
+    helper.data.saveImage(objicon['objects'][0]['Icon'], "icon")  
+    helper.data.saveImage('https://cdn.discordapp.com/attachments/395383455019565056/396826108579807232/MachiWat.png', "machiwat")  
+  }
+
+   if (event.getHours() == "0" && event.getMinutes() == "0" && event.getSeconds() <= "10")
+   {
      let rawdata = fs.readFileSync('./seiyuu.json');  
      let obj = JSON.parse(rawdata); 
-       let birthdays = []
-        
+     let birthdays = []
+     
+     
         
 
-        for (let id in obj['objects'])
+  for (let id in obj['objects'])
   {
       
     if (date == obj['objects'][id]['Birthday'])
         birthdays.push(obj['objects'][id])
   }
-  if(!birthdays.length)
-    channel.setName("birthday_log")
-  let str = "HBD"
-  
+
+  var donutsbday = []
   for (let id in birthdays)
   {
-     var image
+     if (birthdays[id]['Franchise'] !== 'SideM')
+      donutsbday.push(birthdays[id])
+
+  }
+
+  if(!donutsbday.length)
+  {
+   
+    donutschannel[0].setName("imas_talk")
+    donutschannel[1].setName("general")
+    donutschannel[2].setName("event_chat")
+    
+
+    donutsserver.setIcon("./images/machiwat.png")
+  }
+
+  if(!birthdays.length)
+  {
+     messychannel[0].setName("birthday_log")
+     messychannel[1].setName("birthdaytest2")
+
+  }
+
+  let str = "HBD"
+  let nick =""
+  
+  let count = 0
+  for (let id in birthdays)
+  {
       var image
+      
       if (birthdays[id]['MAL Image'] != "-")
           image = "https://myanimelist.cdn-dena.com/images/voiceactors/"+birthdays[id]['MAL Image']+".jpg"
         else 
           image = "https://abload.de/img/000000-0.0s3ssy.png"
         if (birthdays[id]['Other Image'] != "-")
-          image = birthdays[id]['Other Image'] 
-    channel.sendMessage("**Today is "+birthdays[id]['Seiyuu Name']+"'s birthday\n**"+image)
-    str += "_"+birthdays[id]['Nickname'].split("/")[0]
+          image = birthdays[id]['Other Image'].split('|')[0].trim() 
+    if (birthdays[id]['Nickname'] != '-' && birthdays[id]['Nickname'] !== 'undefined')
+    nick = birthdays[id]['Nickname'].split("/")[0]
+    else
+    nick =  birthdays[id]['Seiyuu Name'].split(" ")[0].trim() 
+    
+    if (birthdays[id]['Franchise'] != "SideM")
+      donutschannel[0].sendMessage("**Today is "+birthdays[id]['Seiyuu Name']+"'s ("+birthdays[id]['Character']+") birthday\n**"+image)
+      messychannel[0].sendMessage("**Today is "+birthdays[id]['Seiyuu Name']+"'s ("+birthdays[id]['Character']+") birthday\n**"+image)
+    
+    str += "_"+nick.trim()
+    console.log(str.split("\_")[count])
+    if (birthdays[id]['Franchise'] != "SideM")
+      donutschannel[count].setName("HBD\_"+str.split("\_")[count+1]);
+    messychannel[id].setName("HBD\_"+str.split("\_")[count+1]);
+    if (birthdays[id]['Franchise'] != "SideM")
+    {
+      donutsserver.setIcon("./images/icon.png")
+      count++
+    }
+    
+    for(let i = 3; i>count;i--)
+    {
+      if (i == 3)
+        donutschannel[2].setName("event_chat")
+      if (i == 2)
+        donutschannel[1].setName("general")
+      if (i == 1)
+        donutschannel[0].setName("imas_talk")
+    }
   }
-    channel.setName(str);
+    
   }
   
   response.sendStatus(200);
@@ -86,33 +163,49 @@ app.get("/", (request, response) => {
 app.listen(process.env.PORT);
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 140000);
+}, 10000);
 
 client.on('ready', () => {
-    console.log('Ready now!');
-     
-   
+    console.log('Ready now');
+    donutsserver = client.guilds.get('394781096929132554')
+    messyserver = client.guilds.get('425272007408484353')
+
+    messychannel.push(client.channels.get('426547787946131478'))
+    messychannel.push(client.channels.get('427137127260749825'))
+    donutschannel.push(client.channels.get('398042378759307274'))
+    donutschannel.push(client.channels.get('394781096929132556'))
+    donutschannel.push(client.channels.get('397203874173157376'))
+    donutsbotchannel = client.channels.get('397264569069862912')
+    
+    client.user.setPresence({ game: { name: '>help for commands', type: 0 } });
+    
 });
 
 client.on('message', message => {
-	if (!message.content.startsWith(prefix) || message.author.bot) return;
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  
+   const args = message.content.slice(prefix.length).split(/ +/);
+  const commandName = args.shift().toLowerCase();    
 
-  const args = message.content.slice(prefix.length).split(/ +/);
-	const commandName = args.shift().toLowerCase();    
-
-	const command = client.commands.get(commandName)
+  const command = client.commands.get(commandName)
     || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
     if (!command) return;
+  
+  if (command.modOnly && !message.member.hasPermission(command.permissions))
+  {
+    return message.reply('You don\'t have the necessary permissions to use this command!');    
+  }
+ 
+  if (message.channel === donutsbotchannel || message.channel === strykebotchannel || (message.guild != donutsserver && message.guild != strykeserver)|| command.modOnly)
+  {
+ 
 
   if (command.guildOnly && message.channel.type !== 'text') {
     return message.reply('I can\'t execute that command inside DMs!');
   }
 
-  if (command.modOnly && !message.guild.members.get(message.author.id).hasPermission('DELETE_MESSAGES'))
-  {
-    return message.reply('You don\'t have the necessary permissions to use this command!');    
-  }
+  
 
   if (command.args && !args.length) {
     let reply = `You didn't provide any arguments, ${message.author}!`;
@@ -145,14 +238,15 @@ client.on('message', message => {
     timestamps.set(message.author.id, now);
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
   }
-
-	try {
-		command.execute(message, args);
-	}
-	catch (error) {
-	    console.error(error);
-	    message.reply('there was an error trying to execute that command!');
-	}
+    
+  try {
+    command.execute(message, args);
+  }
+  catch (error) {
+      console.error(error);
+      message.reply('there was an error trying to execute that command!');
+  }
+  }
 });
 
 client.login(process.env.TOKEN);
