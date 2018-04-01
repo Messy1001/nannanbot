@@ -12,6 +12,7 @@ module.exports = {
     name: 'renamechanneladd',
     description: 'Adds a channel to be renamed for birthdays!',
     adminOnly: true,
+    permissions: 'ADMINISTRATOR',
     execute(message, args) {
         try {
 
@@ -58,7 +59,7 @@ module.exports = {
             });
             })
 
-            message.reply(`Server ${message.guild.id} added.\n Channel ${channelid} added`);
+            message.reply(`Server ${message.guild.name} added.\n Channel ${message.guild.channels.get(channelid)} added`);
         }
         catch (e) {
             if (e.name === 'SequelizeUniqueConstraintError') {

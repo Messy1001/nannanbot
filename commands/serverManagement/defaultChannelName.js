@@ -12,16 +12,21 @@ module.exports = {
     name: 'defaultchannelname',
     description: 'Adds a channel to be renamed for birthdays!',
     adminOnly: true,
+    permissions: 'ADMINISTRATOR',
     execute(message, args) {
         try {
 
             let channelid;
+            let defName
             if (args.length == 1)
-                defName = args[0]
+            {
+                channelid = message.channel.id
+                defName = args[0].trim()
+            }
             else if (args.length == 2)
             {
                 channelid = args[0].trim()
-                defName = args[1]
+                defName = args[1].trim()
             }
             console.log("args:"+args)
            
@@ -64,7 +69,7 @@ module.exports = {
             });
             })
 
-            message.reply(`Channel ${channelid} default name: ${defName} added`);
+            message.reply(`Channel ${message.guild.channels.get(channelid)} default name: ${defName} added`);
         }
         catch (e) {
             if (e.name === 'SequelizeUniqueConstraintError') {

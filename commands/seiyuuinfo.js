@@ -109,6 +109,8 @@ module.exports = {
         let rawdata = fs.readFileSync('./seiyuu.json');  
         let obj = JSON.parse(rawdata);  
 
+        let digitarray = []
+
         query = query.trim()
         for (var ID in obj['objects'])
         {
@@ -120,9 +122,10 @@ module.exports = {
             if (query.split(" ").length == 1)
             {
                 
-                if (splitQuery[0].toLowerCase().indexOf(query) !== -1 || splitQuery[1].toLowerCase().indexOf(query) !== -1 )
+                if (!digitarray.includes(ID) && (splitQuery[0].toLowerCase().indexOf(query) !== -1 || splitQuery[1].toLowerCase().indexOf(query) !== -1 ))
                 {
                   seiyuu.push(obj['objects'][ID]);
+                  digitarray.push(ID)
                 }
                 
                 splitQuery = obj['objects'][ID]['Character'].split(" ");
@@ -130,9 +133,10 @@ module.exports = {
                   splitQuery[1] = splitQuery[0];
                 
                 
-                if (splitQuery[0].toLowerCase().indexOf(query) !== -1 || splitQuery[1].toLowerCase().indexOf(query) !== -1 )
+                if (!digitarray.includes(ID) && (splitQuery[0].toLowerCase().indexOf(query) !== -1 || splitQuery[1].toLowerCase().indexOf(query) !== -1 ))
                 {
                   seiyuu.push(obj['objects'][ID]);
+                  digitarray.push(ID)
                 }
             }
             else 
@@ -140,8 +144,9 @@ module.exports = {
                               
               if (query.split(" ")[0] === splitQuery[0].toLowerCase()  || query.split(" ")[0] === splitQuery[1].toLowerCase() && query.split(" ")[1] === splitQuery[0].toLowerCase()  || query.split(" ")[1] === splitQuery[1].toLowerCase()  ) 
                 {
-                    if (query.split(" ")[0]+" "+query.split(" ")[1] === obj['objects'][ID]['Seiyuu Name'].toLowerCase() || query.split(" ")[1]+" "+query.split(" ")[0] === obj['objects'][ID]['Seiyuu Name'].toLowerCase())
+                    if (!digitarray.includes(ID) && (query.split(" ")[0]+" "+query.split(" ")[1] === obj['objects'][ID]['Seiyuu Name'].toLowerCase() || query.split(" ")[1]+" "+query.split(" ")[0] === obj['objects'][ID]['Seiyuu Name'].toLowerCase()))
                     seiyuu.push(obj['objects'][ID]);
+                    digitarray.push(ID)
                 }
               
                 splitQuery = obj['objects'][ID]['Character'].split(" ");
@@ -150,8 +155,9 @@ module.exports = {
                                 
                 if (query.split(" ")[0] === splitQuery[0].toLowerCase()  || query.split(" ")[0] === splitQuery[1].toLowerCase() && query.split(" ")[1] === splitQuery[0].toLowerCase()  || query.split(" ")[1] === splitQuery[1].toLowerCase()  ) 
                 {
-                    if (query.split(" ")[0]+" "+query.split(" ")[1] === obj['objects'][ID]['Character'].toLowerCase() || query.split(" ")[1]+" "+query.split(" ")[0] === obj['objects'][ID]['Character'].toLowerCase())
+                    if (!digitarray.includes(ID) && (query.split(" ")[0]+" "+query.split(" ")[1] === obj['objects'][ID]['Character'].toLowerCase() || query.split(" ")[1]+" "+query.split(" ")[0] === obj['objects'][ID]['Character'].toLowerCase()))
                     seiyuu.push(obj['objects'][ID]);
+                    digitarray.push(ID)
                 }              
                 
             }

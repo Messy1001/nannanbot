@@ -1,5 +1,19 @@
 	var methods = {
 
+
+		sortArray: function sortArray(array, digit){
+            let temparray = []
+            for (let id in array)
+            {
+                if (id != digit)
+                  temparray.push(array[id])
+            }
+            temparray.push(array[digit])
+            return temparray
+            
+        },
+
+
 		
 
 		saveImage: function saveImage(url, filename){

@@ -10,6 +10,8 @@ const Servers = sequelize.import('../..//models/Servers');
 const RenameChannels = sequelize.import('../../models/RenameChannels');
 module.exports = {
     name: 'announcementtype',
+    adminOnly: true,
+    permissions: 'ADMINISTRATOR',
     description: 'Adds a channel where announcements are posted!',
     execute(message, args) {
         try {

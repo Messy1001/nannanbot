@@ -10,6 +10,7 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 const Servers = sequelize.import('models/Servers');
 const BotChannels = sequelize.import('models/BotChannels');
 const Servers_BotChannels = sequelize.import('models/Servers_BotChannels');
+const Users = sequelize.import('models/Users');
 
 
 Servers.prototype.addBotChannel = async function(botchannel) {
@@ -31,4 +32,4 @@ Servers.prototype.getBotChannels = function() {
     });
 };
 
-module.exports = { Servers, BotChannels, Servers_BotChannels };
+module.exports = { Servers, BotChannels, Servers_BotChannels, Users };

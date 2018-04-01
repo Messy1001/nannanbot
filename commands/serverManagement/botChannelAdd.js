@@ -12,6 +12,7 @@ module.exports = {
     name: 'botchanneladd',
     description: 'Adds a bot channel!',
     adminOnly: true,
+    permissions: 'ADMINISTRATOR',
     execute(message, args) {
         try {
 
@@ -53,7 +54,7 @@ module.exports = {
 
             });
             })
-            message.reply(`Server ${message.guild.id} added.\n Channel ${channelid} added`);
+            message.reply(`Server ${message.guild.name} added.\n Channel ${message.guild.channels.get(channelid)} assigned as bot channel.`);
         }
         catch (e) {
             if (e.name === 'SequelizeUniqueConstraintError') {

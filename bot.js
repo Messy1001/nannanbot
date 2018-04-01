@@ -4,11 +4,14 @@ const http = require('http');
 const dotenv = require('dotenv').config()
 const fs = require('fs');
 const helper = require('./helpers.js');
+const currencyHelper = require('./currencyHelpers.js')
 var dir = require('node-dir');
 const Sequelize = require('sequelize');
 
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
+
+const currency = new Discord.Collection();
 
 const client = new Discord.Client();
 
@@ -29,14 +32,8 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 const Servers = sequelize.import('./models/Servers');
 const BotChannels = sequelize.import('./models/BotChannels');
 const RenameChannels = sequelize.import('./models/RenameChannels');
+const Users = sequelize.import("./models/Users")
 
-const donutschannel = []
-const messychannel = []
-let messyserver
-var donutsserver
-let strykeserver
-var donutsbotchannel 
-let strykebotchannel
 
 const month = new Array();
     month[0] = "January";
@@ -59,6 +56,10 @@ for (const file of commandFiles) {
     // with the key as the command name and the value as the exported module
     client.commands.set(command.name, command);
 }
+
+currencyHelper.data.defineAdd(currency)
+currencyHelper.data.defineGet(currency)
+
 
 app.get("/", (request, response) => {
   console.log(Date.now() + " Ping Received");
@@ -196,6 +197,8 @@ app.get("/", (request, response) => {
               if (channelid >= count)
               client.channels.get(channels[channelid]['renamechannel_id']).setName(channels[channelid]['default_name'])
           }
+          if(count == 0)
+            servers[serverid].setIcon("./images/machiwat.png")
         })
       }
     })
@@ -216,14 +219,21 @@ setInterval(() => {
 client.on('ready', () => {
     console.log('Ready now');
 
-  
-    
-    
+    const storedBalances = Users.findAll()
+    .then(users => {
+      for(let id in users)
+      {
+        currency.set(users[id]['user_id'], users[id])
+      }
+    })
     client.user.setPresence({ game: { name: '>help for commands', type: 0 } });
     
 });
 
 client.on('message', message => {
+
+   currency.add(message.author.id, 10);
+
   if (!message.content.startsWith(prefix) || message.author.bot) return;
   
   const args = message.content.slice(prefix.length).split(/ +/);
@@ -248,6 +258,7 @@ client.on('message', message => {
   BotChannels.findAll({
     where: {server_id: message.guild.id}
   }).then(channels => {
+    console.log("yes")
     for (let id in channels)
     {
         botchannels.push(channels[id]['botchannel_id'])

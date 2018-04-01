@@ -18,6 +18,7 @@ module.exports = {
           commands.map(command =>{
               if(!command.adminOnly && !command.modOnly && command.name != "undefined")
               userstr+= command.name+", "
+              userstr=userstr.replace(/( )?undefined(,)?/g,"")
 
           })
           userstr = userstr.substring(0, userstr.length - 2);

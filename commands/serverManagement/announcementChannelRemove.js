@@ -9,8 +9,8 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 const Servers = sequelize.import('../..//models/Servers');
 const RenameChannels = sequelize.import('../../models/RenameChannels');
 module.exports = {
-    name: 'announcementchanneladd',
-    description: 'Adds a channel where announcements are posted!',
+    name: 'announcementchannelremove',
+    description: 'Removes a channel where announcements are posted!',
     adminOnly: true,
     permissions: 'ADMINISTRATOR',
     execute(message, args) {
@@ -38,11 +38,11 @@ module.exports = {
 
            }).then(function() {
                 Servers.update(
-                  { announcement_channel: channelid },
+                  { announcement_channel: null},
                   { where: { server_id: message.guild.id } }
                 )
             })
-            message.reply(`Server ${message.guild.name} added.\n Channel ${message.guild.channels.get(channelid)} assigned as announcementchannel`);
+            message.reply(`Server ${message.guild.name} .\n Channel ${message.guild.channels.get(channelid)} removed as announcementchannel`);
         }
         catch (e) {
             if (e.name === 'SequelizeUniqueConstraintError') {

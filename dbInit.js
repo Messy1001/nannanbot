@@ -10,6 +10,7 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 const Servers = sequelize.import('models/Servers');
 const BotChannels = sequelize.import('models/BotChannels');
 const RenameChannels = sequelize.import('models/RenameChannels');
+const Users = sequelize.import('models/Users');
 
 Servers.hasMany(BotChannels, {foreignKey: {field: 'server_id'}, onDelete: 'cascade'});
 BotChannels.belongsTo(Servers, {foreignKey: {field: 'server_id'}, onDelete: 'cascade'});

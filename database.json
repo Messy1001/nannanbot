@@ -1,0 +1,17 @@
+{
+  "dev": {
+    "driver": "sqlite3",
+    "filename": "./.data.deployeddatabase.sqlite"
+  },
+
+  "test": {
+    "driver": "sqlite3",
+    "filename": "./a.db"
+  },
+
+  "prod": {
+    "driver": "sqlite3",
+    "user": "root",
+    "password": "root"
+  }
+}

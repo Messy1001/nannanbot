@@ -7,10 +7,10 @@ const sequelize = new Sequelize('database', 'username', 'password', {
     storage: '.data.deployeddatabase.sqlite',
 });
 const Servers = sequelize.import('../..//models/Servers');
-const RenameChannels = sequelize.import('../../models/RenameChannels');
+const BotChannels = sequelize.import('../../models/BotChannels');
 module.exports = {
-    name: 'announcementchanneladd',
-    description: 'Adds a channel where announcements are posted!',
+    name: 'botchannelremove',
+    description: 'Removes a bot channel!',
     adminOnly: true,
     permissions: 'ADMINISTRATOR',
     execute(message, args) {
@@ -22,27 +22,13 @@ module.exports = {
                 channelid = message.channel.id
             else if (args.length === 1)
                 channelid = args[0]
-            console.log("cid:"+channelid)
-            let server = Servers.findOrCreate({
+
+             BotChannels.destroy({
                 where: {
-                    server_id: message.guild.id
-                },
-                defaults: {
-                    server_id: message.guild.id,
+                    botchannel_id: channelid
                 }
-            }).then(function(result) {
-                let created = result[1]
-
-                if(!created)
-                    console.log("Server is already in the DB")
-
-           }).then(function() {
-                Servers.update(
-                  { announcement_channel: channelid },
-                  { where: { server_id: message.guild.id } }
-                )
             })
-            message.reply(`Server ${message.guild.name} added.\n Channel ${message.guild.channels.get(channelid)} assigned as announcementchannel`);
+            message.reply(`Server ${message.guild.name}.\n Channel ${message.guild.channels.get(channelid)} unassigned as bot channel.`);
         }
         catch (e) {
             if (e.name === 'SequelizeUniqueConstraintError') {
