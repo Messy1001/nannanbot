@@ -20,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
         default_icon: {
             type:DataTypes.STRING,
         },
+        special_icon: {
+            type:DataTypes.STRING,
+        },
     }, {
         timestamps: false,
     });

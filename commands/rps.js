@@ -11,7 +11,7 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 const Users = sequelize.import("../models/Users")
 module.exports = {
     args: true,
-    usage: "<option>",
+    usage: "<pick> <optional: wager>",
     name: 'rps',
     description: 'Rock, Paper, Scissors',
     cooldown: 5,

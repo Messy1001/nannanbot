@@ -203,9 +203,9 @@ app.get("/", (request, response) => {
               client.channels.get(channels[channelid]['renamechannel_id']).setName(channels[channelid]['default_name'])
           }
           if(count == 0 && servers[serverid]['default_icon'] != null)
-            client.guilds.get(servers[serverid]['server_id']).setIcon("./images/"+servers[serverid]['server_id']+".png")
-          else if(count > 0 && servers[serverid]['server_id'] == "394781096929132554")
-            client.guilds.get(servers[serverid]['server_id']).setIcon("./images/Icon.png")
+            client.guilds.get(servers[serverid]['server_id']).setIcon("./images/"+servers[serverid]['server_id']+"default.png")
+          else if(count > 0 && servers[serverid]['special_icon'] != null)
+            client.guilds.get(servers[serverid]['server_id']).setIcon("./images/"+servers[serverid]['server_id']+"special.png")
           
         })
       }

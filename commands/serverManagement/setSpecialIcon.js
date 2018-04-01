@@ -35,14 +35,14 @@ module.exports = {
            }).then(function() {
 
                 Servers.update(
-                  { default_icon: icon },
+                  { special_icon: icon },
                   { where: { server_id: message.guild.id } }
                 )
             })
 
-            helper.data.saveImage(icon, message.guild.id+"default")  
+            helper.data.saveImage(icon, message.guild.id+"special")  
                    
-            message.reply(`Added: ${icon} for Server ${message.guild.name}.\n`);
+            message.reply(`Added special icon ${icon} for Server ${message.guild.name}.\n`);
         }
         catch (e) {
             if (e.name === 'SequelizeUniqueConstraintError') {
