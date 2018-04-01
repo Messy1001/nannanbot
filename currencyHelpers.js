@@ -6,7 +6,12 @@ const sequelize = new Sequelize('database', 'username', 'password', {
     logging: false,
     storage: '.data.deployeddatabase.sqlite',
 });
+const Discord = require('discord.js');
 const Users = sequelize.import("./models/Users")
+
+const currency = new Discord.Collection();
+
+
 
 var methods = {
 
@@ -27,6 +32,23 @@ var methods = {
             
         },
 		
+	defineAdd: function defineReduce(currency){
+		   console.log("Defining Add currency")
+           Reflect.defineProperty(currency, 'reduce', {
+	    		value: async function add(id, amount) {
+		        	const user = currency.get(id);
+		        	if (user) {
+			            user.balance += Number(amount);
+			            return user.save();
+		        	}
+		        	const newUser = Users.create({ user_id: id, balance: amount });
+		        	currency.set(id, newUser);
+		        	return newUser;
+	    		},
+			});
+            
+        },
+        	
     defineGet: function defineGet(currency){
     		console.log("Defining Get currency")
     		Reflect.defineProperty(currency, 'getBalance', {
@@ -36,8 +58,54 @@ var methods = {
    				 },
 			});
 
-    }
+    },
+
+    addBalance: function addBalance(userid, amount){
+    	const user = Users.findOne({
+       		where: {user_id: userid}
+       				}).then(user => {
+       					user.balance += Number(amount);
+			            return user.save();
+       				})
+    },
+
+    removeBalance: function removeBalance(userid, amount){
+    	const user = Users.findOne({
+       		where: {user_id: userid}
+       				}).then(user => {
+       					user.balance -= Number(amount);
+			            return user.save();
+       				})
+    },
+
 };
 
+Reflect.defineProperty(currency, 'add', {
+	    		value: async function add(id, amount) {
+		        	const user = currency.get(id);
+		        	if (user) {
+			            user.balance += Number(amount);
+			            return user.save();
+		        	}
+		        	const newUser = Users.create({ user_id: id, balance: amount });
+		        	currency.set(id, newUser);
+		        	return newUser;
+	    		},
+			});
+
+Reflect.defineProperty(currency, 'reduce', {
+	    		value: async function add(id, amount) {
+		        	const user = currency.get(id);
+		        	if (user) {
+			            user.balance -= Number(amount);
+			            return user.save();
+		        	}
+		        	const newUser = Users.create({ user_id: id, balance: amount });
+		        	currency.set(id, newUser);
+		        	return newUser;
+	    		},
+			});
+
 exports.data = methods;
+exports.currency = currency;
 

@@ -11,7 +11,6 @@ const Sequelize = require('sequelize');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 
-const currency = new Discord.Collection();
 
 const client = new Discord.Client();
 
@@ -57,10 +56,6 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-currencyHelper.data.defineAdd(currency)
-currencyHelper.data.defineGet(currency)
-
-
 app.get("/", (request, response) => {
   console.log(Date.now() + " Ping Received");
   
@@ -80,11 +75,21 @@ app.get("/", (request, response) => {
   
   if(event.getHours() == "23" && event.getMinutes() == "59" && event.getSeconds() <= "10")
   {
-    helper.data.saveImage(objicon['objects'][0]['Icon'], "icon")  
-    helper.data.saveImage('https://cdn.discordapp.com/attachments/395383455019565056/396826108579807232/MachiWat.png', "machiwat")  
+    Servers.findAll({
+    where: {default_icon: {
+        [Sequelize.Op.ne]: null
+        }
+      }
+    }).then(servers => {
+        for (let serverid in servers)
+        {
+          helper.data.saveImage(objicon['objects'][0]['Icon'], "icon")  
+          helper.data.saveImage(servers[serverid]['default_icon'], servers[serverid]['server_id'])  
+        }
+    })
   }
 
-   if (event.getHours() <= "23" && event.getMinutes() <= "59" && event.getSeconds() <= "59")
+   if (event.getHours() == "00" && event.getMinutes() == "00" && event.getSeconds() <= "10")
    {
      let rawdata = fs.readFileSync('./seiyuu.json');  
      let obj = JSON.parse(rawdata); 
@@ -197,8 +202,11 @@ app.get("/", (request, response) => {
               if (channelid >= count)
               client.channels.get(channels[channelid]['renamechannel_id']).setName(channels[channelid]['default_name'])
           }
-          if(count == 0)
-            servers[serverid].setIcon("./images/machiwat.png")
+          if(count == 0 && servers[serverid]['default_icon'] != null)
+            client.guilds.get(servers[serverid]['server_id']).setIcon("./images/"+servers[serverid]['server_id']+".png")
+          else if(count > 0 && servers[serverid]['server_id'] == "394781096929132554")
+            client.guilds.get(servers[serverid]['server_id']).setIcon("./images/Icon.png")
+          
         })
       }
     })
@@ -223,7 +231,7 @@ client.on('ready', () => {
     .then(users => {
       for(let id in users)
       {
-        currency.set(users[id]['user_id'], users[id])
+        currencyHelper.currency.set(users[id]['user_id'], users[id])
       }
     })
     client.user.setPresence({ game: { name: '>help for commands', type: 0 } });
@@ -232,7 +240,7 @@ client.on('ready', () => {
 
 client.on('message', message => {
 
-   currency.add(message.author.id, 10);
+   currencyHelper.currency.add(message.author.id, 2);
 
   if (!message.content.startsWith(prefix) || message.author.bot) return;
   

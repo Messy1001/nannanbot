@@ -17,6 +17,9 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
             defaultValue: 0,
         },
+        default_icon: {
+            type:DataTypes.STRING,
+        },
     }, {
         timestamps: false,
     });

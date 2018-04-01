@@ -1,4 +1,5 @@
 const helper = require('../helpers.js');
+const mainapp = require('../bot.js');
 
 module.exports = {
     name: 'ping',
@@ -7,6 +8,5 @@ module.exports = {
     	console.log(helper)
     	
         message.channel.send('Pong.');
-       
     },
 };

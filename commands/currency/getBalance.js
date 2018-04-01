@@ -1,5 +1,6 @@
 const helper = require('../../helpers.js');
 
+
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('database', 'username', 'password', {
     host: 'localhost',
@@ -16,7 +17,7 @@ module.exports = {
        console.log("hallo")
 
        let target = message.mentions.users.first() || message.author;
-       const storedBalances = Users.find({
+       Users.find({
        		where: {user_id: target.id}
        })
        .then( user => {
