@@ -76,13 +76,6 @@ module.exports = {
             }
             else if (m == 0) 
             {
-               	let str = ''
-               	str += `Dealer's hand value is **${handValue(dealerhand)[0]}** with these cards: \n`
-				for (let id in dealerhand)
-				{
-					str += `[${dealerhand[id]}] `
-				}
-				message.channel.send(str)
                	displayDealerDraw() 
             }
             else if (m.content == "end")
@@ -129,7 +122,7 @@ module.exports = {
 			for (let handid in hand)
 			{
 				temp_value += cardValue(hand[handid])
-				if (hand[handid][0] == 'ACE')
+				if (hand[handid][0] == 'ace')
 					aces_count++
 			}
 
@@ -156,10 +149,7 @@ module.exports = {
 		function displayPlayerDraw() {
 			let str = ''
 			str += `Your current hand's value is **${handValue(hand)[0]}** with these cards: \n`
-			for (let id in hand)
-			{
-				str += `[${hand[id]}] `
-			}
+			
 			if (handValue(hand)[1] < 21)
 				str += "\n\nDo you want to draw another card? ( 1 = draw, 0 = stay)\n"
 			displayHand(hand, str, function() {
@@ -185,10 +175,7 @@ module.exports = {
 			let new_dealer_card
 			let str = ''
 			str += `The Dealer's current hand value is **${handValue(dealerhand)[0]}** with these cards: \n`
-			for (let id in dealerhand)
-			{
-				str += `[${dealerhand[id]}] `
-			}
+			
 			displayHand(dealerhand, str, function(){
 			while (handValue(dealerhand)[1] < 17)
 			{
@@ -223,11 +210,7 @@ module.exports = {
 				str = ''
 				str += `Dealer's hand value is **${handValue(dealerhand)[0]}** with these cards: \n`
 				displayHand(dealerhand, str, function(){
-				for (let id in dealerhand)
-				{
-					str += `[${dealerhand[id]}] `
-				}
-
+				
 				if (new_dealer_card != null)
 				{
 				}
