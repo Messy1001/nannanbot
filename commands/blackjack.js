@@ -109,7 +109,7 @@ module.exports = {
 			let value
 			if (rank <= 10)
 				value = rank
-			else if (rank == 'ACE')
+			else if (rank == 'ace')
 				value = 11
 			else
 				value = 10
