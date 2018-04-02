@@ -88,6 +88,7 @@ module.exports = {
         if (!arr.length)
         	return console.log("Error")
         
+        let digitarray = []
         let seiyuudigit;
         var arrtemp = arr;
         console.log("Q: " +query)
@@ -108,9 +109,10 @@ module.exports = {
 	            if (query.split(" ").length == 1)
 	            {
 	                
-	                if (splitQuery[0].toLowerCase().indexOf(query) !== -1 || splitQuery[1].toLowerCase().indexOf(query) !== -1 )
+	                if (!digitarray.includes(id) && (splitQuery[0].toLowerCase().indexOf(query) !== -1 || splitQuery[1].toLowerCase().indexOf(query) !== -1) )
 	                {
 	                  arr.push(arrtemp[id]);
+                      digitarray.push(id)
 	                }
 	                
 	                splitQuery = arrtemp[id]['Character'].split(" ");
@@ -118,9 +120,10 @@ module.exports = {
 	                  splitQuery[1] = splitQuery[0];
 	                
 	                
-	                if (splitQuery[0].toLowerCase().indexOf(query) !== -1 || splitQuery[1].toLowerCase().indexOf(query) !== -1 )
+	                if (!digitarray.includes(id) && (splitQuery[0].toLowerCase().indexOf(query) !== -1 || splitQuery[1].toLowerCase().indexOf(query) !== -1))
 	                {
 	                  arr.push(arrtemp[id]);
+                      digitarray.push(id)
 	                }
 	            }
 	            else 
@@ -128,7 +131,7 @@ module.exports = {
 	                              
 	              if (query.split(" ")[0] === splitQuery[0].toLowerCase()  || query.split(" ")[0] === splitQuery[1].toLowerCase() && query.split(" ")[1] === splitQuery[0].toLowerCase()  || query.split(" ")[1] === splitQuery[1].toLowerCase()  ) 
 	                {
-	                    if (query.split(" ")[0]+" "+query.split(" ")[1] === arrtemp[id]['Seiyuu Name'].toLowerCase() || query.split(" ")[1]+" "+query.split(" ")[0] === arrtemp[id]['Seiyuu Name'].toLowerCase())
+	                    if (!digitarray.includes(id) && (query.split(" ")[0]+" "+query.split(" ")[1] === arrtemp[id]['Seiyuu Name'].toLowerCase() || query.split(" ")[1]+" "+query.split(" ")[0] === arrtemp[id]['Seiyuu Name'].toLowerCase()))
 	                    arr.push(arrtemp[id]);
 	                }
 	              
@@ -138,8 +141,9 @@ module.exports = {
 	                                
 	                if (query.split(" ")[0] === splitQuery[0].toLowerCase()  || query.split(" ")[0] === splitQuery[1].toLowerCase() && query.split(" ")[1] === splitQuery[0].toLowerCase()  || query.split(" ")[1] === splitQuery[1].toLowerCase()  ) 
 	                {
-	                    if (query.split(" ")[0]+" "+query.split(" ")[1] === arrtemp[id]['Character'].toLowerCase() || query.split(" ")[1]+" "+query.split(" ")[0] === arrtemp[id]['Character'].toLowerCase())
+	                    if (!digitarray.includes(id) && (query.split(" ")[0]+" "+query.split(" ")[1] === arrtemp[id]['Character'].toLowerCase() || query.split(" ")[1]+" "+query.split(" ")[0] === arrtemp[id]['Character'].toLowerCase()))
 	                    arr.push(arrtemp[id]);
+                        digitarray.push(id)
 	                }              
 	                
 	            }

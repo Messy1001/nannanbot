@@ -16,8 +16,9 @@ module.exports = {
           data.push('Here\'s a list of all my commands: \n');
           data.push("**User Commands: **")
           commands.map(command =>{
-              if(!command.modOnly && command.name != "undefined")
+              if(!command.adminOnly && !command.modOnly && command.name != "undefined")
               userstr+= command.name+", "
+              userstr=userstr.replace(/( )?undefined(,)?/g,"")
 
           })
           userstr = userstr.substring(0, userstr.length - 2);
@@ -26,7 +27,7 @@ module.exports = {
 
           data.push("\n**Mod Commands: **")
           commands.map(command =>{
-              if(command.modOnly)
+              if(!command.adminOnly && command.modOnly)
               modstr+= command.name+", "
 
           })

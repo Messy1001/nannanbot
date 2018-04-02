@@ -1,7 +1,7 @@
 	var methods = {
-    
-    
-    sortArray: function sortArray(array, digit){
+
+
+		sortArray: function sortArray(array, digit){
             let temparray = []
             for (let id in array)
             {
@@ -12,6 +12,7 @@
             return temparray
             
         },
+
 
 		
 
