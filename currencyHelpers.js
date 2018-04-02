@@ -106,6 +106,13 @@ Reflect.defineProperty(currency, 'reduce', {
 	    		},
 			});
 
+Reflect.defineProperty(currency, 'getBalance', {
+    			value: function getBalance(id) {
+			        const user = currency.get(id);
+			        return user ? user.balance : 0;
+   				 },
+			});
+
 exports.data = methods;
 exports.currency = currency;
 
