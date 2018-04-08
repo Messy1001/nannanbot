@@ -10,7 +10,7 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 const Servers = sequelize.import('../..//models/Servers');
 const RenameChannels = sequelize.import('../../models/RenameChannels');
 module.exports = {
-    name: 'setdefaulticon',
+    name: 'setspecialicon',
     adminOnly: true,
     permissions: 'MANAGE_GUILD',
     description: 'Adds a default icon to a server!',

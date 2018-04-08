@@ -1,6 +1,11 @@
 	var methods = {
 
 
+		replaceAt: function replaceAt(string, index, replace) {
+  			return string.substring(0, index) + replace + string.substring(index + 1);
+		},
+
+
 		sortArray: function sortArray(array, digit){
             let temparray = []
             for (let id in array)
