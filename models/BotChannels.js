@@ -7,6 +7,9 @@ module.exports = (sequelize, DataTypes) => {
         server_id: {
             type: DataTypes.STRING,
         },
+        running_quiz: {
+            type: DataTypes.STRING,
+        },
     }, {
         timestamps: false,
     });

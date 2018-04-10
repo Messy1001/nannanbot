@@ -15,7 +15,7 @@ const Users = sequelize.import("../models/Users")
 module.exports = {
     name: 'blackjack',
     description: 'Ping!',
-    usage: "<optional: wager>",
+    usage: "<optional: wager(number, half or all)>",
     execute(message, args) {
 
     	var query = message.content;
@@ -38,7 +38,8 @@ module.exports = {
         }
     	
     	let balance = currencyHelper.currency.getBalance(message.author.id)
-    	if (bet > balance)
+      
+      if (bet > balance)
     		return message.reply("You tried to bet " +bet+" credits but only have "+balance+"!")
 
     	
@@ -53,6 +54,18 @@ module.exports = {
        let firstpass = true
        let end = false
        let date
+       
+       if (query.match("all") != null)
+      {
+    		bet = balance;
+        firstpass = false;
+      }
+      
+      if (query.match("half") != null)
+      {
+        bet = balance/2
+        firstpass = true;
+      }
        	const filter = m =>m.author.id === message.author.id && m.createdAt > date
         var collector
 
@@ -287,8 +300,9 @@ module.exports = {
 				if(blackjack)
 				{
 					bet = bet*1.5
-					bet = Math.ceil(bet)
+					
 				}
+        bet = Math.ceil(bet)
 				message.reply(bet+" credits have been added to your account!")
 				currencyHelper.currency.add(message.author.id, bet)
 			}
@@ -374,7 +388,7 @@ module.exports = {
                	end = true
                 displayDealerDraw() 
             }
-            else if (m == 2 && m.createdTimestamp > date+1000)
+            else if (m == 2 && m.createdTimestamp > date+1000 && bet < balance-2)
             {
             	 if (bet*2 > balance)
             	 	message.reply("Not enough credits!")
