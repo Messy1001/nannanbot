@@ -13,7 +13,7 @@ module.exports = {
     name: 'setspecialicon',
     adminOnly: true,
     permissions: 'MANAGE_GUILD',
-    description: 'Adds a special icon to a server!',
+    description: 'Adds a default icon to a server!',
     execute(message, args) {
         try {
             let icon = ""

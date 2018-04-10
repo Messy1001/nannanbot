@@ -1,5 +1,7 @@
 const { prefix, token } = require('../config.json');
 const currencyHelper = require('../currencyHelpers.js');
+const mergeImg = require('merge-img');
+var Jimp = require("jimp");
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('database', 'username', 'password', {
@@ -13,21 +15,59 @@ const Users = sequelize.import("../models/Users")
 module.exports = {
     name: 'blackjack',
     description: 'Ping!',
-    usage: "<optional: wager>",
+    usage: "<optional: wager(number, half or all)>",
     execute(message, args) {
+
+    	var query = message.content;
+      
+        query = query.toLowerCase()
+        query = query.replace(prefix, "");
+        query = query.substring(query.indexOf(" ") + 1);
+        query = query.trim()
+
+        console.log("Query after 1:"+query)
+
+		var re = /( )?\b(\d)+\b( )?/
+        var bet = query.match(re);
+       
+        if (bet != null)
+        {
+            bet = parseInt(bet[0].trim())
+            query = query.replace(re, "");
+            query.trim()
+        }
     	
-    	let bet = args[0]
     	let balance = currencyHelper.currency.getBalance(message.author.id)
-    	if (bet > balance)
+      
+      if (bet > balance)
     		return message.reply("You tried to bet " +bet+" credits but only have "+balance+"!")
 
     	
-       let rank = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'KING', 'QUEEN', 'JOKER', 'ACE']
-       let suits = [' SPADE', ' HEART ', ' DIAMOND', ' CLUB']
+       let rank = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'king', 'queen', 'jack', 'ace']
+       let suits = [' SPADES', ' HEARTS ', ' DIAMONDS', ' CLUBS']
        let deck = []
        let hand = []
+       let handimg = []
        let dealerhand = []
        let blackjack
+       let doubledown = false
+       let firstpass = true
+       let end = false
+       let date
+       
+       if (query.match("all") != null)
+      {
+    		bet = balance;
+        firstpass = false;
+      }
+      
+      if (query.match("half") != null)
+      {
+        bet = balance/2
+        firstpass = true;
+      }
+       	const filter = m =>m.author.id === message.author.id && m.createdAt > date
+        var collector
 
        for (let rankid in rank)
        {
@@ -46,42 +86,14 @@ module.exports = {
        console.log("Deck length after draw:"+deck.length)
 
        console.log("Value of hand: "+handValue(hand))
+       
 
-       displayPlayerDraw()
+       displayPlayerDraw(console.log("first player draw"))
+    
 
-       	const filter = m =>m.author.id === message.author.id
-        var collector
-        if (collector == null)
-            collector = message.channel.createMessageCollector(filter, { time: 60000 });
-
-        collector.on('collect', m => {
-            console.log("Message: "+m)
-            if (m == 1)
-            {
-                let new_card = deck.pop()
-                message.channel.send("You draw: ["+ new_card+"]")
-                hand.push(new_card)
-             	displayPlayerDraw()
-                
-            }
-            else if (m == 0) 
-            {
-               	let str = ''
-               	str += `Dealer's hand value is **${handValue(dealerhand)[0]}** with these cards: \n`
-				for (let id in dealerhand)
-				{
-					str += `[${dealerhand[id]}] `
-				}
-				message.channel.send(str)
-               	displayDealerDraw() 
-            }
-            else if (m.content == "end")
-                collector.stop()
-        })
-
-        collector.on('end', collected => {
-            console.log(`Collected ${collected.size} items`);
-        })   
+       
+       
+          
 
     	function shuffle(array) {
 	    	var m = array.length, t, i;
@@ -106,7 +118,7 @@ module.exports = {
 			let value
 			if (rank <= 10)
 				value = rank
-			else if (rank == 'ACE')
+			else if (rank == 'ace')
 				value = 11
 			else
 				value = 10
@@ -119,7 +131,7 @@ module.exports = {
 			for (let handid in hand)
 			{
 				temp_value += cardValue(hand[handid])
-				if (hand[handid][0] == 'ACE')
+				if (hand[handid][0] == 'ace')
 					aces_count++
 			}
 
@@ -143,108 +155,276 @@ module.exports = {
 
 		}
 
-		function displayPlayerDraw() {
+		async function displayPlayerDraw(callback) {
+			console.log(doubledown)
 			let str = ''
 			str += `Your current hand's value is **${handValue(hand)[0]}** with these cards: \n`
-			for (let id in hand)
-			{
-				str += `[${hand[id]}] `
-			}
-			message.channel.send(str)
-			if (handValue(hand)[1] < 21)
-				message.channel.send("Do you want to draw another card? ( 1 = draw, 0 = stay)")
-			else if (handValue(hand)[1] == 21)
-			{
-				message.channel.send("Blackjack! **You win!**")
-				blackjack = true
-				gameEnd()
-				playerWins()
-			}
-			else
-			{
-				message.channel.send("Bust! **You lose!**")
-				gameEnd()
-				playerLoses()
-			}
+			
+			if(!end && !firstpass && !doubledown)
+			  str += "\n\nDo you want to draw another card? (0 = stay, 1 = draw)\n"
+      else if (!end && firstpass)
+      {
+        str += "\n\nDo you want to draw another card? (0 = stay, 1 = draw, 2 = double down)\n"
+        firstpass = false
+      }
+			displayHand(hand, str, function() {
+				if (handValue(hand)[1] == 21)
+				{
+					message.reply("Blackjack! **You win!**")
+          end = true
+					blackjack = true
+					gameEnd()
+					playerWins()
+				}
+				else if(handValue(hand)[1] > 21)
+				{
+					message.reply("Bust! **You lose!**")
+          end = true;
+					gameEnd()
+					playerLoses()
+				}
+
+				if (doubledown == true && end == false)
+				{
+					collector.stop()
+          displayDealerDraw()
+				}
+			})
+			
 		}
 
-		function displayDealerDraw() {
+		async function displayDealerDraw() {
+			let dealerdraws = []
 			let new_dealer_card
 			let str = ''
+			str += `The Dealer's current hand value is **${handValue(dealerhand)[0]}** with these cards: \n`
+			
+			displayHand(dealerhand, str, function(){
+      console.log("yes, callback now ")
 			while (handValue(dealerhand)[1] < 17)
 			{
 				if (handValue(dealerhand)[1] > handValue(hand)[1])
 					break
 				new_dealer_card = deck.pop()
-				message.channel.send("Dealer draws: ["+ new_dealer_card+"]")
-					dealerhand.push(new_dealer_card)
+				
+                	dealerhand.push(new_dealer_card)
+                	dealerdraws.push(new_dealer_card)
+                	
 			}
-			str = ''
-			str += `Dealer's hand value is **${handValue(dealerhand)[0]}** with these cards: \n`
-			for (let id in dealerhand)
+      console.log("Dealer draws"+dealerdraws)
+			for (let id in dealerdraws)
 			{
-				str += `[${dealerhand[id]}] `
+      console.log("loop "+ id)
+			message.reply("Dealer draws: ",{
+					  	files: [{
+					    attachment: "./images/cards/"+dealerdraws[id][0]+"_of_"+dealerdraws[id][1].toLowerCase().trim()+".jpg",
+					    name: 'hand.jpg'
+					  	}]
+					}).then(function(){
+						if (id == dealerdraws.length-1)
+						{
+							evaluateWinner()
+						}
+						})
 			}
+      
+			if (!dealerdraws.length)
+				evaluateWinner()
+			})
 
-			if (new_dealer_card != null)
-				message.channel.send(str)
-			
-			if (handValue(dealerhand)[1] == handValue(hand)[1] && handValue(dealerhand) < 21)
-			{
-				message.channel.send("You and the Dealer **tied!**")
-				gameEnd()
-				playerTies()
-			}
-			else if (handValue(dealerhand)[1] == 21)
-			{
-				message.channel.send("The dealer has a blackjack, **you lose!**")
-				gameEnd()
-				playerLoses()
-			}
-			else if (handValue(dealerhand)[1] > handValue(hand)[1] && handValue(dealerhand)[1] < 21)
-			{
-				message.channel.send("The dealer's hand has a higher value than yours, **you lose!**")
-				gameEnd()
-				playerLoses()
-			}
-			else if (handValue(dealerhand)[1] < handValue(hand)[1] && handValue(dealerhand)[1] < 21)
-			{
-				message.channel.send("Your hand has a higher value than the dealer's, **you win!**")
-				gameEnd()
-				playerWins()
-			}
-			else
-			{
-				message.channel.send("The dealer scored a bust, **you win!**")
-				gameEnd()
-				playerWins()
+			function evaluateWinner() {
+        console.log("evaluate winner")
+        if (dealerhand.length > 2)
+        {
+				str = ''
+				str += `Dealer's hand value is **${handValue(dealerhand)[0]}** with these cards: \n`
+				displayHand(dealerhand, str, function(){
+            evaluate()
+        })
+        }
+        else
+          evaluate()
+				
+        function evaluate() {
+				
+				
+				
+
+				if (handValue(dealerhand)[1] == handValue(hand)[1] && handValue(dealerhand)[1] < 21)
+				{
+					message.reply("You and the Dealer **tied!**")
+					gameEnd()
+					playerTies()
+				}
+				else if (handValue(dealerhand)[1] == 21)
+				{
+					message.reply("The dealer has a blackjack, **you lose!**")
+					gameEnd()
+					playerLoses()
+				}
+				else if (handValue(dealerhand)[1] > handValue(hand)[1] && handValue(dealerhand)[1] < 21)
+				{
+					message.reply("The dealer's hand has a higher value than yours, **you lose!**")
+					gameEnd()
+					playerLoses()
+				}
+				else if (handValue(dealerhand)[1] < handValue(hand)[1] && handValue(dealerhand)[1] < 21)
+				{
+					message.reply("Your hand has a higher value than the dealer's, **you win!**")
+					gameEnd()
+					playerWins()
+				}
+				else
+				{
+					message.reply("The dealer scored a bust, **you win!**")
+					gameEnd()
+					playerWins()
+				}
+				}
+				
 			}
 			
 		}
 
 		function gameEnd() {
 			console.log("game ends")
-			collector.stop()
+			end = true
+			if(!end)
+				collector.stop()
+			
 		}
 
 		function playerWins() {
-
-			if(blackjack)
-				bet = bet*1.5
-			message.reply(bet+" credits have been added to your account!")
-			currencyHelper.currency.add(message.author.id, bet)
+			if (bet !== null && bet > 0)
+			{
+				if(blackjack)
+				{
+					bet = bet*1.5
+					
+				}
+        bet = Math.ceil(bet)
+				message.reply(bet+" credits have been added to your account!")
+				currencyHelper.currency.add(message.author.id, bet)
+			}
+			collector.stop()
 		}
 
 		function playerLoses() {
 
-			currencyHelper.currency.reduce(message.author.id, bet)
-			message.reply(bet+" credits have been removed from your account!")
+			if (bet !== null && bet > 0)
+			{
+				currencyHelper.currency.reduce(message.author.id, bet)
+				message.reply(bet+" credits have been removed from your account!")
+			}
+			collector.stop()
 		}
 
 		function playerTies() {
-
+			collector.stop()
 		}
 
+		async function displayHand(hand, text, callback) {
+      console.log("display hand sart")
+			handimg = []
+			for (let id in hand)
+			{
+				handimg.push("./images/cards/"+hand[id][0]+"_of_"+hand[id][1].toLowerCase().trim()+".jpg")
+			}
+
+			mergeImg(handimg)
+		    .then((img) => {
+		      // Save image as file          
+			    //img.write('./images/cards/hand.png', function(){
+          img.getBuffer(Jimp.AUTO, (err, buffer) => {
+			
+					message.reply(text, {
+					  	files: [{
+					    //attachment: "./images/cards/hand.png",
+               attachment: buffer,
+					    name: 'hand.jpg'
+					  	}]
+
+					}).then(console.log("display hand stop")).then(setupCollector()).then(console.log("callback")).then(callback)
+				})
+			})
+		}
+    
+    async function setupCollector() {
+      console.log("collector setup")
+      let busy = false
+        if (collector != null)
+            collector.stop()
+        if (end != true)
+        {
+            date =  Date.now()
+            collector = message.channel.createMessageCollector(filter, { time: 60000 });
+        }
+        collector.on('collect', m => {          
+            console.log("Date:"+date)
+            console.log("created at:"+m.createdTimestamp)
+            console.log(m.createdTimestamp > date+1000)
+            console.log("Message: "+m)
+            if (m == 1 && !busy && m.createdTimestamp > date+1000)
+	            {
+	                busy = true
+	                let new_card = deck.pop()
+	                //message.channel.send("You draw: ["+ new_card+"]")
+	                message.channel.send("You draw: ",{
+						  	files: [{
+						    attachment: "./images/cards/"+new_card[0]+"_of_"+new_card[1].toLowerCase().trim()+".jpg",
+						    name: 'hand.jpg'
+						  	}]
+						}).then(function(){
+			                hand.push(new_card)
+			             	displayPlayerDraw(console.log("player draw")).then(function(){
+			             		if (handValue(hand)[1] < 21)
+			             		busy = false
+			             	})
+			             })
+	                
+	            }
+            else if (m == 0 && m.createdTimestamp > date+1000) 
+            {
+               	end = true
+                displayDealerDraw() 
+            }
+            else if (m == 2 && m.createdTimestamp > date+1000 && bet < balance-2)
+            {
+            	 if (bet*2 > balance)
+            	 	message.reply("Not enough credits!")
+            	 else
+            	 {
+            	 	bet = bet*2
+            	 	doubledown = true
+            	 let new_card = deck.pop()
+	                //message.channel.send("You draw: ["+ new_card+"]")
+	                message.channel.send("You draw: ",{
+						  	files: [{
+						    attachment: "./images/cards/"+new_card[0]+"_of_"+new_card[1].toLowerCase().trim()+".jpg",
+						    name: 'hand.jpg'
+						  	}]
+						}).then(function(){
+			                hand.push(new_card)
+			             	displayPlayerDraw(console.log("player draw")).then(function(){
+                    })
+			             })
+					}
+            }
+            else if (m.content == "end")
+            {
+            	message.reply("You gave up so the game has ended with your loss.")
+            	playerLoses()
+            }
+            
+        })
+
+        collector.on('end', collected => {
+            console.log(`Collected ${collected.size} items`);
+            console.log("End?"+end)
+                       
+            	
+        }) 
+    }
 
     },
 

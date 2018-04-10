@@ -84,7 +84,10 @@ Reflect.defineProperty(currency, 'add', {
 	    		value: async function add(id, amount) {
 		        	const user = currency.get(id);
 		        	if (user) {
+		        		if (user.balance < 0)
+		        			user.balance = 0
 			            user.balance += Number(amount);
+                  user.balance = Math.ceil(user.balance)
 			            return user.save();
 		        	}
 		        	const newUser = Users.create({ user_id: id, balance: amount });

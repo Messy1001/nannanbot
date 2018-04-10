@@ -11,7 +11,6 @@ const Sequelize = require('sequelize');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 
-
 const client = new Discord.Client();
 
 client.commands = new Discord.Collection();
@@ -84,7 +83,7 @@ app.get("/", (request, response) => {
         for (let serverid in servers)
         {
           helper.data.saveImage(objicon['objects'][0]['Icon'], "icon")  
-          helper.data.saveImage(servers[serverid]['default_icon'], servers[serverid]['server_id'])  
+          helper.data.saveImage(servers[serverid]['default_icon'], servers[serverid]['server_id']+"default")  
         }
     })
   }
@@ -190,7 +189,10 @@ app.get("/", (request, response) => {
                 if (birthdays[birthdayid]['Franchise'] == announcementTypes[announcementtypeid] && count < channels.length && count < birthdays.length)
                 {
                   console.log("Name: "+birthdays[birthdayid]['Seiyuu Name'])
-                  client.channels.get(channels[count]['renamechannel_id']).setName("HBD_"+birthdays[birthdayid]['Nickname'].split("/")[0])
+                  if (birthdays[birthdayid]['Nickname'] != "-")
+                    client.channels.get(channels[count]['renamechannel_id']).setName("HBD_"+birthdays[birthdayid]['Nickname'].split("/")[0])
+                  else
+                    client.channels.get(channels[count]['renamechannel_id']).setName("HBD_"+birthdays[birthdayid]['Seiyuu Name'].split(" ")[0])
                   count++
                 } 
               }
@@ -328,3 +330,4 @@ client.on('message', message => {
 });
 
 client.login(process.env.TOKEN);
+
