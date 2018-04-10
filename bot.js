@@ -33,7 +33,6 @@ const BotChannels = sequelize.import('./models/BotChannels');
 const RenameChannels = sequelize.import('./models/RenameChannels');
 const Users = sequelize.import("./models/Users")
 
-
 const month = new Array();
     month[0] = "January";
     month[1] = "February";

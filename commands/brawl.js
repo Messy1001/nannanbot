@@ -82,7 +82,7 @@ module.exports = {
                        sendBattleMessage()
                   }
                    
-                })   
+                });   
 
         async function sendBattleMessage() {
                 console.log("Send battle message")

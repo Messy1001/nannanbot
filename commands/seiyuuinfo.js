@@ -71,7 +71,7 @@ module.exports = {
             query = query.replace(re, "");
         }
 
-        var re = /( )?\bm(il(l)?(l)?ion)?( )?l(ive)?\b( )?/
+        re = /( )?\bm(il(l)?(l)?ion)?( )?l(ive)?\b( )?/
         var ml = query.search(re);
         if (ml != -1)
         {
@@ -79,7 +79,7 @@ module.exports = {
             query = query.replace(re, "");
         }
 
-        var re = /( )?\bc(indere(l)?la)?( )?g(irls)?\b( )?/
+        re = /( )?\bc(indere(l)?la)?( )?g(irls)?\b( )?/
         var cg = query.search(re);
         if (cg != -1)
         {
@@ -87,7 +87,7 @@ module.exports = {
             query = query.replace(re, "");
         }
 
-        var re = /( )?\bs(hiny)?( )?c(olo(u)?rs)?( )?\b/
+        re = /( )?\bs(hiny)?( )?c(olo(u)?rs)?( )?\b/
         var sc = query.search(re);
         if (sc != -1)
         {
@@ -95,7 +95,7 @@ module.exports = {
             query = query.replace(re, "");
         }
 
-        var re = /( )?s(ide)?( )?m( )?/
+        re = /( )?s(ide)?( )?m( )?/
         var sm = query.search(re);
         if (sm != -1)
         {
