@@ -11,21 +11,21 @@ module.exports = {
 
         helper.data.readSpreadsheet("146vKsT5WoNeE4fO68kGNpng1KnqnBYjENe_rZpHSVvc", "cards", "CardList!A:Z");
 
-        var cards = []
+        let cards = []
 
         const fs = require('fs');
 
         let rawdata = fs.readFileSync('./cards.json');  
         let obj = JSON.parse(rawdata);  
 
-        var query = message.content;
+        let query = message.content;
         query = query.toLowerCase()
         query = query.replace(prefix+this.name+" ", "");       
 
 
-        var arr = []
+        let arr = []
         arr = obj;
-        var filarr = []
+        let filarr = []
         
         
         
@@ -40,11 +40,11 @@ module.exports = {
         }
 
         filarr.sort(function(a, b) {
-        var dateA = new Date(a['Release Date']), dateB = new Date(b['Release Date']);
+        let dateA = new Date(a['Release Date']), dateB = new Date(b['Release Date']);
         return dateA - dateB;
         });
 
-        var digit = filarr.length;
+        let digit = filarr.length;
         if (args.length)
           digit = args[0]
         if (digit > filarr.length)
@@ -54,28 +54,28 @@ module.exports = {
         
        
         
-        var bannercardslim = []
+        let bannercardslim = []
         for (let id in obj['objects'])
         {                    
           if (obj['objects'][id]['Release Date'] === filarr[digit-1]['Start Date'].substring(0, filarr[digit-1]['Start Date'].indexOf("T")) &&  obj['objects'][id]['Availability'] == "Limited")
             bannercardslim.push(obj['objects'][id])
         }
         
-        var bannercardsperm = []
+        let bannercardsperm = []
         for (let id in obj['objects'])
         {
           if (obj['objects'][id]['Release Date'] === filarr[digit-1]['Start Date'].substring(0, filarr[digit-1]['Start Date'].indexOf("T"))  && obj['objects'][id]['Availability'] == "Permanent")
             bannercardsperm.push(obj['objects'][id])
         }
         
-        var bannercardsfes = []
+        let bannercardsfes = []
         for (let id in obj['objects'])
         {
           if (obj['objects'][id]['Release Date'] === filarr[digit-1]['Start Date'].substring(0, filarr[digit-1]['Start Date'].indexOf("T"))  && obj['objects'][id]['Availability'] == "Millifes")
             bannercardsfes.push(obj['objects'][id])
         }
         
-        var str = ""
+        let str = ""
         if(bannercardslim.length)
         {
           str += "\n**Limited: **\n"
@@ -100,21 +100,21 @@ module.exports = {
               str+= `▪️ [${bannercardsfes[i]['Rarity']}] "${bannercardsfes[i]['Title']}" **${bannercardsfes[i]['Name']}**\n`
           }  
         }
-        var remaining
+        let remaining
         if (digit == filarr.length)
         {
-        var event = new Date()
+        let event = new Date()
        
         event = event.toLocaleString('zh-cn', { timeZone: 'Asia/Tokyo' });
         event = event.replace(/-/g, "/", 1);
         console.log("Time: "+event);        
         event = new Date(event)
           
-        var datesplit = filarr[digit-1]['End Date'].replace("T", " ")
+        let datesplit = filarr[digit-1]['End Date'].replace("T", " ")
         
         console.log("ds:"+ datesplit)
         
-        var testdate = new Date(datesplit)   
+        let testdate = new Date(datesplit)   
         console.log("event" + ((event) ))
         console.log("test" + ((testdate)) )
         remaining = helper.data.secondsToString(Math.abs(Math.trunc((event.getTime() - (testdate.getTime()))))/1000) + " left";

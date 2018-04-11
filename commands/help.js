@@ -9,8 +9,8 @@ module.exports = {
     execute(message, args) {
         const { commands } = message.client;
         const data = [];
-        var userstr = "\`"
-        var modstr = "\`"
+        let userstr = "\`"
+        let modstr = "\`"
 
         if (!args.length) {
           data.push('Here\'s a list of all my commands: \n');
@@ -40,11 +40,11 @@ module.exports = {
           data.push("\nSpecial thanks to the people contributing to this project listed here: https://goo.gl/prihtA")
         }
         else {
-          var aliascheck = false
-          var command
+          let aliascheck = false
+          let command
          commands.forEach(function(id) {
                
-                for (var value in id['aliases'])
+                for (let value in id['aliases'])
                 {
                   if (id['aliases'][value] == args[0])
                   {

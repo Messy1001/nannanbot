@@ -13,9 +13,9 @@ module.exports = {
     const fs = require('fs');
     let rawdata;
     let obj;
-    var count;
-    var name = this.name;
-    var aliases = this.aliases;
+    let count;
+    let name = this.name;
+    let aliases = this.aliases;
 
 
     helper.data.readSpreadsheet('1mFTCIxa-FlRAWT70M7lC82bx-HRvDm_lovUJLL4FlN8', 'seiyuu', 'SeiyuuInfo!A:Z');
@@ -25,52 +25,52 @@ module.exports = {
 
     let images = [];
     let arr = [];
-    var nickarray = [];
+    let nickarray = [];
 
-    var franchise;
-    var query = message.content;
+    let franchise;
+    let query = message.content;
     query = query.toLowerCase();
     query = query.replace(prefix, '');
     query = query.substring(query.indexOf(' ') + 1);
     query = query.trim();
 
 
-    var re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/;
-    var as = query.search(re);
+    let re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/;
+    let as = query.search(re);
     if (as !== -1) {
       franchise = 'Allstars';
       query = query.replace(re, '');
     }
 
     re = /( )?\bm(il(l)?(l)?ion)?( )?l(ive)?\b( )?/;
-    var ml = query.search(re);
+    let ml = query.search(re);
     if (ml !== -1) {
       franchise = 'Million Live';
       query = query.replace(re, '');
     }
 
     re = /( )?\bc(indere(l)?la)?( )?g(irls)?\b( )?/;
-    var cg = query.search(re);
+    let cg = query.search(re);
     if (cg !== -1) {
       franchise = 'Cinderella Girls';
       query = query.replace(re, '');
     }
 
     re = /( )?\bs(hiny)?( )?c(olo(u)?rs)?( )?\b/;
-    var sc = query.search(re);
+    let sc = query.search(re);
     if (sc !== -1) {
       franchise = 'Shiny Colors';
       query = query.replace(re, '');
     }
 
     re = /( )?s(ide)?( )?m( )?/;
-    var sm = query.search(re);
+    let sm = query.search(re);
     if (sm !== -1) {
       franchise = 'SideM';
       query = query.replace(re, '');
     }
 
-    for (var ID in obj['objects']) {
+    for (let ID in obj['objects']) {
 			if ((obj['objects'][ID]['Other Image'] !== '-' || obj['objects'][ID]['MAL Image'].search('-')) && obj['objects'][ID]['Other Image'] !== 'undefined')
 				arr.push(obj['objects'][ID]);
     }
@@ -80,14 +80,14 @@ module.exports = {
 
     let digitarray = [];
     let seiyuudigit;
-    var arrtemp = arr;
+    let arrtemp = arr;
     console.log('Q: ' + query);
     query = query.trim();
     if (!args.length) {
     } else {
         	arr = [];
-        	for (var id in arrtemp) {
-        		var splitQuery = arrtemp[id]['Seiyuu Name'].split(' ');
+        	for (let id in arrtemp) {
+        		let splitQuery = arrtemp[id]['Seiyuu Name'].split(' ');
 
 	            if (splitQuery[1] == undefined || splitQuery[1] == null)
 	                splitQuery[1] = splitQuery[0];
@@ -133,7 +133,7 @@ module.exports = {
 
 
 	            if (query.split(' ').length == 1) {
-	              for (var i = 0; i < splitQuery.length; i++) {
+	              for (let i = 0; i < splitQuery.length; i++) {
 
             if (splitQuery[i].toLowerCase().trim() == query.trim())
 	                  nickarray.push(arrtemp[id]);
@@ -146,10 +146,10 @@ module.exports = {
       arr = [];
       arr = nickarray;
     }
-    var arrfiltered = [];
+    let arrfiltered = [];
 
     if (franchise != null) {
-      for (var id in arr) {
+      for (let id in arr) {
         if (arr[id]['Franchise'] == franchise)
           arrfiltered.push(arr[id]);
       }
@@ -160,7 +160,7 @@ module.exports = {
     	sendInfo(seiyuudigit);
 
       	function sendInfo(digit) {
-      		var str = '';
+      		let str = '';
       let artistname = false;
       if (arrfiltered[digit]['Artist Name'] != '-')
         artistname = true;
@@ -174,8 +174,8 @@ module.exports = {
 	      	else if (arrfiltered[digit]['MAL Image'] !== 'undefined' && arrfiltered[digit]['MAL Image'] !== '-')
 	        	images[0] = 'https://myanimelist.cdn-dena.com/images/voiceactors/' + arrfiltered[digit]['MAL Image'] + '.jpg';
 
-	        var imagedigit = helper.data.getRandomInt(0, images.length - 1);
-	        var poss = '';
+	        let imagedigit = helper.data.getRandomInt(0, images.length - 1);
+	        let poss = '';
 
 	        if (images[imagedigit] === 'undefined')
 	        	return message.reply('There are no images available yet which match your query! Please check for typos, try again at a later time or submit images to <@155038103281729536>!');
@@ -209,7 +209,7 @@ module.exports = {
 
     if (query !== this.name && this.aliases.includes(query) == false) {
       const filter = m => m.author.id === message.author.id;
-      var collector;
+      let collector;
       if (collector == null)
         collector = message.channel.createMessageCollector(filter, { time: 30000 });
 

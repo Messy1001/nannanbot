@@ -1,7 +1,7 @@
 const { prefix, token } = require('../config.json');
 const currencyHelper = require('../currencyHelpers.js');
 const mergeImg = require('merge-img');
-var Jimp = require("jimp");
+let Jimp = require("jimp");
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('database', 'username', 'password', {
@@ -18,7 +18,7 @@ module.exports = {
     usage: "<optional: wager(number, half or all)>",
     execute(message, args) {
 
-    	var query = message.content;
+    	let query = message.content;
       
         query = query.toLowerCase()
         query = query.replace(prefix, "");
@@ -27,8 +27,8 @@ module.exports = {
 
         console.log("Query after 1:"+query)
 
-		var re = /( )?\b(\d)+\b( )?/
-        var bet = query.match(re);
+		let re = /( )?\b(\d)+\b( )?/
+        let bet = query.match(re);
        
         if (bet != null)
         {
@@ -67,7 +67,7 @@ module.exports = {
         firstpass = true;
       }
        	const filter = m =>m.author.id === message.author.id && m.createdAt > date
-        var collector
+        let collector
 
        for (let rankid in rank)
        {
@@ -96,7 +96,7 @@ module.exports = {
           
 
     	function shuffle(array) {
-	    	var m = array.length, t, i;
+	    	let m = array.length, t, i;
 
 			// While there remain elements to shuffle…
 			while (m) {
@@ -148,11 +148,16 @@ module.exports = {
 		    
 		    if (temp_value < 21)
 		        return [temp_value.toString(), temp_value]
-		    else if(temp_value == 21)
-		        return ['Blackjack!', 21]
-		    else
-		        return ['Bust!', 100]
-
+				else if(temp_value == 21)
+				{
+						end = true;
+						return ['Blackjack!', 21]
+				}
+				else
+				{
+						end = true;
+						return ['Bust!', 100]
+				}
 		}
 
 		async function displayPlayerDraw(callback) {

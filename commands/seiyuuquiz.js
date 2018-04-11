@@ -24,9 +24,9 @@ module.exports = {
       const fs = require('fs');
       let rawdata
       let obj
-      var aliases = this.aliases
-      var name = this.name
-      var count = 0
+      let aliases = this.aliases
+      let name = this.name
+      let count = 0
       let running_quiz = false;
 
 
@@ -47,57 +47,57 @@ module.exports = {
             obj = JSON.parse(rawdata) 
           
             let arr = []
-            var nickarray = []
+            let nickarray = []
 
-            var franchise
-            var query = message.content;
+            let franchise
+            let query = message.content;
             query = query.toLowerCase()
             query = query.replace(prefix, "");
             query = query.substring(query.indexOf(" ") + 1);
             query = query.trim()
 
 
-            var re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/
-            var as = query.search(re);
+            let re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/
+            let as = query.search(re);
             if (as != -1)
             {
                 franchise = "Allstars"
                 query = query.replace(re, "");
             }
 
-            var re = /( )?\bm(il(l)?(l)?ion)?( )?l(ive)?\b( )?/
-            var ml = query.search(re);
+            let re = /( )?\bm(il(l)?(l)?ion)?( )?l(ive)?\b( )?/
+            let ml = query.search(re);
             if (ml != -1)
             {
                 franchise = "Million Live"
                 query = query.replace(re, "");
             }
 
-            var re = /( )?\bc(indere(l)?la)?( )?g(irls)?\b( )?/
-            var cg = query.search(re);
+            let re = /( )?\bc(indere(l)?la)?( )?g(irls)?\b( )?/
+            let cg = query.search(re);
             if (cg != -1)
             {
                 franchise = "Cinderella Girls"
                 query = query.replace(re, "");
             }
 
-            var re = /( )?\bs(hiny)?( )?c(olo(u)?rs)?( )?\b/
-            var sc = query.search(re);
+            let re = /( )?\bs(hiny)?( )?c(olo(u)?rs)?( )?\b/
+            let sc = query.search(re);
             if (sc != -1)
             {
                 franchise = "Shiny Colors"
                 query = query.replace(re, "");
             }
 
-            var re = /( )?s(ide)?( )?m( )?/
-            var sm = query.search(re);
+            let re = /( )?s(ide)?( )?m( )?/
+            let sm = query.search(re);
             if (sm != -1)
             {
                 franchise = "SideM"
                 query = query.replace(re, "");
             }
 
-            for (var ID in obj['objects'])
+            for (let ID in obj['objects'])
             {   
                     arr.push(obj['objects'][ID])
             }
@@ -105,11 +105,11 @@ module.exports = {
             if (!arr.length)
                 return console.log("Error")
           
-            var arrfiltered = []
+            let arrfiltered = []
 
             if (franchise != null)
             {
-                for (var id in arr)
+                for (let id in arr)
                 {
                     if (arr[id]['Franchise'] == franchise)
                         arrfiltered.push(arr[id])
@@ -143,7 +143,7 @@ module.exports = {
             else
                 characterimage = "https://abload.de/img/000000-0.0s3ssy.png"
 
-            var color = arrfiltered[seiyuudigit]['Image Color'] 
+            let color = arrfiltered[seiyuudigit]['Image Color'] 
             if (color === "TBA")
                 color = "#b5b1e1"
 
@@ -207,7 +207,7 @@ module.exports = {
           
             const filter = m => true
 
-            var collector
+            let collector
             
           
             
