@@ -10,7 +10,7 @@ const Seiyuu = sequelize.import('../..//models/Seiyuu');
 const helper = require('../../helpers.js');
 
 module.exports = {
-    name: 'fillseiyuudb',
+    name: 'updateseiyuudb',
     description: 'Fills the seiyuu DB with the data from the JSON.',
     adminOnly: true,
     permissions: 'ADMINISTRATOR',
@@ -19,7 +19,8 @@ module.exports = {
         let rawdata
         let obj
 
-        helper.data.readSpreadsheet("1mFTCIxa-FlRAWT70M7lC82bx-HRvDm_lovUJLL4FlN8", "seiyuu", "SeiyuuInfo!A:Z")
+        saveJSON().then(() => {
+
         rawdata = fs.readFileSync('./seiyuu.json');
         obj = JSON.parse(rawdata) 
         
@@ -33,15 +34,13 @@ module.exports = {
         let seiyuu_id = 0;
         addSeiyuuToDB(seiyuu_id)
 
-        async function addSeiyuuToDB(id)
+       
+       
+        function addSeiyuuToDB(id)
         {
             try {
                 seiyuu_id = id
-                let seiyuu = Seiyuu.findOrCreate({
-                    where: {
-                        id: seiyuu_id+1
-                    },
-                    defaults: {
+                let seiyuu = Seiyuu.update({
                         franchise: arr[seiyuu_id]["Franchise"],
                         image_color: arr[seiyuu_id]["Image Color"],
                         seiyuu_name: arr[seiyuu_id]["Seiyuu Name"],
@@ -67,10 +66,12 @@ module.exports = {
                         skills: arr[seiyuu_id]["Skills"],
                         hobbies: arr[seiyuu_id]["Hobbies"],
                         fun_facts: arr[seiyuu_id]["Fun Facts"],
-
-
-                    }
-                }).then(function(result) {
+                    },
+                    {where: {
+                        id: seiyuu_id+1
+                    }}
+                        
+                ).then(function(result) {
                     let created = result[1]
                     if (seiyuu_id != arr.length)
                         seiyuu_id++
@@ -85,10 +86,13 @@ module.exports = {
                 if (e.name === 'SequelizeUniqueConstraintError') {
                     return message.reply('That Seiyuu is already added to the DB.');
                 }
-                console.log(e)
-                return message.reply('Something went wrong with adding a tag.');
             }
         }
+    })
 
+    async function saveJSON()
+    {
+        helper.data.readSpreadsheet("1mFTCIxa-FlRAWT70M7lC82bx-HRvDm_lovUJLL4FlN8", "seiyuu", "SeiyuuInfo!A:Z")
+    }
        },
 };

@@ -22,11 +22,6 @@ module.exports = {
     	helper.data.readSpreadsheet("1mFTCIxa-FlRAWT70M7lC82bx-HRvDm_lovUJLL4FlN8", "seiyuu", "SeiyuuInfo!A:Z")
         rawdata = fs.readFileSync('./seiyuu.json');
         obj = JSON.parse(rawdata) 
-      
-
-    	
-
-        
 
         let facts = []
         let arr = []
@@ -40,7 +35,7 @@ module.exports = {
         query = query.trim()
 
 
-         let re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/
+        let re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/
         let as = query.search(re);
         if (as != -1)
         {
@@ -48,7 +43,7 @@ module.exports = {
             query = query.replace(re, "");
         }
 
-        let re = /( )?\bm(il(l)?(l)?ion)?( )?l(ive)?\b( )?/
+        re = /( )?\bm(il(l)?(l)?ion)?( )?l(ive)?\b( )?/
         let ml = query.search(re);
         if (ml != -1)
         {
@@ -56,7 +51,7 @@ module.exports = {
             query = query.replace(re, "");
         }
 
-        let re = /( )?\bc(indere(l)?la)?( )?g(irls)?\b( )?/
+        re = /( )?\bc(indere(l)?la)?( )?g(irls)?\b( )?/
         let cg = query.search(re);
         if (cg != -1)
         {
@@ -64,7 +59,7 @@ module.exports = {
             query = query.replace(re, "");
         }
 
-        let re = /( )?\bs(hiny)?( )?c(olo(u)?rs)?( )?\b/
+        re = /( )?\bs(hiny)?( )?c(olo(u)?rs)?( )?\b/
         let sc = query.search(re);
         if (sc != -1)
         {
@@ -72,7 +67,7 @@ module.exports = {
             query = query.replace(re, "");
         }
 
-        let re = /( )?s(ide)?( )?m( )?/
+        re = /( )?s(ide)?( )?m( )?/
         let sm = query.search(re);
         if (sm != -1)
         {
@@ -90,7 +85,7 @@ module.exports = {
         	return console.log("Error")
       
         let randomquery = true
-        let re = /( )?\b\d(\d)?\b( )?/
+        re = /( )?\b\d(\d)?\b( )?/
         let factdigit 
         
         if (query.match(re) == null)

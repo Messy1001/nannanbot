@@ -244,7 +244,8 @@ client.on('ready', () => {
 
 client.on('message', message => {
 
-   currencyHelper.currency.add(message.author.id, 2);
+  if (!message.author.bot || message.author.id == "425271727484829696")
+    currencyHelper.currency.add(message.author.id, 2);
 
   if (!message.content.startsWith(prefix) || message.author.bot) return;
   
