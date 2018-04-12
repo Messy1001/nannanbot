@@ -4,6 +4,146 @@
 		"selected_items":
 		[
 			[
+				"crea",
+				"createdTimestamp\t? "
+			],
+			[
+				"g",
+				"guilds\t{} "
+			],
+			[
+				"running",
+				"running_quiz"
+			],
+			[
+				"ch",
+				"channel"
+			],
+			[
+				"bot",
+				"botchannel_id"
+			],
+			[
+				"m",
+				"message"
+			],
+			[
+				"hint",
+				"hintsplit"
+			],
+			[
+				"rep",
+				"replaceAt"
+			],
+			[
+				"quiz",
+				"quiztype"
+			],
+			[
+				"cha",
+				"characterimage"
+			],
+			[
+				"emb",
+				"embed2"
+			],
+			[
+				"name",
+				"namesplit"
+			],
+			[
+				"C",
+				"Character"
+			],
+			[
+				"qu",
+				"quiztype"
+			],
+			[
+				"as",
+				"askQuestion"
+			],
+			[
+				"c",
+				"currency"
+			],
+			[
+				"me",
+				"messagetype"
+			],
+			[
+				"batt",
+				"battlemessagesduo"
+			],
+			[
+				"fi",
+				"fighter2"
+			],
+			[
+				"fight",
+				"fighter1"
+			],
+			[
+				"fighter",
+				"fighter2"
+			],
+			[
+				"figh",
+				"fighter1"
+			],
+			[
+				"p",
+				"participantid"
+			],
+			[
+				"par",
+				"participants"
+			],
+			[
+				"send",
+				"sendMessage"
+			],
+			[
+				"sen",
+				"sendMessage"
+			],
+			[
+				"bat",
+				"battlemessages"
+			],
+			[
+				"get",
+				"getRandomInt"
+			],
+			[
+				"end",
+				"end"
+			],
+			[
+				"ha",
+				"hand"
+			],
+			[
+				"dea",
+				"dealerdraws"
+			],
+			[
+				"re",
+				"reply"
+			],
+			[
+				"dou",
+				"doubleDown"
+			],
+			[
+				"save",
+				"saveHandImage"
+			],
+			[
+				"f",
+				"function"
+			],
+			[
 				"colle",
 				"collector"
 			],
@@ -14,10 +154,6 @@
 			[
 				"hand",
 				"hand"
-			],
-			[
-				"dea",
-				"dealerhand"
 			],
 			[
 				"co",
@@ -32,16 +168,8 @@
 				"collect"
 			],
 			[
-				"c",
-				"collector"
-			],
-			[
 				"play",
 				"playerLoses"
-			],
-			[
-				"fi",
-				"firstpass"
 			],
 			[
 				"dob",
@@ -110,10 +238,6 @@
 			[
 				"ga",
 				"gameEnd"
-			],
-			[
-				"ha",
-				"handValue"
 			],
 			[
 				"d",
@@ -196,10 +320,6 @@
 				"birthdays"
 			],
 			[
-				"re",
-				"renamechannel"
-			],
-			[
 				"ser",
 				"server_id"
 			],
@@ -240,20 +360,12 @@
 				"Servers"
 			],
 			[
-				"bot",
-				"bot_channel"
-			],
-			[
 				"Ser",
 				"Servers_BotChannels"
 			],
 			[
 				"botc",
 				"botchannel"
-			],
-			[
-				"get",
-				"getBotChannels"
 			],
 			[
 				"db",
@@ -296,10 +408,6 @@
 				"arrfiltered"
 			],
 			[
-				"send",
-				"sendInfo"
-			],
-			[
 				"donut",
 				"donutsbday"
 			],
@@ -334,10 +442,6 @@
 			[
 				"seiyuu",
 				"seiyuufiltered"
-			],
-			[
-				"name",
-				"Name"
 			],
 			[
 				"ob",
@@ -399,7 +503,24 @@
 			"file": "bot.js",
 			"settings":
 			{
-				"buffer_size": 10460,
+				"buffer_size": 10703,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/credits.js",
+			"settings":
+			{
+				"buffer_size": 527,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/roll.js",
+			"settings":
+			{
+				"buffer_size": 366,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -432,6 +553,15 @@
 			}
 		},
 		{
+			"file": "migrations/20180410174225-add-running-quizToBotchannels.js",
+			"settings":
+			{
+				"buffer_size": 495,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "commands/serverManagement/setDefaultIcon.js",
 			"settings":
 			{
@@ -444,7 +574,7 @@
 			"file": "commands/ping.js",
 			"settings":
 			{
-				"buffer_size": 251,
+				"buffer_size": 235,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -453,17 +583,36 @@
 			"file": "commands/blackjack.js",
 			"settings":
 			{
-				"buffer_size": 11048,
+				"buffer_size": 11115,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "privatekey.json",
+			"file": "commands/brawl.js",
 			"settings":
 			{
-				"buffer_size": 2337,
-				"line_ending": "Unix"
+				"buffer_size": 7234,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".tern-project",
+			"settings":
+			{
+				"buffer_size": 154,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Tom/AppData/Roaming/Sublime Text 3/Packages/User/Tern.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 73,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
 			}
 		},
 		{
@@ -476,10 +625,28 @@
 			}
 		},
 		{
+			"file": "commands/currency/transfercredits.js",
+			"settings":
+			{
+				"buffer_size": 1682,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "currencyHelpers.js",
 			"settings":
 			{
-				"buffer_size": 3383,
+				"buffer_size": 1523,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/seiyuuquiz.js",
+			"settings":
+			{
+				"buffer_size": 11564,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -514,9 +681,16 @@
 			"file": "seiyuu.json",
 			"settings":
 			{
-				"buffer_size": 185796,
+				"buffer_size": 203023,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
 			}
 		},
 		{
@@ -559,7 +733,7 @@
 			"file": "commands/seiyuuimage.js",
 			"settings":
 			{
-				"buffer_size": 10101,
+				"buffer_size": 9000,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -595,7 +769,7 @@
 			"file": "commands/seiyuuinfo.js",
 			"settings":
 			{
-				"buffer_size": 15447,
+				"buffer_size": 15427,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -613,7 +787,7 @@
 			"file": "helpers.js",
 			"settings":
 			{
-				"buffer_size": 3707,
+				"buffer_size": 3852,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -687,7 +861,7 @@
 			"file": "models/BotChannels.js",
 			"settings":
 			{
-				"buffer_size": 306,
+				"buffer_size": 377,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -719,10 +893,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 170.0,
-		"last_filter": "Package Control: ",
+		"height": 137.0,
+		"last_filter": "install pac",
 		"selected_items":
 		[
+			[
+				"install pac",
+				"Package Control: Install Package"
+			],
 			[
 				"Package Control: ",
 				"Package Control: Install Package"
@@ -835,6 +1013,23 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"setup",
+			"filter",
+			"m.createdat",
+			"m.created",
+			"date",
+			"filter",
+			"color",
+			"embed",
+			"merge",
+			"delay",
+			"time",
+			"gameEnd()",
+			"current",
+			"current ha",
+			"curre",
+			"m ==",
+			"displayHa",
 			"playerw",
 			"collect",
 			"playerwin",
@@ -952,7 +1147,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 9,
 			"sheets":
 			[
 				{
@@ -961,15 +1156,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10460,
+						"buffer_size": 10703,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								320,
-								281
+								10703,
+								10703
 							]
 						],
 						"settings":
@@ -979,14 +1174,70 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4128.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "commands/credits.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 527,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "commands/roll.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 366,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								352,
+								352
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 29,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
 					"file": "commands/serverManagement/setSpecialIcon.js",
 					"semi_transient": false,
 					"settings":
@@ -998,8 +1249,8 @@
 						"selection":
 						[
 							[
-								1365,
-								1365
+								1147,
+								1283
 							]
 						],
 						"settings":
@@ -1012,11 +1263,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 4,
 					"file": "migrations/20180401151430-add-DefaultIconColumnToServers.js",
 					"semi_transient": false,
 					"settings":
@@ -1040,11 +1291,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 5,
 					"file": "migrations/20180401195342-add-SpecialIconColumnToServers.js",
 					"semi_transient": false,
 					"settings":
@@ -1056,8 +1307,8 @@
 						"selection":
 						[
 							[
-								327,
-								327
+								332,
+								400
 							]
 						],
 						"settings":
@@ -1068,11 +1319,39 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
+					"file": "migrations/20180410174225-add-running-quizToBotchannels.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 495,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								375,
+								375
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
 					"file": "commands/serverManagement/setDefaultIcon.js",
 					"semi_transient": false,
 					"settings":
@@ -1084,8 +1363,8 @@
 						"selection":
 						[
 							[
-								1366,
-								1366
+								1154,
+								1283
 							]
 						],
 						"settings":
@@ -1098,16 +1377,16 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 8,
 					"file": "commands/ping.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 251,
+						"buffer_size": 235,
 						"regions":
 						{
 						},
@@ -1115,7 +1394,7 @@
 						[
 							[
 								0,
-								251
+								235
 							]
 						],
 						"settings":
@@ -1126,24 +1405,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 30,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 9,
 					"file": "commands/blackjack.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11048,
+						"buffer_size": 11115,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10522,
-								10522
+								11115,
+								11115
 							]
 						],
 						"settings":
@@ -1151,34 +1430,93 @@
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 5391.0,
+						"translation.y": 5833.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "privatekey.json",
-					"semi_transient": true,
+					"buffer": 10,
+					"file": "commands/brawl.js",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2337,
+						"buffer_size": 7234,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								2337
+								954,
+								954
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": ".tern-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 154,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								154,
+								154
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/C/Users/Tom/AppData/Roaming/Sublime Text 3/Packages/User/Tern.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 73,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								73,
+								73
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1188,7 +1526,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 13,
 					"file": "commands/currency/getBalance.js",
 					"semi_transient": false,
 					"settings":
@@ -1200,8 +1538,8 @@
 						"selection":
 						[
 							[
-								550,
-								550
+								43,
+								43
 							]
 						],
 						"settings":
@@ -1212,16 +1550,16 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 21,
+					"stack_index": 27,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "currencyHelpers.js",
+					"buffer": 14,
+					"file": "commands/currency/transfercredits.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3383,
+						"buffer_size": 1682,
 						"regions":
 						{
 						},
@@ -1229,7 +1567,37 @@
 						[
 							[
 								0,
-								3383
+								1682
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 135.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 24,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "currencyHelpers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1523,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1493,
+								1493
 							]
 						],
 						"settings":
@@ -1238,14 +1606,44 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 810.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 25,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 16,
+					"file": "commands/seiyuuquiz.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11564,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3762.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
 					"file": "commands/prune.js",
 					"semi_transient": false,
 					"settings":
@@ -1271,11 +1669,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 33,
+					"stack_index": 42,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 18,
 					"file": "commands/serverManagement/defaultChannelName.js",
 					"semi_transient": false,
 					"settings":
@@ -1301,11 +1699,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 20,
+					"stack_index": 36,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 19,
 					"file": "icon.json",
 					"semi_transient": false,
 					"settings":
@@ -1330,24 +1728,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 34,
+					"stack_index": 21,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 20,
 					"file": "seiyuu.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 185796,
+						"buffer_size": 203023,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2556,
-								2556
+								54518,
+								54525
 							]
 						],
 						"settings":
@@ -1358,11 +1756,39 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 31,
+					"stack_index": 28,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 21,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"default_dir": "C:\\nannanbot\\commands\\currency",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 23,
+					"type": "text"
+				},
+				{
+					"buffer": 22,
 					"file": "commands/serverManagement/announcementType.js",
 					"semi_transient": false,
 					"settings":
@@ -1388,11 +1814,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 23,
 					"file": "commands/serverManagement/botChannelAdd.js",
 					"semi_transient": false,
 					"settings":
@@ -1404,8 +1830,8 @@
 						"selection":
 						[
 							[
-								492,
-								492
+								1318,
+								1383
 							]
 						],
 						"settings":
@@ -1418,11 +1844,11 @@
 						"translation.y": 45.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 24,
 					"file": "commands/serverManagement/botChannelRemove.js",
 					"semi_transient": false,
 					"settings":
@@ -1448,11 +1874,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 19,
+					"stack_index": 35,
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 25,
 					"file": "commands/serverManagement/renameChannelAdd.js",
 					"semi_transient": false,
 					"settings":
@@ -1478,24 +1904,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 33,
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 26,
 					"file": "commands/seiyuuimage.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10101,
+						"buffer_size": 9000,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								10101
+								6670,
+								6670
 							]
 						],
 						"settings":
@@ -1505,14 +1931,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2295.0,
+						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 30,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 27,
 					"file": "commands/seiyuufact.js",
 					"semi_transient": false,
 					"settings":
@@ -1524,8 +1950,8 @@
 						"selection":
 						[
 							[
-								0,
-								9815
+								2147,
+								2147
 							]
 						],
 						"settings":
@@ -1535,14 +1961,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2070.0,
+						"translation.y": 1755.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 29,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
-					"buffer": 20,
+					"buffer": 28,
 					"file": "models/Users.js",
 					"semi_transient": false,
 					"settings":
@@ -1555,7 +1981,7 @@
 						[
 							[
 								352,
-								0
+								352
 							]
 						],
 						"settings":
@@ -1568,11 +1994,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 23,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 21,
+					"buffer": 29,
 					"file": "migrations/20180401095856-add-Users.js",
 					"semi_transient": false,
 					"settings":
@@ -1596,24 +2022,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 22,
+					"stack_index": 37,
 					"type": "text"
 				},
 				{
-					"buffer": 22,
+					"buffer": 30,
 					"file": "commands/seiyuuinfo.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15447,
+						"buffer_size": 15427,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								610,
-								855
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1623,14 +2049,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4469.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 22,
 					"type": "text"
 				},
 				{
-					"buffer": 23,
+					"buffer": 31,
 					"file": "commands/rps.js",
 					"semi_transient": false,
 					"settings":
@@ -1642,8 +2068,8 @@
 						"selection":
 						[
 							[
-								3160,
-								3160
+								970,
+								1196
 							]
 						],
 						"settings":
@@ -1651,27 +2077,27 @@
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1431.0,
+						"translation.y": 315.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 26,
 					"type": "text"
 				},
 				{
-					"buffer": 24,
+					"buffer": 32,
 					"file": "helpers.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3707,
+						"buffer_size": 3852,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								348,
-								348
+								1021,
+								1021
 							]
 						],
 						"settings":
@@ -1683,11 +2109,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
-					"buffer": 25,
+					"buffer": 33,
 					"file": "commands/serverManagement/announcementChannelAdd.js",
 					"semi_transient": false,
 					"settings":
@@ -1713,11 +2139,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 31,
 					"type": "text"
 				},
 				{
-					"buffer": 26,
+					"buffer": 34,
 					"file": "commands/serverManagement/renameChannelRemove.js",
 					"semi_transient": false,
 					"settings":
@@ -1743,11 +2169,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 18,
+					"stack_index": 34,
 					"type": "text"
 				},
 				{
-					"buffer": 27,
+					"buffer": 35,
 					"file": "commands/serverManagement/announcementChannelRemove.js",
 					"semi_transient": false,
 					"settings":
@@ -1772,11 +2198,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 32,
 					"type": "text"
 				},
 				{
-					"buffer": 28,
+					"buffer": 36,
 					"file": "dbInit.js",
 					"semi_transient": false,
 					"settings":
@@ -1802,11 +2228,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 28,
+					"stack_index": 40,
 					"type": "text"
 				},
 				{
-					"buffer": 29,
+					"buffer": 37,
 					"file": "dbObjects.js",
 					"semi_transient": false,
 					"settings":
@@ -1832,11 +2258,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 25,
+					"stack_index": 38,
 					"type": "text"
 				},
 				{
-					"buffer": 30,
+					"buffer": 38,
 					"file": "commands/help.js",
 					"semi_transient": false,
 					"settings":
@@ -1862,11 +2288,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 32,
+					"stack_index": 41,
 					"type": "text"
 				},
 				{
-					"buffer": 31,
+					"buffer": 39,
 					"file": "models/Servers.js",
 					"semi_transient": false,
 					"settings":
@@ -1893,24 +2319,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 32,
+					"buffer": 40,
 					"file": "models/BotChannels.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 306,
+						"buffer_size": 377,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								306,
-								306
+								280,
+								280
 							]
 						],
 						"settings":
@@ -1923,11 +2349,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 24,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 33,
+					"buffer": 41,
 					"file": "models/RenameChannels.js",
 					"semi_transient": false,
 					"settings":
@@ -1953,11 +2379,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 26,
+					"stack_index": 39,
 					"type": "text"
 				},
 				{
-					"buffer": 34,
+					"buffer": 42,
 					"file": "models/Servers_BotChannels.js",
 					"semi_transient": false,
 					"settings":
@@ -1984,7 +2410,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 27,
+					"stack_index": 17,
 					"type": "text"
 				}
 			]

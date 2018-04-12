@@ -5,6 +5,7 @@ const dotenv = require('dotenv').config()
 const fs = require('fs');
 const helper = require('./helpers.js');
 const currencyHelper = require('./currencyHelpers.js')
+const heistHelper = require('./heisthelpers.js')
 var dir = require('node-dir');
 const Sequelize = require('sequelize');
 
@@ -33,6 +34,7 @@ const BotChannels = sequelize.import('./models/BotChannels');
 const RenameChannels = sequelize.import('./models/RenameChannels');
 const Users = sequelize.import("./models/Users")
 
+
 const month = new Array();
     month[0] = "January";
     month[1] = "February";
@@ -57,7 +59,8 @@ for (const file of commandFiles) {
 
 app.get("/", (request, response) => {
   console.log(Date.now() + " Ping Received");
-  
+  heistHelper.data.resolveHeist();
+
   helper.data.readSpreadsheet("1mFTCIxa-FlRAWT70M7lC82bx-HRvDm_lovUJLL4FlN8", "icon", "ServerIcon!A:Z")
   var rawdataicon
   var objicon
@@ -237,7 +240,6 @@ client.on('ready', () => {
       }
     })
     client.user.setPresence({ game: { name: '>help for commands', type: 0 } });
-    
 });
 
 client.on('message', message => {
@@ -328,6 +330,6 @@ client.on('message', message => {
  
   })
 });
-
+exports.client = client;
 client.login(process.env.TOKEN);
 

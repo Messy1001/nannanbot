@@ -27,7 +27,7 @@ module.exports = {
       let aliases = this.aliases
       let name = this.name
       let count = 0
-      let running_quiz = false;
+      let running_quiz;
 
 
         BotChannels.find({
@@ -39,8 +39,7 @@ module.exports = {
 
         }).then(function()
         {
-        
-        if (running_quiz != "true")
+        if (Date.now() > parseInt(running_quiz) + 60000 || running_quiz == null || running_quiz == "false")
         {      
             helper.data.readSpreadsheet("1mFTCIxa-FlRAWT70M7lC82bx-HRvDm_lovUJLL4FlN8", "seiyuu", "SeiyuuInfo!A:Z")
             rawdata = fs.readFileSync('./seiyuu.json');
@@ -65,7 +64,7 @@ module.exports = {
                 query = query.replace(re, "");
             }
 
-            let re = /( )?\bm(il(l)?(l)?ion)?( )?l(ive)?\b( )?/
+            re = /( )?\bm(il(l)?(l)?ion)?( )?l(ive)?\b( )?/
             let ml = query.search(re);
             if (ml != -1)
             {
@@ -73,7 +72,7 @@ module.exports = {
                 query = query.replace(re, "");
             }
 
-            let re = /( )?\bc(indere(l)?la)?( )?g(irls)?\b( )?/
+            re = /( )?\bc(indere(l)?la)?( )?g(irls)?\b( )?/
             let cg = query.search(re);
             if (cg != -1)
             {
@@ -81,7 +80,7 @@ module.exports = {
                 query = query.replace(re, "");
             }
 
-            let re = /( )?\bs(hiny)?( )?c(olo(u)?rs)?( )?\b/
+            re = /( )?\bs(hiny)?( )?c(olo(u)?rs)?( )?\b/
             let sc = query.search(re);
             if (sc != -1)
             {
@@ -89,7 +88,7 @@ module.exports = {
                 query = query.replace(re, "");
             }
 
-            let re = /( )?s(ide)?( )?m( )?/
+            re = /( )?s(ide)?( )?m( )?/
             let sm = query.search(re);
             if (sm != -1)
             {
@@ -156,6 +155,8 @@ module.exports = {
                 embed.set
                 message.channel.send(embed);
                 namesplit = arrfiltered[seiyuudigit]["Seiyuu Name"].split(" ")
+                if (arrfiltered[seiyuudigit]["Artist Name"] != "-")
+                    namesplit.push(arrfiltered[seiyuudigit]["Artist Name"])
             }
             else if (quiztype == 1)
             {
@@ -224,18 +225,33 @@ module.exports = {
             },15000)
 
             collector.on('collect', m => {
+               let westernname
+               let jpnname
                console.log("Message: "+m)
-               if (quiztype == 0 && (m.content.toLowerCase() == namesplit[0].toLowerCase()+" "+namesplit[1].toLowerCase() || m.content.toLowerCase() == namesplit[1].toLowerCase()+" "+namesplit[0].toLowerCase()))
+               if (namesplit.length > 1)
+               {
+                    westernname = namesplit[0].toLowerCase()+" "+namesplit[1].toLowerCase()
+                    jpnname = namesplit[1].toLowerCase()+" "+namesplit[0].toLowerCase()
+               }
+               else
+               {
+                   westernname = namesplit[0]
+                   jpnname = westernname
+               }
+               if (quiztype == 0 && (m.content.toLowerCase() == westernname || m.content.toLowerCase() == jpnname))
                {    
                     answered = true;
-                    embed2.setDescription(`**${m.author.username}** answered the question correctly and won 50 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Seiyuu Name"]}`)
+                    if (arrfiltered[seiyuudigit]["Artist Name"] != "-")
+                        embed2.setDescription(`**${m.author.username}** answered the question correctly and won 50 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Artist Name"]}(${arrfiltered[seiyuudigit]["Seiyuu Name"]})`)
+                    else
+                        embed2.setDescription(`**${m.author.username}** answered the question correctly and won 50 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Seiyuu Name"]}`)
                     embed2.setImage(seiyuuimage)
                     embed2.setColor(color)
                     message.channel.send(embed2)
                     currencyHelper.currency.add(m.author.id, 50);
                     collector.stop();
                } 
-               else if (quiztype == 1 && (m.content.toLowerCase() == namesplit[0].toLowerCase()+" "+namesplit[1].toLowerCase() || m.content.toLowerCase() == namesplit[1].toLowerCase()+" "+namesplit[0].toLowerCase()))
+               else if (quiztype == 1 && (m.content.toLowerCase() == westernname || m.content.toLowerCase() == jpnname || m.content.toLowerCase == namesplit[2]))
                {
                     answered = true;
                     embed2.setDescription(`**${m.author.username}** answered the question correctly and won 50 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Character"]}`)
@@ -279,17 +295,15 @@ module.exports = {
                     embed2.setColor(color)
                     message.channel.send(embed2)
                 }
-
+                
                 BotChannels.update(
-                  { running_quiz: "false" },
-                  { where: { botchannel_id: message.channel.id } }
-                )
-               
-
+                    { running_quiz: "false" },
+                    { where: { botchannel_id: message.channel.id } }
+                  )
             }) 
 
             BotChannels.update(
-                  { running_quiz: "true" },
+                  { running_quiz: Date.now() },
                   { where: { botchannel_id: message.channel.id } }
                 )
         }   

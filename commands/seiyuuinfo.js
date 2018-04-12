@@ -63,7 +63,7 @@ module.exports = {
             query = query.replace(re, "");
         }
         console.log("digit"+digit)
-        let re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/
+        re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/
         let as = query.search(re);
         if (as != -1)
         {
