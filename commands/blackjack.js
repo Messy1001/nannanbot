@@ -40,7 +40,7 @@ module.exports = {
     	let balance = currencyHelper.currency.getBalance(message.author.id)
       
       if (bet > balance)
-    		return message.reply("You tried to bet " +bet+" credits but only have "+balance+"!")
+    		return message.channel.send("**"+message.guild.members.get(message.author.id).user.username+"**, you tried to bet " +bet+" credits but only have "+balance+"!")
 
     	
        let rank = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'king', 'queen', 'jack', 'ace']
@@ -148,11 +148,16 @@ module.exports = {
 		    
 		    if (temp_value < 21)
 		        return [temp_value.toString(), temp_value]
-		    else if(temp_value == 21)
-		        return ['Blackjack!', 21]
-		    else
-		        return ['Bust!', 100]
-
+				else if(temp_value == 21)
+				{
+						end = true;
+						return ['Blackjack!', 21]
+				}
+				else
+				{
+						end = true;
+						return ['Bust!', 100]
+				}
 		}
 
 		async function displayPlayerDraw(callback) {
@@ -170,7 +175,7 @@ module.exports = {
 			displayHand(hand, str, function() {
 				if (handValue(hand)[1] == 21)
 				{
-					message.reply("Blackjack! **You win!**")
+					message.channel.send("**"+message.guild.members.get(message.author.id).user.username+"**, Blackjack! **You win!**")
           end = true
 					blackjack = true
 					gameEnd()
@@ -178,7 +183,7 @@ module.exports = {
 				}
 				else if(handValue(hand)[1] > 21)
 				{
-					message.reply("Bust! **You lose!**")
+					message.channel.send("**"+message.guild.members.get(message.author.id).user.username+"**, Bust! **You lose!**")
           end = true;
 					gameEnd()
 					playerLoses()
@@ -215,7 +220,7 @@ module.exports = {
 			for (let id in dealerdraws)
 			{
       console.log("loop "+ id)
-			message.reply("Dealer draws: ",{
+			message.channel.send("**"+message.guild.members.get(message.author.id).user.username+"**, Dealer draws: ",{
 					  	files: [{
 					    attachment: "./images/cards/"+dealerdraws[id][0]+"_of_"+dealerdraws[id][1].toLowerCase().trim()+".jpg",
 					    name: 'hand.jpg'
@@ -252,31 +257,31 @@ module.exports = {
 
 				if (handValue(dealerhand)[1] == handValue(hand)[1] && handValue(dealerhand)[1] < 21)
 				{
-					message.reply("You and the Dealer **tied!**")
+					message.channel.send("**"+message.guild.members.get(message.author.id).user.username+"**, you and the Dealer **tied!**")
 					gameEnd()
 					playerTies()
 				}
 				else if (handValue(dealerhand)[1] == 21)
 				{
-					message.reply("The dealer has a blackjack, **you lose!**")
+					message.channel.send("**"+message.guild.members.get(message.author.id).user.username+"**, the dealer has a blackjack, **you lose!**")
 					gameEnd()
 					playerLoses()
 				}
 				else if (handValue(dealerhand)[1] > handValue(hand)[1] && handValue(dealerhand)[1] < 21)
 				{
-					message.reply("The dealer's hand has a higher value than yours, **you lose!**")
+					message.channel.send("**"+message.guild.members.get(message.author.id).user.username+"**, the dealer's hand has a higher value than yours, **you lose!**")
 					gameEnd()
 					playerLoses()
 				}
 				else if (handValue(dealerhand)[1] < handValue(hand)[1] && handValue(dealerhand)[1] < 21)
 				{
-					message.reply("Your hand has a higher value than the dealer's, **you win!**")
+					message.channel.send("**"+message.guild.members.get(message.author.id).user.username+"**, your hand has a higher value than the dealer's, **you win!**")
 					gameEnd()
 					playerWins()
 				}
 				else
 				{
-					message.reply("The dealer scored a bust, **you win!**")
+					message.channel.send("**"+message.guild.members.get(message.author.id).user.username+"**, The dealer scored a bust, **you win!**")
 					gameEnd()
 					playerWins()
 				}
@@ -337,7 +342,7 @@ module.exports = {
 			    //img.write('./images/cards/hand.png', function(){
           img.getBuffer(Jimp.AUTO, (err, buffer) => {
 			
-					message.reply(text, {
+						message.channel.send("**"+message.guild.members.get(message.author.id).user.username+"**, "+text, {
 					  	files: [{
 					    //attachment: "./images/cards/hand.png",
                attachment: buffer,
@@ -391,7 +396,7 @@ module.exports = {
             else if (m == 2 && m.createdTimestamp > date+1000 && bet < balance-2)
             {
             	 if (bet*2 > balance)
-            	 	message.reply("Not enough credits!")
+            	 message.channel.send("**"+message.guild.members.get(message.author.id).user.username+"**, you do not have enough credits!")
             	 else
             	 {
             	 	bet = bet*2
@@ -412,7 +417,7 @@ module.exports = {
             }
             else if (m.content == "end")
             {
-            	message.reply("You gave up so the game has ended with your loss.")
+            	message.channel.send("**"+message.guild.members.get(message.author.id).user.username+"**, you gave up so the game has ended with your loss.")
             	playerLoses()
             }
             

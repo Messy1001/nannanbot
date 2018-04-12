@@ -12,17 +12,17 @@ dependencies:
   npm: 5.8.0
   recursive-readdir: 2.2.2
   request: 2.85.0
-  sequelize: 4.37.5
+  sequelize: 4.37.6
   sqlite3: 4.0.0
 packages:
   /@types/geojson/1.0.6:
     dev: false
     resolution:
       integrity: sha512-Xqg/lIZMrUd0VRmSRbCAewtwGZiAk3mEUDvV4op1tGl+LvyPcb/MIOSxTl9z+9+J+R4/vpjiCAT4xeKzH9ji1w==
-  /@types/node/9.6.1:
+  /@types/node/9.6.3:
     dev: false
     resolution:
-      integrity: sha512-xwlHq5DXQFRpe+u6hmmNkzYk/3oxxqDp71a/AJMupOQYmxyaBetqrVMqdNlSQfbg7XTJYD8vARjf3Op06OzdtQ==
+      integrity: sha512-igaEysRgtg5tYJVIdQ1T2lJ3G6OmoY7g0YVWKHLFiVs4YUChd9IRSiLoHSLffwut+CpsHHBDj4vRxxNEMstctw==
   /accepts/1.3.5:
     dependencies:
       mime-types: 2.1.18
@@ -103,10 +103,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-tG6JCTSpWR8tL2+G1+ap8bP+dqg=
-  /aws4/1.6.0:
+  /aws4/1.7.0:
     dev: false
     resolution:
-      integrity: sha1-g+9cqGCysy5KDe7e6MdxudtXRx4=
+      integrity: sha512-32NDda82rhwD9/JBCCkB+MRYDp0oSvlo2IL6rQWA10PQi7tDUM3eqMSltXmY+Oyl/7N3P3qNtAlv7X0d9bI28w==
   /axios/0.18.0:
     dependencies:
       follow-redirects: 1.4.1
@@ -686,7 +686,7 @@ packages:
       node: '>=0.10'
     resolution:
       integrity: sha1-SZPcB7tINLjKA1AhOmhzoyxgUbk=
-  /google-auth-library/1.3.2:
+  /google-auth-library/1.4.0:
     dependencies:
       axios: 0.18.0
       gcp-metadata: 0.6.3
@@ -699,7 +699,7 @@ packages:
     engines:
       node: '>=4'
     resolution:
-      integrity: sha512-aRz0om4Bs85uyR2Ousk3Gb8Nffx2Sr2RoKts1smg1MhRwrehE1aD1HC4RmprNt1HVJ88IDnQ8biJQ/aXjiIxlQ==
+      integrity: sha512-vWRx6pJulK7Y5V/Xyr7MPMlx2mWfmrUVbcffZ7hpq8ElFg5S8WY6PvjMovdcr6JfuAwwpAX4R0I1XOcyWuBcUw==
   /google-p12-pem/0.1.2:
     dependencies:
       node-forge: 0.7.5
@@ -728,7 +728,7 @@ packages:
   /googleapis/25.0.0:
     dependencies:
       async: 2.6.0
-      google-auth-library: 1.3.2
+      google-auth-library: 1.4.0
       qs: 6.5.1
       string-template: 1.0.0
       uuid: 3.2.1
@@ -1551,7 +1551,7 @@ packages:
   /request/2.74.0:
     dependencies:
       aws-sign2: 0.6.0
-      aws4: 1.6.0
+      aws4: 1.7.0
       bl: 1.1.2
       caseless: 0.11.0
       combined-stream: 1.0.6
@@ -1579,7 +1579,7 @@ packages:
   /request/2.85.0:
     dependencies:
       aws-sign2: 0.7.0
-      aws4: 1.6.0
+      aws4: 1.7.0
       caseless: 0.12.0
       combined-stream: 1.0.6
       extend: 3.0.1
@@ -1653,7 +1653,7 @@ packages:
       node: '>= 0.8.0'
     resolution:
       integrity: sha512-E64YFPUssFHEFBvpbbjr44NCLtI1AohxQ8ZSiJjQLskAdKuriYEP6VyGEsRDH8ScozGpkaX1BGvhanqCwkcEZw==
-  /sequelize/4.37.5:
+  /sequelize/4.37.6:
     dependencies:
       bluebird: 3.5.1
       cls-bluebird: 2.1.0
@@ -1676,7 +1676,7 @@ packages:
     engines:
       node: '>=4.0.0'
     resolution:
-      integrity: sha512-Sf9wmO6nBIjb2fBWQapmQ4W9/fUyhwKQsMcvbnVey7v6qmIjSrz8FtAqiym9wKmp1u1qoRld+C2PJmtS2poopg==
+      integrity: sha512-x/6099L+6+3LQWms23wng/AR6yUE3X/VhrwSTSMbgOIk2ELY3DchI/9f9Ii7LIQRPxW1BHGpwboH7kxS/froXg==
   /serve-static/1.13.2:
     dependencies:
       encodeurl: 1.0.2
@@ -1926,7 +1926,7 @@ packages:
       integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=
   /wkx/0.4.4:
     dependencies:
-      '@types/node': 9.6.1
+      '@types/node': 9.6.3
     dev: false
     resolution:
       integrity: sha512-eVVHka2jRaAp9QanKhLpxWs3AGDV0b8cijlavxBnn4ryXzq5N/3Xe3nkQsI0XMRA16RURwviCWuOCj4mXCmrxw==
