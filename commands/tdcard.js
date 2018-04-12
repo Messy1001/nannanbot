@@ -11,24 +11,24 @@ module.exports = {
 
         helper.data.readSpreadsheet("146vKsT5WoNeE4fO68kGNpng1KnqnBYjENe_rZpHSVvc", "cards", "CardList!A:Z");
 
-        var cards = []
+        let cards = []
 
         const fs = require('fs');
 
         let rawdata = fs.readFileSync('./cards.json');  
         let obj = JSON.parse(rawdata);  
 
-        var query = message.content;
+        let query = message.content;
         query = query.toLowerCase()
         query = query.replace(prefix+this.name+" ", "");
 
-        var availability;
-        var rarity;
-        var digit = 1;
-        var name;
+        let availability;
+        let rarity;
+        let digit = 1;
+        let name;
         
-        var re = /( )?lim(ited)?( )?/
-        var limited = query.search(re);
+        let re = /( )?lim(ited)?( )?/
+        let limited = query.search(re);
         if (limited != -1)
         {
             availability = "Limited"
@@ -36,7 +36,7 @@ module.exports = {
         }
 
         re = /( )?perm(a(nent)?)?( )?/
-        var perm = query.search(re);
+        let perm = query.search(re);
         if ( perm != -1)
         {
             availability = "Permanent"
@@ -44,7 +44,7 @@ module.exports = {
         }
 
         re = /( )?(mil(l)?i)?fes(t)?( )?/
-        var fes = query.search(re)
+        let fes = query.search(re)
         if (fes != -1)
         {
             availability = "Millifes"
@@ -52,7 +52,7 @@ module.exports = {
         }
 
         re = /( )?event( )?/
-        var event = query.search(re)
+        let event = query.search(re)
          if (event != -1)
         {
             availability = "Event"
@@ -60,7 +60,7 @@ module.exports = {
         }
 
         re = /( )?(ps)?tour( )?/
-        var tour = query.search(re)
+        let tour = query.search(re)
         if (tour != -1)
         {
             availability = "Event (PS Tour)"
@@ -68,7 +68,7 @@ module.exports = {
         }
 
         re = /( )?(ps)?theater( )?/
-        var theater = query.search(re)
+        let theater = query.search(re)
         if (theater != -1)
         {
             availability = "Event (PST)"
@@ -76,7 +76,7 @@ module.exports = {
         }
 
         re = /( )?pst( )?/
-        var pst = query.search(re)
+        let pst = query.search(re)
         if (pst != -1)
         {
             availability = "PST"
@@ -84,7 +84,7 @@ module.exports = {
         }
 
         re = /( )?(mil(l)?i)?colle( )?/
-        var colle = query.search(re)
+        let colle = query.search(re)
         if ( colle != -1)
         {
             availability = "Event (MilliColle)"
@@ -92,7 +92,7 @@ module.exports = {
         }
 
         re = /( )?\br\b( )?/
-        var rare = query.search(re)
+        let rare = query.search(re)
         if (rare != -1)
         {
            rarity = "R"
@@ -100,7 +100,7 @@ module.exports = {
         }
 
         re = /()?sr()?/
-        var sr = query.search(re)
+        let sr = query.search(re)
         if (sr != -1)
         {
            rarity = "SR"
@@ -108,7 +108,7 @@ module.exports = {
         }
 
         re = /( )?\bssr\b( )?/
-        var ssr = query.search(re)
+        let ssr = query.search(re)
         if (ssr != -1)
         {
            rarity = "SSR"
@@ -127,12 +127,12 @@ module.exports = {
             query = query.replace(re, "");
         }
 
-        var splitQuery = []
+        let splitQuery = []
        
 
         
 
-        for (var ID in obj['objects'])
+        for (let ID in obj['objects'])
         {
             splitQuery = obj['objects'][ID]['Name'].split(" ");
             
@@ -157,7 +157,7 @@ module.exports = {
            
         }
         
-        var temp = []
+        let temp = []
         if (rarity != undefined)
         {
             for (let row in cards)
@@ -222,8 +222,8 @@ module.exports = {
         
         if (Object.keys(cards).length > 1)
         {
-            var str = "";
-            var count = 0;
+            let str = "";
+            let count = 0;
             for (let card in cards)
             {
                 if (card != digit)

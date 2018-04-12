@@ -1,0 +1,2501 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"crea",
+				"createdTimestamp\t? "
+			],
+			[
+				"g",
+				"guilds\t{} "
+			],
+			[
+				"running",
+				"running_quiz"
+			],
+			[
+				"ch",
+				"channel"
+			],
+			[
+				"bot",
+				"botchannel_id"
+			],
+			[
+				"m",
+				"message"
+			],
+			[
+				"hint",
+				"hintsplit"
+			],
+			[
+				"rep",
+				"replaceAt"
+			],
+			[
+				"quiz",
+				"quiztype"
+			],
+			[
+				"cha",
+				"characterimage"
+			],
+			[
+				"emb",
+				"embed2"
+			],
+			[
+				"name",
+				"namesplit"
+			],
+			[
+				"C",
+				"Character"
+			],
+			[
+				"qu",
+				"quiztype"
+			],
+			[
+				"as",
+				"askQuestion"
+			],
+			[
+				"c",
+				"currency"
+			],
+			[
+				"me",
+				"messagetype"
+			],
+			[
+				"batt",
+				"battlemessagesduo"
+			],
+			[
+				"fi",
+				"fighter2"
+			],
+			[
+				"fight",
+				"fighter1"
+			],
+			[
+				"fighter",
+				"fighter2"
+			],
+			[
+				"figh",
+				"fighter1"
+			],
+			[
+				"p",
+				"participantid"
+			],
+			[
+				"par",
+				"participants"
+			],
+			[
+				"send",
+				"sendMessage"
+			],
+			[
+				"sen",
+				"sendMessage"
+			],
+			[
+				"bat",
+				"battlemessages"
+			],
+			[
+				"get",
+				"getRandomInt"
+			],
+			[
+				"end",
+				"end"
+			],
+			[
+				"ha",
+				"hand"
+			],
+			[
+				"dea",
+				"dealerdraws"
+			],
+			[
+				"re",
+				"reply"
+			],
+			[
+				"dou",
+				"doubleDown"
+			],
+			[
+				"save",
+				"saveHandImage"
+			],
+			[
+				"f",
+				"function"
+			],
+			[
+				"colle",
+				"collector"
+			],
+			[
+				"di",
+				"displayDealerDraw"
+			],
+			[
+				"hand",
+				"hand"
+			],
+			[
+				"co",
+				"collector"
+			],
+			[
+				"coll",
+				"collector"
+			],
+			[
+				"collec",
+				"collect"
+			],
+			[
+				"play",
+				"playerLoses"
+			],
+			[
+				"dob",
+				"doubledown"
+			],
+			[
+				"displ",
+				"displayDealerDraw"
+			],
+			[
+				"doub",
+				"doubledown"
+			],
+			[
+				"dar",
+				"dealerdraws"
+			],
+			[
+				"new_",
+				"new_dealer_card"
+			],
+			[
+				"han",
+				"handValue"
+			],
+			[
+				"new",
+				"new_dealer_card"
+			],
+			[
+				"merg",
+				"mergeHand"
+			],
+			[
+				"img",
+				"imgarray"
+			],
+			[
+				"image",
+				"imagepath"
+			],
+			[
+				"col",
+				"collectHand"
+			],
+			[
+				"mer",
+				"mergeImg"
+			],
+			[
+				"gam",
+				"gameEnd"
+			],
+			[
+				"game",
+				"game_ended"
+			],
+			[
+				"pla",
+				"playerLoses"
+			],
+			[
+				"b",
+				"blackjack"
+			],
+			[
+				"ga",
+				"gameEnd"
+			],
+			[
+				"d",
+				"dealerhand"
+			],
+			[
+				"dis",
+				"displayDealerDraw"
+			],
+			[
+				"con",
+				"content"
+			],
+			[
+				"h",
+				"hand"
+			],
+			[
+				"card",
+				"cardValue"
+			],
+			[
+				"sui",
+				"suitsid"
+			],
+			[
+				"defi",
+				"defineAdd"
+			],
+			[
+				"def",
+				"defineAdd"
+			],
+			[
+				"defin",
+				"defineReduce"
+			],
+			[
+				"add",
+				"addBalance"
+			],
+			[
+				"user",
+				"user_id"
+			],
+			[
+				"sto",
+				"storedBalances"
+			],
+			[
+				"cur",
+				"currency"
+			],
+			[
+				"curren",
+				"currencyHelper"
+			],
+			[
+				"digit",
+				"digitarray"
+			],
+			[
+				"chann",
+				"channel"
+			],
+			[
+				"annou",
+				"announcementtype"
+			],
+			[
+				"bi",
+				"birthdayid"
+			],
+			[
+				"channel",
+				"channelid"
+			],
+			[
+				"bir",
+				"birthdays"
+			],
+			[
+				"ser",
+				"server_id"
+			],
+			[
+				"server",
+				"servers"
+			],
+			[
+				"find",
+				"findAll"
+			],
+			[
+				"tr",
+				"true"
+			],
+			[
+				"Le",
+				"length"
+			],
+			[
+				"ann",
+				"announcebirthdays"
+			],
+			[
+				"serv",
+				"servers"
+			],
+			[
+				"servers",
+				"servers"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"se",
+				"Servers"
+			],
+			[
+				"Ser",
+				"Servers_BotChannels"
+			],
+			[
+				"botc",
+				"botchannel"
+			],
+			[
+				"db",
+				"dbObjects"
+			],
+			[
+				"Bot",
+				"BotChannels"
+			],
+			[
+				"comman",
+				"command"
+			],
+			[
+				"comm",
+				"commands"
+			],
+			[
+				"help",
+				"helper"
+			],
+			[
+				"tw",
+				"twitterstr"
+			],
+			[
+				"twt",
+				"twittersplit"
+			],
+			[
+				"twitt",
+				"twittersplit"
+			],
+			[
+				"donuts",
+				"donutschannel"
+			],
+			[
+				"arr",
+				"arrfiltered"
+			],
+			[
+				"donut",
+				"donutsbday"
+			],
+			[
+				"sey",
+				"seiytemp"
+			],
+			[
+				"ali",
+				"aliascheck"
+			],
+			[
+				"a",
+				"aliascheck"
+			],
+			[
+				"al",
+				"aliases"
+			],
+			[
+				"set",
+				"setIcon"
+			],
+			[
+				"donu",
+				"donutsserver"
+			],
+			[
+				"call",
+				"callback"
+			],
+			[
+				"seiyuu",
+				"seiyuufiltered"
+			],
+			[
+				"ob",
+				"objects"
+			],
+			[
+				"Da",
+				"Date"
+			],
+			[
+				"to",
+				"toLowerCase"
+			],
+			[
+				"split",
+				"splitQuery"
+			],
+			[
+				"spl",
+				"splitQuery"
+			],
+			[
+				"fil",
+				"filename"
+			],
+			[
+				"spre",
+				"spreadsheet"
+			],
+			[
+				"read",
+				"readSpreadSheet"
+			],
+			[
+				"my",
+				"myFilteredData"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"clien",
+				"client_email"
+			],
+			[
+				"desc",
+				"desctemp"
+			],
+			[
+				"clie",
+				"client_secret"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "bot.js",
+			"settings":
+			{
+				"buffer_size": 10703,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/credits.js",
+			"settings":
+			{
+				"buffer_size": 527,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/roll.js",
+			"settings":
+			{
+				"buffer_size": 366,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/serverManagement/setSpecialIcon.js",
+			"settings":
+			{
+				"buffer_size": 1790,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "migrations/20180401151430-add-DefaultIconColumnToServers.js",
+			"settings":
+			{
+				"buffer_size": 490,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "migrations/20180401195342-add-SpecialIconColumnToServers.js",
+			"settings":
+			{
+				"buffer_size": 490,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "migrations/20180410174225-add-running-quizToBotchannels.js",
+			"settings":
+			{
+				"buffer_size": 495,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "commands/serverManagement/setDefaultIcon.js",
+			"settings":
+			{
+				"buffer_size": 1778,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/ping.js",
+			"settings":
+			{
+				"buffer_size": 235,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/blackjack.js",
+			"settings":
+			{
+				"buffer_size": 11115,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/brawl.js",
+			"settings":
+			{
+				"buffer_size": 7234,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".tern-project",
+			"settings":
+			{
+				"buffer_size": 154,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Tom/AppData/Roaming/Sublime Text 3/Packages/User/Tern.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 73,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/currency/getBalance.js",
+			"settings":
+			{
+				"buffer_size": 737,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/currency/transfercredits.js",
+			"settings":
+			{
+				"buffer_size": 1682,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "currencyHelpers.js",
+			"settings":
+			{
+				"buffer_size": 1523,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/seiyuuquiz.js",
+			"settings":
+			{
+				"buffer_size": 11564,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/prune.js",
+			"settings":
+			{
+				"buffer_size": 661,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/serverManagement/defaultChannelName.js",
+			"settings":
+			{
+				"buffer_size": 2589,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "icon.json",
+			"settings":
+			{
+				"buffer_size": 125,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "seiyuu.json",
+			"settings":
+			{
+				"buffer_size": 203023,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/serverManagement/announcementType.js",
+			"settings":
+			{
+				"buffer_size": 1891,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/serverManagement/botChannelAdd.js",
+			"settings":
+			{
+				"buffer_size": 2177,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/serverManagement/botChannelRemove.js",
+			"settings":
+			{
+				"buffer_size": 1345,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/serverManagement/renameChannelAdd.js",
+			"settings":
+			{
+				"buffer_size": 2373,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/seiyuuimage.js",
+			"settings":
+			{
+				"buffer_size": 9000,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/seiyuufact.js",
+			"settings":
+			{
+				"buffer_size": 9815,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "models/Users.js",
+			"settings":
+			{
+				"buffer_size": 352,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "migrations/20180401095856-add-Users.js",
+			"settings":
+			{
+				"buffer_size": 541,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "commands/seiyuuinfo.js",
+			"settings":
+			{
+				"buffer_size": 15427,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/rps.js",
+			"settings":
+			{
+				"buffer_size": 3160,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "helpers.js",
+			"settings":
+			{
+				"buffer_size": 3852,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/serverManagement/announcementChannelAdd.js",
+			"settings":
+			{
+				"buffer_size": 1916,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/serverManagement/renameChannelRemove.js",
+			"settings":
+			{
+				"buffer_size": 1366,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/serverManagement/announcementChannelRemove.js",
+			"settings":
+			{
+				"buffer_size": 1910,
+				"encoding": "UTF-8",
+				"line_ending": "Windows",
+				"name": "const Sequelize = require('sequelize');"
+			}
+		},
+		{
+			"file": "dbInit.js",
+			"settings":
+			{
+				"buffer_size": 1016,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "dbObjects.js",
+			"settings":
+			{
+				"buffer_size": 1091,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "commands/help.js",
+			"settings":
+			{
+				"buffer_size": 2916,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "models/Servers.js",
+			"settings":
+			{
+				"buffer_size": 715,
+				"encoding": "UTF-8",
+				"line_ending": "Windows",
+				"name": "module.exports = (sequelize, DataTypes) => {"
+			}
+		},
+		{
+			"file": "models/BotChannels.js",
+			"settings":
+			{
+				"buffer_size": 377,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "models/RenameChannels.js",
+			"settings":
+			{
+				"buffer_size": 383,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "models/Servers_BotChannels.js",
+			"settings":
+			{
+				"buffer_size": 230,
+				"encoding": "UTF-8",
+				"line_ending": "Windows",
+				"name": "module.exports = (sequelize, DataTypes) => {"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 137.0,
+		"last_filter": "install pac",
+		"selected_items":
+		[
+			[
+				"install pac",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: disco",
+				"Package Control: Discover Packages"
+			]
+		],
+		"width": 428.0
+	},
+	"console":
+	{
+		"height": 130.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/nannanbot",
+		"/C/nannanbot/commands",
+		"/C/nannanbot/commands/currency",
+		"/C/nannanbot/commands/serverManagement",
+		"/C/nannanbot/migrations",
+		"/C/nannanbot/models"
+	],
+	"file_history":
+	[
+		"/C/nannanbot/migrations/20180331184245-add-defaultNameColumnToRenameChannels.js",
+		"/C/nannanbot/migrations/20180331164808-add-RenameChannelColumnToServers.js",
+		"/C/nannanbot/migrations/20180331154418-add-Servers.js",
+		"/C/nannanbot/migrations/20180331154618-add-BotChannels.js",
+		"/C/nannanbot/migrations/20180331154740-add-RenameChannels.js",
+		"/C/nannanbot/database.json",
+		"/C/nannanbot/migrations/20180331153513-add-Servers.js",
+		"/C/nannanbot/migrations/20180331151817-add-servers.js",
+		"/C/nannanbot/migrations/20180331152948-add-testColumn.js",
+		"/C/nannanbot/models/Servers_BotChannels.js",
+		"/C/nannanbot/commands/botChannelAdd.js",
+		"/C/nannanbot/commands/rps.js",
+		"/C/nannanbot/commands/avatar.js",
+		"/C/nannanbot/commands/serverinfo.js",
+		"/C/nannanbot/commands/userinfo.js",
+		"/C/nannanbot/commands/readsheet.js",
+		"/C/nannanbot/commands/tdcard.js",
+		"/C/nannanbot/commands/seiyuuinfo.js",
+		"/C/nannanbot/commands/seiyuufact.js",
+		"/C/nannanbot/commands/seiyuuimage.js",
+		"/C/nannanbot/commands/tdbanner.js",
+		"/C/nannanbot/commands/prune.js",
+		"/C/nannanbot/config.json",
+		"/C/nannanbot/commands/help.js",
+		"/C/nannanbot/helpers.js",
+		"/C/nannanbot/package.json",
+		"/C/nannanbot/seiyuu.json",
+		"/C/nannanbot/cards.json",
+		"/C/nannanbot/.env",
+		"/C/nannanbot/commands/currency/add.js",
+		"/C/nannanbot/models/Users.js",
+		"/C/nannanbot/models/CurrencyShop.js",
+		"/C/nannanbot/models/UserItems.js",
+		"/C/nannanbot/commands/credits.js",
+		"/C/nannanbot/commands/miya.js",
+		"/C/nannanbot/privatekey.json",
+		"/C/nannanbot/commands/ping.js",
+		"/C/nannanbot/dbObjects.js",
+		"/C/nannanbot/dbInit.js",
+		"/C/nannanbot/commands/tags/tagcreate.js",
+		"/C/nannanbot/commands/sub/test.js",
+		"/C/nannanbot/thing.json",
+		"/C/nannanbot/test.json",
+		"/C/nannanbot/spreadsheet.js",
+		"/C/nannanbot/client_secret.json",
+		"/C/nannanbot/s",
+		"/C/nannanbot/quickstart.js",
+		"/C/nannanbot/NannanBot.sublime-project",
+		"/C/Programmieren/NannanBot/config.json",
+		"/C/nannanbot/bot.js",
+		"/C/Programmieren/NannanBot/commands/userinfo.js",
+		"/C/Programmieren/NannanBot/commands/serverinfo.js",
+		"/C/Programmieren/NannanBot/commands/args-info.js",
+		"/C/Programmieren/NannanBot/package.json",
+		"/C/Programmieren/NannanBot/bot.js",
+		"/C/Programmieren/NannanBot/commands/ping.js"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"setup",
+			"filter",
+			"m.createdat",
+			"m.created",
+			"date",
+			"filter",
+			"color",
+			"embed",
+			"merge",
+			"delay",
+			"time",
+			"gameEnd()",
+			"current",
+			"current ha",
+			"curre",
+			"m ==",
+			"displayHa",
+			"playerw",
+			"collect",
+			"playerwin",
+			"displaydea",
+			"while",
+			"coll",
+			"evaluatewinner",
+			"displayHand",
+			"your curre",
+			"stop",
+			"eva",
+			"bust",
+			"gameEnd()",
+			"21",
+			"blac",
+			"bust",
+			"draw",
+			"you lose",
+			"bust",
+			"collect",
+			"= new",
+			"firstpass",
+			"displaydealer",
+			"collect = true",
+			"collec",
+			"collector.stop()",
+			"double",
+			"displaydea",
+			"playerdraw",
+			"displaypla",
+			"removed from",
+			"playerloses",
+			"end",
+			"message.",
+			"ace",
+			"ACE",
+			"with these ca",
+			"dealer's hand value",
+			"displayHand",
+			"message.reply",
+			"displayHand",
+			"message.channel.send(str",
+			"displayHa",
+			"displayHand",
+			"displayHand(dea",
+			"Dealer's ha",
+			"displayHand",
+			"you los",
+			"draw",
+			"dealer's ha",
+			"new_card",
+			"download",
+			"balance",
+			"function",
+			"args[0]",
+			"dbo",
+			"1 april",
+			"get",
+			"april",
+			"just a test",
+			"admin",
+			"botchannel",
+			"execute",
+			"servers",
+			"data",
+			"twitter",
+			"count",
+			"seiyuudigit",
+			"embed",
+			"digit",
+			"filter",
+			"birthday log",
+			"donuts",
+			"z-on",
+			"birthda",
+			"console",
+			"!help",
+			"saveIcon",
+			"guild",
+			"sync",
+			"file",
+			"-1",
+			"digit",
+			"cards",
+			"args[2]",
+			"console",
+			"readspread",
+			"console",
+			"filenam",
+			"desc",
+			"embed",
+			"gsys",
+			"args",
+			"length",
+			"//Google Sheets API\n\n// configure a JWT auth client\nlet jwtClient = new google.auth.JWT(\n       privatekey.client_email,\n       null,\n       privatekey.private_key,\n       ['https://www.googleapis.com/auth/spreadsheets']);\n//authenticate request\njwtClient.authorize(function (err, tokens) {\n if (err) {\n   console.log(err);\n   return;\n } else {\n   console.log(\"Successfully connected!\");\n }\n});\n",
+			"authorize",
+			"listTest"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"pick",
+			"seiyuudigit",
+			"digit"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 9,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "bot.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10703,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10703,
+								10703
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4128.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "commands/credits.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 527,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "commands/roll.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 366,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								352,
+								352
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 29,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "commands/serverManagement/setSpecialIcon.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1790,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1147,
+								1283
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "migrations/20180401151430-add-DefaultIconColumnToServers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 490,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								333,
+								400
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "migrations/20180401195342-add-SpecialIconColumnToServers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 490,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								332,
+								400
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "migrations/20180410174225-add-running-quizToBotchannels.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 495,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								375,
+								375
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "commands/serverManagement/setDefaultIcon.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1778,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1154,
+								1283
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "commands/ping.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 235,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								235
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 30,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "commands/blackjack.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11115,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11115,
+								11115
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 5833.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "commands/brawl.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								954,
+								954
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": ".tern-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 154,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								154,
+								154
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/C/Users/Tom/AppData/Roaming/Sublime Text 3/Packages/User/Tern.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 73,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								73,
+								73
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "commands/currency/getBalance.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 737,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								43,
+								43
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 27,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "commands/currency/transfercredits.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1682,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								1682
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 135.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 24,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "currencyHelpers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1523,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1493,
+								1493
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 25,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "commands/seiyuuquiz.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11564,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3762.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "commands/prune.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 661,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								172,
+								172
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 42,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "commands/serverManagement/defaultChannelName.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2589,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								527,
+								527
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 36,
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "icon.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 125,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								125,
+								125
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 21,
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"file": "seiyuu.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 203023,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								54518,
+								54525
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 28,
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"default_dir": "C:\\nannanbot\\commands\\currency",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 23,
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "commands/serverManagement/announcementType.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1891,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1138,
+								1138
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 23,
+					"file": "commands/serverManagement/botChannelAdd.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2177,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1318,
+								1383
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 45.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"file": "commands/serverManagement/botChannelRemove.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1345,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								1345
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 35,
+					"type": "text"
+				},
+				{
+					"buffer": 25,
+					"file": "commands/serverManagement/renameChannelAdd.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2373,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								525,
+								525
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 33,
+					"type": "text"
+				},
+				{
+					"buffer": 26,
+					"file": "commands/seiyuuimage.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9000,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6670,
+								6670
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 27,
+					"file": "commands/seiyuufact.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9815,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2147,
+								2147
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1755.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 20,
+					"type": "text"
+				},
+				{
+					"buffer": 28,
+					"file": "models/Users.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 352,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								352,
+								352
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 29,
+					"file": "migrations/20180401095856-add-Users.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 541,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								541,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 37,
+					"type": "text"
+				},
+				{
+					"buffer": 30,
+					"file": "commands/seiyuuinfo.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15427,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4469.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 22,
+					"type": "text"
+				},
+				{
+					"buffer": 31,
+					"file": "commands/rps.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3160,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								970,
+								1196
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 315.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 26,
+					"type": "text"
+				},
+				{
+					"buffer": 32,
+					"file": "helpers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3852,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1021,
+								1021
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				},
+				{
+					"buffer": 33,
+					"file": "commands/serverManagement/announcementChannelAdd.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1916,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1618,
+								1618
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 31,
+					"type": "text"
+				},
+				{
+					"buffer": 34,
+					"file": "commands/serverManagement/renameChannelRemove.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1366,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								1366
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 34,
+					"type": "text"
+				},
+				{
+					"buffer": 35,
+					"file": "commands/serverManagement/announcementChannelRemove.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1910,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1907,
+								1907
+							]
+						],
+						"settings":
+						{
+							"auto_name": "const Sequelize = require('sequelize');",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 32,
+					"type": "text"
+				},
+				{
+					"buffer": 36,
+					"file": "dbInit.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1016,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								442,
+								442
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 40,
+					"type": "text"
+				},
+				{
+					"buffer": 37,
+					"file": "dbObjects.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1091,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								456,
+								456
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 38,
+					"type": "text"
+				},
+				{
+					"buffer": 38,
+					"file": "commands/help.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2916,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								748,
+								748
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 41,
+					"type": "text"
+				},
+				{
+					"buffer": 39,
+					"file": "models/Servers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 715,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								612,
+								612
+							]
+						],
+						"settings":
+						{
+							"auto_name": "module.exports = (sequelize, DataTypes) => {",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 40,
+					"file": "models/BotChannels.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 377,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								280,
+								280
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 41,
+					"file": "models/RenameChannels.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 383,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								286,
+								286
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 39,
+					"type": "text"
+				},
+				{
+					"buffer": 42,
+					"file": "models/Servers_BotChannels.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 230,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								93,
+								93
+							]
+						],
+						"settings":
+						{
+							"auto_name": "module.exports = (sequelize, DataTypes) => {",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 43.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "NannanBot.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 154.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

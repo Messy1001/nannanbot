@@ -13,12 +13,12 @@ module.exports = {
 
         helper.data.readSpreadsheet("1mFTCIxa-FlRAWT70M7lC82bx-HRvDm_lovUJLL4FlN8", "seiyuu", "SeiyuuInfo!A:Z");
 
-        var seiyuu = []
-        var digit = 0
-        var birthday = ""
-        var query = message.content;
-        var franchise
-        var count = 0;
+        let seiyuu = []
+        let digit = 0
+        let birthday = ""
+        let query = message.content;
+        let franchise
+        let count = 0;
       
         query = query.toLowerCase()
         query = query.replace(prefix, "");
@@ -30,7 +30,7 @@ module.exports = {
           
        
       
-        var month = new Array();
+        let month = new Array();
         month[0] = "January";
         month[1] = "February";
         month[2] = "March";
@@ -44,14 +44,14 @@ module.exports = {
         month[10] = "November";
         month[11] = "December";
         
-        var event = new Date()
+        let event = new Date()
         event = event.toLocaleString('zh-cn', { timeZone: 'Asia/Tokyo' });
         event = event.replace(/-/g, "/", 1);
               
         event = new Date(event)
         let date = event.getDate() +" "+month[event.getMonth()]
         
-        var re = /\b[^\-]\d(\d)?(?!\-)\b/
+        let re = /\b[^\-]\d(\d)?(?!\-)\b/
         digit = parseInt(query.match(re));
         
         if (digit == null || isNaN(digit))
@@ -63,40 +63,40 @@ module.exports = {
             query = query.replace(re, "");
         }
         console.log("digit"+digit)
-        var re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/
-        var as = query.search(re);
+        re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/
+        let as = query.search(re);
         if (as != -1)
         {
             franchise = "Allstars"
             query = query.replace(re, "");
         }
 
-        var re = /( )?\bm(il(l)?(l)?ion)?( )?l(ive)?\b( )?/
-        var ml = query.search(re);
+        re = /( )?\bm(il(l)?(l)?ion)?( )?l(ive)?\b( )?/
+        let ml = query.search(re);
         if (ml != -1)
         {
             franchise = "Million Live"
             query = query.replace(re, "");
         }
 
-        var re = /( )?\bc(indere(l)?la)?( )?g(irls)?\b( )?/
-        var cg = query.search(re);
+        re = /( )?\bc(indere(l)?la)?( )?g(irls)?\b( )?/
+        let cg = query.search(re);
         if (cg != -1)
         {
             franchise = "Cinderella Girls"
             query = query.replace(re, "");
         }
 
-        var re = /( )?\bs(hiny)?( )?c(olo(u)?rs)?( )?\b/
-        var sc = query.search(re);
+        re = /( )?\bs(hiny)?( )?c(olo(u)?rs)?( )?\b/
+        let sc = query.search(re);
         if (sc != -1)
         {
             franchise = "Shiny Colors"
             query = query.replace(re, "");
         }
 
-        var re = /( )?s(ide)?( )?m( )?/
-        var sm = query.search(re);
+        re = /( )?s(ide)?( )?m( )?/
+        let sm = query.search(re);
         if (sm != -1)
         {
             franchise = "SideM"
@@ -112,9 +112,9 @@ module.exports = {
         let digitarray = []
 
         query = query.trim()
-        for (var ID in obj['objects'])
+        for (let ID in obj['objects'])
         {
-        var splitQuery = obj['objects'][ID]['Seiyuu Name'].split(" ");
+        let splitQuery = obj['objects'][ID]['Seiyuu Name'].split(" ");
             
             if (splitQuery[1] == undefined || splitQuery[1] == null)
                 splitQuery[1] = splitQuery[0];
@@ -165,7 +165,7 @@ module.exports = {
             
             if(query.split(" ").length ==1 && !seiyuu.length)
             {
-              for (var i=0; i < splitQuery.length;i++)
+              for (let i=0; i < splitQuery.length;i++)
               {
                 if(splitQuery[i].toLowerCase().trim() == query.trim())
                   seiyuu.push(obj['objects'][ID]);
@@ -174,11 +174,11 @@ module.exports = {
             
         }   
       
-        var nicktemp = []
-         for (var id in obj['objects'])
+        let nicktemp = []
+         for (let id in obj['objects'])
               {
                 splitQuery = obj['objects'][id]['Nick Query'].replace(" ", "").replace(/( )?\*/, "").split("/")
-                for (var i=0; i < splitQuery.length;i++)
+                for (let i=0; i < splitQuery.length;i++)
                 {
                   if(splitQuery[i].toLowerCase().trim() == query.trim())
                     nicktemp.push(obj['objects'][id]);
@@ -192,12 +192,12 @@ module.exports = {
         if(!seiyuu.length)
             return message.reply("I could not find a Seiyuu matching that name. Please check for errors and try again!")
 
-        var seiyuufiltered = []
+        let seiyuufiltered = []
         
        
        if (franchise != null)
         {
-            for (var id in seiyuu)
+            for (let id in seiyuu)
             {
                 if (seiyuu[id]['Franchise'] == franchise)
                     seiyuufiltered.push(seiyuu[id])
@@ -207,7 +207,7 @@ module.exports = {
             seiyuufiltered = seiyuu
 
 
-        var seiytemp = []
+        let seiytemp = []
         if(query.trim() == "")
         {          
           seiytemp.push(seiyuufiltered[helper.data.getRandomInt(0, seiyuufiltered.length-1)])
@@ -230,10 +230,10 @@ module.exports = {
         function sendInfo(digit) { 
             const embed = new Discord.RichEmbed()            
 
-            var color = seiyuufiltered[digit]['Image Color'] 
+            let color = seiyuufiltered[digit]['Image Color'] 
             if (color === "TBA")
                 color = "#b5b1e1"
-            var image
+            let image
             if (seiyuufiltered[digit]['MAL Image'] != "-")
               image = "https://myanimelist.cdn-dena.com/images/voiceactors/"+seiyuufiltered[digit]['MAL Image']+".jpg"
             else 
@@ -244,9 +244,9 @@ module.exports = {
             }
 
 
-           var twittersplit = seiyuufiltered[digit]['Twitter Account'].split("|")
-            var twitterstr = ""
-            var twitter
+           let twittersplit = seiyuufiltered[digit]['Twitter Account'].split("|")
+            let twitterstr = ""
+            let twitter
             for(let id in twittersplit)
             {
                 twitter = twittersplit[id].split("/")
@@ -260,20 +260,20 @@ module.exports = {
 
             }
             
-            var blog = seiyuufiltered[digit]['Blog']
+            let blog = seiyuufiltered[digit]['Blog']
             if( blog == "-")
               blog = "n/a"
           
             if(date == seiyuufiltered[digit]['Birthday'])
               birthday  = " **🎉Today is their birthday**🎉"
           
-            var mal 
+            let mal 
              if (seiyuufiltered[digit]['MAL Page'] != "-")
                mal = "[MAL](https://myanimelist.net/people/"+seiyuufiltered[digit]['MAL Page']+")"
              else
                mal = "n/a"
             console.log("Agency: "+seiyuufiltered[digit]['Agency'])
-            var agency
+            let agency
             if (seiyuufiltered[digit]['Agency'].match(/( )?-( )?/) == null && seiyuufiltered[digit]['Agency'].toLowerCase().match(/( )?\bf\b( )?/) == null)
             {
               agency = seiyuufiltered[digit]['Agency']
@@ -283,43 +283,43 @@ module.exports = {
             else
               agency = "n/a"
             
-            var website = []
-            var websiteurl = []
+            let website = []
+            let websiteurl = []
             if (seiyuufiltered[digit]['Website'] != "-" )
             {
                 website = seiyuufiltered[digit]['Website'].split("/")
                 websiteurl = seiyuufiltered[digit]['Website URL'].split("|")
             }                                             
             
-            var webstr = ""
+            let webstr = ""
             if(!website.length)
               webstr="n/a"
-            for(var id in website)
+            for(let id in website)
             {
                 webstr += "["+website[id]+"]("+websiteurl[id]+")"
                 if (id != website.length-1)
                   webstr += " / "
             }
             
-            var media = []
-            var mediaurl = []
+            let media = []
+            let mediaurl = []
             if (seiyuufiltered[digit]['Other Media'] != "-" )
             {
                 media = seiyuufiltered[digit]['Other Media'].split("/")
                 mediaurl = seiyuufiltered[digit]['Other Media URL'].split("|")
             }                                             
             
-            var mediastr = ""
+            let mediastr = ""
             if(!media.length)
               mediastr="n/a"
-            for(var id in media)
+            for(let id in media)
             {
                 mediastr += "["+media[id]+"]("+mediaurl[id]+")"
                 if (id != media.length-1)
                   mediastr += " / "
             }
 
-            var name
+            let name
             if(seiyuufiltered[digit]['Artist Name']!= "-")
                 name = seiyuufiltered[digit]['Seiyuu Name'].split(" ")[0] + " \""+seiyuufiltered[digit]['Artist Name']+"\" " + seiyuufiltered[digit]['Seiyuu Name'].split(" ")[1]
             else
@@ -359,7 +359,7 @@ module.exports = {
 
             if (seiyuufiltered.length > 1)
             {
-                var str = "";
+                let str = "";
                 count = 1
                 for (let id in seiyuufiltered)
                 {
@@ -382,7 +382,7 @@ module.exports = {
               if (query !== this.name && this.aliases.includes(query) == false)
               {
                 const filter = m =>m.author.id === message.author.id
-                var collector
+                let collector
                 if (collector == null)
                     collector = message.channel.createMessageCollector(filter, { time: 30000 });
 

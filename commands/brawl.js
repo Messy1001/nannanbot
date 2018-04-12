@@ -22,7 +22,7 @@ module.exports = {
     let participants = []
     participants.push(message.author.id);
     
-    var query = message.content;
+    let query = message.content;
     
     query = query.toLowerCase()
     query = query.replace(prefix, "");
@@ -31,8 +31,8 @@ module.exports = {
 
     console.log("Query after 1:"+query)
 
-    var re = /( )?\b(\d)+\b( )?/
-    var bet = query.match(re);
+    let re = /( )?\b(\d)+\b( )?/
+    let bet = query.match(re);
 
     if (bet != null)
         {
@@ -47,7 +47,7 @@ module.exports = {
           message.channel.send(`${message.guild.members.get(message.author.id).nickname} has started a brawl for ${bet} credits\n\nType joinbrawl or jb to enter the brawl!`)
 
         const filter = m => !(participants.includes(m.author.id))
-                var collector
+                let collector
                 if (collector == null)
                     collector = message.channel.createMessageCollector(filter, { time: 25000 });
 
@@ -82,7 +82,7 @@ module.exports = {
                        sendBattleMessage()
                   }
                    
-                })   
+                });   
 
         async function sendBattleMessage() {
                 console.log("Send battle message")
@@ -134,7 +134,7 @@ module.exports = {
        
 
         function shuffle(array) {
-            var m = array.length, t, i;
+            let m = array.length, t, i;
 
             // While there remain elements to shuffle…
             while (m) {

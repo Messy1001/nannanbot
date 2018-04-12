@@ -13,9 +13,9 @@ module.exports = {
       const fs = require('fs');
       let rawdata
       let obj
-      var aliases = this.aliases
-      var name = this.name
-      var count = 0
+      let aliases = this.aliases
+      let name = this.name
+      let count = 0
       
         
       
@@ -30,57 +30,57 @@ module.exports = {
 
         let facts = []
         let arr = []
-        var nickarray = []
+        let nickarray = []
 
-        var franchise
-        var query = message.content;
+        let franchise
+        let query = message.content;
         query = query.toLowerCase()
         query = query.replace(prefix, "");
         query = query.substring(query.indexOf(" ") + 1);
         query = query.trim()
 
 
-         var re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/
-        var as = query.search(re);
+         let re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/
+        let as = query.search(re);
         if (as != -1)
         {
             franchise = "Allstars"
             query = query.replace(re, "");
         }
 
-        var re = /( )?\bm(il(l)?(l)?ion)?( )?l(ive)?\b( )?/
-        var ml = query.search(re);
+        re = /( )?\bm(il(l)?(l)?ion)?( )?l(ive)?\b( )?/
+        let ml = query.search(re);
         if (ml != -1)
         {
             franchise = "Million Live"
             query = query.replace(re, "");
         }
 
-        var re = /( )?\bc(indere(l)?la)?( )?g(irls)?\b( )?/
-        var cg = query.search(re);
+        re = /( )?\bc(indere(l)?la)?( )?g(irls)?\b( )?/
+        let cg = query.search(re);
         if (cg != -1)
         {
             franchise = "Cinderella Girls"
             query = query.replace(re, "");
         }
 
-        var re = /( )?\bs(hiny)?( )?c(olo(u)?rs)?( )?\b/
-        var sc = query.search(re);
+        re = /( )?\bs(hiny)?( )?c(olo(u)?rs)?( )?\b/
+        let sc = query.search(re);
         if (sc != -1)
         {
             franchise = "Shiny Colors"
             query = query.replace(re, "");
         }
 
-        var re = /( )?s(ide)?( )?m( )?/
-        var sm = query.search(re);
+        re = /( )?s(ide)?( )?m( )?/
+        let sm = query.search(re);
         if (sm != -1)
         {
             franchise = "SideM"
             query = query.replace(re, "");
         }
 
-        for (var ID in obj['objects'])
+        for (let ID in obj['objects'])
         {	
         	if (obj['objects'][ID]['Fun Facts'] !== "-" && obj['objects'][ID]['Fun Facts'] !== 'undefined' )	
         		arr.push(obj['objects'][ID])
@@ -90,7 +90,7 @@ module.exports = {
         	return console.log("Error")
       
         let randomquery = true
-        var re = /( )?\b\d(\d)?\b( )?/
+        re = /( )?\b\d(\d)?\b( )?/
         let factdigit 
         
         if (query.match(re) == null)
@@ -107,7 +107,7 @@ module.exports = {
         
         let digitarray = []
         let seiyuudigit;
-        var arrtemp = arr;
+        let arrtemp = arr;
         console.log("Q: " +query)
         query = query.trim()
         if (!args.length)
@@ -116,9 +116,9 @@ module.exports = {
         else
         {
         	arr = []
-        	for (var id in arrtemp)
+        	for (let id in arrtemp)
         	{
-        		var splitQuery = arrtemp[id]['Seiyuu Name'].split(" ");
+        		let splitQuery = arrtemp[id]['Seiyuu Name'].split(" ");
               console.log("SQ: " +splitQuery)
 	            if (splitQuery[1] == undefined || splitQuery[1] == null)
 	                splitQuery[1] = splitQuery[0];
@@ -168,7 +168,7 @@ module.exports = {
 	            
 	            if(query.split(" ").length ==1)
 	            {
-	              for (var i=0; i < splitQuery.length;i++)
+	              for (let i=0; i < splitQuery.length;i++)
 	              {
 	                console.log("SQ" + splitQuery[i])
                   if(splitQuery[i].toLowerCase().trim() == query.trim())                  
@@ -184,11 +184,11 @@ module.exports = {
           arr = nickarray
         }
 
-        var arrfiltered = []
+        let arrfiltered = []
 
         if (franchise != null)
         {
-            for (var id in arr)
+            for (let id in arr)
             {
                 if (arr[id]['Franchise'] == franchise)
                     arrfiltered.push(arr[id])
@@ -211,7 +211,7 @@ module.exports = {
         if (arrfiltered[digit]['Fun Facts'] != undefined)
         	facts = arrfiltered[digit]['Fun Facts'].split("|")
         
-        var poss = ""
+        let poss = ""
         if (randomquery || factdigit > facts.length-1)
             factdigit = helper.data.getRandomInt(0, facts.length-1)
         
@@ -229,7 +229,7 @@ module.exports = {
       	message.reply("Did you know that **" +displayedname+poss+"** ("+arrfiltered[digit]['Character']+") " +facts[factdigit].trim()+"?")
         if (arrfiltered.length > 1 && (query != this.name || !this.aliases.includes(query)))
         {
-            var str = "";
+            let str = "";
             count = 1
             for (let id in arrfiltered)
             {
@@ -255,7 +255,7 @@ module.exports = {
         if (query !== this.name && this.aliases.includes(query) == false)
         {
         const filter = m =>m.author.id === message.author.id
-        var collector
+        let collector
         if (collector == null)
             collector = message.channel.createMessageCollector(filter, { time: 30000 });
 
