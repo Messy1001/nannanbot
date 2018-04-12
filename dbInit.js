@@ -12,6 +12,8 @@ const BotChannels = sequelize.import('models/BotChannels');
 const RenameChannels = sequelize.import('models/RenameChannels');
 const Users = sequelize.import('models/Users');
 const Heists = sequelize.import('models/Heist');
+const Seiyuu = sequelize.import('models/Seiyuu');
+
 
 Servers.hasMany(BotChannels, {foreignKey: {field: 'server_id'}, onDelete: 'cascade'});
 BotChannels.belongsTo(Servers, {foreignKey: {field: 'server_id'}, onDelete: 'cascade'});

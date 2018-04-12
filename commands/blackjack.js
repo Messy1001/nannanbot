@@ -318,7 +318,8 @@ module.exports = {
 
 			if (bet !== null && bet > 0)
 			{
-				currencyHelper.currency.reduce(message.author.id, bet)
+				bet = Math.ceil(bet)
+        currencyHelper.currency.reduce(message.author.id, bet)
 				message.reply(bet+" credits have been removed from your account!")
 			}
 			collector.stop()
