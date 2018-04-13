@@ -120,7 +120,9 @@ module.exports = {
                 arrfiltered = arr
 
             let seiyuudigit = helper.data.getRandomInt(0, arrfiltered.length-1)
+            
             let quiztype = helper.data.getRandomInt(0, 1)
+
             let namesplit
             const embed = new Discord.RichEmbed()
             const embed2 = new Discord.RichEmbed()  
@@ -192,9 +194,13 @@ module.exports = {
                 {
                     hintsplit[0] = helper.data.replaceAt(hintsplit[0], helper.data.getRandomInt(0, hintsplit[0].length-1), "x")
                     if (hintsplit.length > 1)
+                    {
                         hintsplit[1] = helper.data.replaceAt(hintsplit[1], helper.data.getRandomInt(0, hintsplit[1].length-1), "x")
-
-                    hint = hintsplit[0]+"\t"+hintsplit[1];
+                        hint = hintsplit[0]+"\t"+hintsplit[1];
+                    }
+                    else
+                        hint = hintsplit[0]
+                       
                 }
             }
             
@@ -227,6 +233,11 @@ module.exports = {
             collector.on('collect', m => {
                let westernname
                let jpnname
+               let artistname 
+               let charactername = null;
+
+               if (arrfiltered[seiyuudigit]["Artist Name"] != "-")
+                    artistname = arrfiltered[seiyuudigit]["Artist Name"].toLowerCase()
                console.log("Message: "+m)
                if (namesplit.length > 1)
                {
@@ -238,11 +249,11 @@ module.exports = {
                    westernname = namesplit[0]
                    jpnname = westernname
                }
-               if (quiztype == 0 && (m.content.toLowerCase() == westernname || m.content.toLowerCase() == jpnname))
+               if (quiztype == 0 && (m.content.toLowerCase() == westernname || m.content.toLowerCase() == jpnname ||  m.content.toLowerCase() == artistname || m.content.toLowerCase() == arrfiltered[seiyuudigit]["Seiyuu Name"].toLowerCase()))
                {    
                     answered = true;
                     if (arrfiltered[seiyuudigit]["Artist Name"] != "-")
-                        embed2.setDescription(`**${m.author.username}** answered the question correctly and won 50 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Artist Name"]}(${arrfiltered[seiyuudigit]["Seiyuu Name"]})`)
+                        embed2.setDescription(`**${m.author.username}** answered the question correctly and won 50 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Artist Name"]} (${arrfiltered[seiyuudigit]["Seiyuu Name"]})`)
                     else
                         embed2.setDescription(`**${m.author.username}** answered the question correctly and won 50 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Seiyuu Name"]}`)
                     embed2.setImage(seiyuuimage)
@@ -251,7 +262,7 @@ module.exports = {
                     currencyHelper.currency.add(m.author.id, 50);
                     collector.stop();
                } 
-               else if (quiztype == 1 && (m.content.toLowerCase() == westernname || m.content.toLowerCase() == jpnname || m.content.toLowerCase == namesplit[2]))
+               else if (quiztype == 1 && (m.content.toLowerCase() == westernname || m.content.toLowerCase() == jpnname || m.content.toLowerCase() == arrfiltered[seiyuudigit]["Character"].toLowerCase()))
                {
                     answered = true;
                     embed2.setDescription(`**${m.author.username}** answered the question correctly and won 50 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Character"]}`)
@@ -282,7 +293,10 @@ module.exports = {
                 console.log(`Collected ${collected.size} items`);
                 if (answered == false && quiztype == 0)
                 {
-                    embed2.setDescription(`No one guessed it! \n\nThe answer was \`${arrfiltered[seiyuudigit]["Seiyuu Name"]}\``)
+                    if (arrfiltered[seiyuudigit]["Artist Name"] != "-")
+                        embed2.setDescription(`No one guessed it! \n\nThe answer was ${arrfiltered[seiyuudigit]["Artist Name"]} (${arrfiltered[seiyuudigit]["Seiyuu Name"]})`)
+                    else
+                        embed2.setDescription(`No one guessed it! \n\nThe answer was \`${arrfiltered[seiyuudigit]["Seiyuu Name"]}\``)
                     embed2.setImage(seiyuuimage)
                     embed2.setColor(color)
                     message.channel.send(embed2)

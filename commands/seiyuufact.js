@@ -22,11 +22,6 @@ module.exports = {
     	helper.data.readSpreadsheet("1mFTCIxa-FlRAWT70M7lC82bx-HRvDm_lovUJLL4FlN8", "seiyuu", "SeiyuuInfo!A:Z")
         rawdata = fs.readFileSync('./seiyuu.json');
         obj = JSON.parse(rawdata) 
-      
-
-    	
-
-        
 
         let facts = []
         let arr = []
@@ -40,7 +35,7 @@ module.exports = {
         query = query.trim()
 
 
-         let re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/
+        let re = /( )?\ba(l(l)?(l)?)?( )?s(tars)?\b( )?/
         let as = query.search(re);
         if (as != -1)
         {
@@ -257,7 +252,7 @@ module.exports = {
         const filter = m =>m.author.id === message.author.id
         let collector
         if (collector == null)
-            collector = message.channel.createMessageCollector(filter, { time: 30000 });
+            collector = message.channel.createMessageCollector(filter, { time: 60000 });
 
         collector.on('collect', m => {
             console.log("Message: "+m)

@@ -48,11 +48,11 @@ var methods = {
           {
             let loot = Math.ceil(cash);
             cash = Math.ceil(cash/participants.length-1)
-            console.log("cahs"+cash)
+            console.log("cash"+cash)
             for (let i = 0; i < participants.length-1; i++)
             {
-              console.log(participants[0])
-              currencyHelper.currency.add(participants[0], cash);
+              console.log(participants[i])
+              currencyHelper.currency.add(participants[i], cash);
               currencyHelper.currency.reduce("425271727484829696", cash);
             }
             for (let i = 0; i < channels.length-1; i++)
