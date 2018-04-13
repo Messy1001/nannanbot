@@ -175,14 +175,24 @@ module.exports = {
 	        	images[0] = 'https://myanimelist.cdn-dena.com/images/voiceactors/' + arrfiltered[digit]['MAL Image'] + '.jpg';
 
 	        let imagedigit = helper.data.getRandomInt(0, images.length - 1);
-	        let poss = '';
+          let poss = '';
+          
+          const embed = new Discord.RichEmbed();
+          let image = images[helper.data.getRandomInt(0, images.length - 1)]
+
+          embed.setColor(arrfiltered[digit]['Image Color']);
+          embed.setTitle('[' + arrfiltered[digit]['Franchise'] + ']')
+          if (artistname)
+            embed.setDescription('**' + arrfiltered[digit]['Artist Name'] + '** - ' + arrfiltered[digit]['Character']);
+          else
+            embed.setDescription('**' + arrfiltered[digit]['Seiyuu Name'] + '** - ' + arrfiltered[digit]['Character']);
+          embed.setImage(image)
+          console.log(image)
+          message.channel.send(embed);
 
 	        if (images[imagedigit] === 'undefined')
 	        	return message.reply('There are no images available yet which match your query! Please check for typos, try again at a later time or submit images to <@155038103281729536>!');
-      if (artistname)
-	          message.reply('**' + arrfiltered[digit]['Artist Name'] + '** (' + arrfiltered[digit]['Character'] + ') [' + arrfiltered[digit]['Franchise'] + ']\n' + images[helper.data.getRandomInt(0, images.length - 1)]);
-	        else
-        message.reply('**' + arrfiltered[digit]['Seiyuu Name'] + '** (' + arrfiltered[digit]['Character'] + ') [' + arrfiltered[digit]['Franchise'] + ']\n' + images[helper.data.getRandomInt(0, images.length - 1)]);
+     
       if (arrfiltered.length > 1 && (query != this.name || !this.aliases.includes(query))) {
 
 	            count = 1;

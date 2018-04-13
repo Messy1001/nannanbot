@@ -178,24 +178,31 @@ app.get("/", (request, response) => {
          let announcementTypes = servers[serverid]['announcement_type'].split(",")
          let tempbday = birthdays
          let count = 0;
+         let lastRenamed = "";
         RenameChannels.findAll({
           where: {server_id: servers[serverid]['server_id']
           }
         }).then(channels => {
-          for (let channelid in channels)
+          for(let birthdayid in birthdays)
           {
-            for(let birthdayid in birthdays)
+            for (let channelid in channels)
             {
               for (let announcementtypeid in announcementTypes)
               {
                 
-                if (birthdays[birthdayid]['Franchise'] == announcementTypes[announcementtypeid] && count < channels.length && count < birthdays.length)
+                if (birthdays[birthdayid]['Franchise'] == announcementTypes[announcementtypeid] && count < channels.length && count < birthdays.length && lastRenamed != birthdays[birthdayid]['Seiyuu Name'])
                 {
                   console.log("Name: "+birthdays[birthdayid]['Seiyuu Name'])
                   if (birthdays[birthdayid]['Nickname'] != "-")
-                    client.channels.get(channels[count]['renamechannel_id']).setName("HBD_"+birthdays[birthdayid]['Nickname'].split("/")[0])
+                  {
+                      client.channels.get(channels[count]['renamechannel_id']).setName("HBD_"+birthdays[birthdayid]['Nickname'].split("/")[0])
+                      
+                  }
                   else
+                  {
                     client.channels.get(channels[count]['renamechannel_id']).setName("HBD_"+birthdays[birthdayid]['Seiyuu Name'].split(" ")[0])
+                  }
+                  lastRenamed = birthdays[birthdayid]['Seiyuu Name']
                   count++
                 } 
               }
