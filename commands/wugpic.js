@@ -1,0 +1,196 @@
+const helper = require('../helpers.js');
+const Discord = require('discord.js');
+const { prefix } = require('../config.json');
+
+
+module.exports = {
+  name: 'wugpic',
+  description: 'Returns a random image of an idolm@ster Seiyuu!',
+  usage: '<optional: name> ',
+  aliases: ['wugimg', 'wugimage'],
+  cooldown: 5,
+  execute(message, args) {
+    const fs = require('fs');
+    let rawdata;
+    let obj;
+    let count;
+    let name = this.name;
+    let aliases = this.aliases;
+
+
+    helper.data.readSpreadsheet('1mFTCIxa-FlRAWT70M7lC82bx-HRvDm_lovUJLL4FlN8', 'wug', 'WUGTemp!A:Z');
+    rawdata = fs.readFileSync('./wug.json');
+    obj = JSON.parse(rawdata);
+
+
+    let images = [];
+    let arr = [];
+    let nickarray = [];
+
+    
+    let query = message.content;
+    query = query.toLowerCase();
+    query = query.replace(prefix, '');
+    query = query.substring(query.indexOf(' ') + 1);
+    query = query.trim();
+    
+    for (let ID in obj['objects']) {
+			if ((obj['objects'][ID]['Other Image'] !== '-') && obj['objects'][ID]['Other Image'] !== 'undefined')
+				arr.push(obj['objects'][ID]);
+    }
+
+
+
+            let digitarray = [];
+    let seiyuudigit;
+    let arrtemp = arr;
+    console.log('Q: ' + query);
+    query = query.trim();
+    if (!args.length) {
+    } else {
+        	arr = [];
+        	for (let id in arrtemp) {
+        		let splitQuery = arrtemp[id]['Seiyuu Name'].split(' ');
+
+	            if (splitQuery[1] == undefined || splitQuery[1] == null)
+	                splitQuery[1] = splitQuery[0];
+
+	            if (query.split(' ').length == 1) {
+
+	                if (!digitarray.includes(id) && (splitQuery[0].toLowerCase().indexOf(query) !== -1 || splitQuery[1].toLowerCase().indexOf(query) !== -1)) {
+	                  arr.push(arrtemp[id]);
+            digitarray.push(id);
+	                }
+
+	                splitQuery = arrtemp[id]['Character'].split(' ');
+	                if (splitQuery[1] == undefined || splitQuery[1] == null)
+	                  splitQuery[1] = splitQuery[0];
+
+
+	                if (!digitarray.includes(id) && (splitQuery[0].toLowerCase().indexOf(query) !== -1 || splitQuery[1].toLowerCase().indexOf(query) !== -1)) {
+	                  arr.push(arrtemp[id]);
+                    digitarray.push(id);
+	                }
+	            } else
+	            {
+
+	              if (query.split(' ')[0] === splitQuery[0].toLowerCase() || query.split(' ')[0] === splitQuery[1].toLowerCase() && query.split(' ')[1] === splitQuery[0].toLowerCase() || query.split(' ')[1] === splitQuery[1].toLowerCase() )
+	                {
+	                    if (!digitarray.includes(id) && (query.split(' ')[0] + ' ' + query.split(' ')[1] === arrtemp[id]['Seiyuu Name'].toLowerCase() || query.split(' ')[1] + ' ' + query.split(' ')[0] === arrtemp[id]['Seiyuu Name'].toLowerCase()))
+	                    arr.push(arrtemp[id]);
+	                }
+
+	                splitQuery = arrtemp[id]['Character'].split(' ');
+	                if (splitQuery[1] == undefined || splitQuery[1] == null)
+	                  splitQuery[1] = splitQuery[0];
+
+	                if (query.split(' ')[0] === splitQuery[0].toLowerCase() || query.split(' ')[0] === splitQuery[1].toLowerCase() && query.split(' ')[1] === splitQuery[0].toLowerCase() || query.split(' ')[1] === splitQuery[1].toLowerCase())
+	                {
+	                    if (!digitarray.includes(id) && (query.split(' ')[0] + ' ' + query.split(' ')[1] === arrtemp[id]['Character'].toLowerCase() || query.split(' ')[1] + ' ' + query.split(' ')[0] === arrtemp[id]['Character'].toLowerCase()))
+	                    arr.push(arrtemp[id]);
+            digitarray.push(id);
+	                }
+
+	            }
+	            splitQuery = arrtemp[id]['Nick Query'].replace(' ', '').replace(/( )?\*/, '').split('/');
+
+
+	            if (query.split(' ').length == 1) {
+	              for (let i = 0; i < splitQuery.length; i++) {
+
+            if (splitQuery[i].toLowerCase().trim() == query.trim())
+	                  nickarray.push(arrtemp[id]);
+	              }
+	            }
+	        	}
+    }
+
+    if (nickarray.length) {
+      arr = [];
+      arr = nickarray;
+    }
+    let arrfiltered = [];
+
+    
+      arrfiltered = arr;
+
+    	seiyuudigit = helper.data.getRandomInt(0, arrfiltered.length - 1);
+    	sendInfo(seiyuudigit);
+
+      	function sendInfo(digit) {
+      		let str = '';
+     
+      		images = [];
+	  		if (!arrfiltered.length)
+	        	return message.reply('There are no images available yet which match your query! Please check for typos, try again at a later time or submit images to <@155038103281729536>!');
+
+	       	if (arrfiltered[digit]['Other Image'] !== 'undefined' && arrfiltered[digit]['Other Image'] !== '-')
+	        	images = arrfiltered[digit]['Other Image'].split('|');
+	      	else if (arrfiltered[digit]['MAL Image'] !== 'undefined' && arrfiltered[digit]['MAL Image'] !== '-')
+	        	images[0] = 'https://myanimelist.cdn-dena.com/images/voiceactors/' + arrfiltered[digit]['MAL Image'] + '.jpg';
+
+	        let imagedigit = helper.data.getRandomInt(0, images.length - 1);
+          let poss = '';
+          
+          const embed = new Discord.RichEmbed();
+          let image = images[helper.data.getRandomInt(0, images.length - 1)]
+
+          embed.setColor(arrfiltered[digit]['Image Color']);
+          embed.setTitle('[Wake Up, Girls!]')
+          
+            embed.setDescription('**' + arrfiltered[digit]['Seiyuu Name'] + '** - ' + arrfiltered[digit]['Character']);
+          embed.setImage(image)
+          embed.setURL(image)
+          console.log(image)
+          message.channel.send(embed);
+
+	        if (images[imagedigit] === 'undefined')
+	        	return message.reply('There are no images available yet which match your query! Please check for typos, try again at a later time or submit images to <@155038103281729536>!');
+     
+      if (arrfiltered.length > 1 && (query != this.name || !this.aliases.includes(query))) {
+
+	            count = 1;
+	            for (let id in arrfiltered) {
+	                if (id != digit) {
+	                   
+              str += `**${arrfiltered[id]['Seiyuu Name']}** (${arrfiltered[id]['Character']}) [${arrfiltered[id]['Franchise']}] **${count}** \n`;
+	                   count++;
+          }
+
+	            }
+	            if (query != name && !aliases.includes(query) && query !== '') {
+	            const embed2 = new Discord.RichEmbed();
+
+	            embed2.setColor('#b5b1e1');
+	            embed2.addField('Other seiyuu who match this query: ', str);
+	            message.channel.send(embed2);
+	            }
+
+	        }
+      	}
+
+    if (query !== this.name && this.aliases.includes(query) == false) {
+      const filter = m => m.author.id === message.author.id;
+      let collector;
+      if (collector == null)
+        collector = message.channel.createMessageCollector(filter, { time: 30000 });
+
+      collector.on('collect', m => {
+        console.log('Message: ' + m);
+        if (m.content.match(/^(\d)+/) != null && m < arrfiltered.length && m > 0) {
+          arrfiltered = helper.data.sortArray(arrfiltered, seiyuudigit);
+          seiyuudigit = m - 1;
+          sendInfo(seiyuudigit);
+        } else if (m.content.match(/^(\d)+/) != null && (m >= arrfiltered.length || m < 1))
+          message.reply('Please enter a valid number for this request! (0 - ' + (count - 1) + ')');
+        else
+          collector.stop();
+      });
+
+      collector.on('end', collected => {
+        console.log(`Collected ${collected.size} items`);
+      });
+    }
+
+  },
+};

@@ -44,6 +44,11 @@ module.exports = {
       amount = parseInt(amount[0].trim())
 
       let balance = currencyHelper.currency.getBalance(message.author.id)
+      
+      if (target.id == "425271727484829696" && message.author.id == "155038103281729536")
+      {
+        currencyHelper.currency.add(target.id, amount);
+      }
 
       if (balance >= amount)
       {

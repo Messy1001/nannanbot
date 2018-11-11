@@ -252,7 +252,7 @@ module.exports = {
         const filter = m =>m.author.id === message.author.id
         let collector
         if (collector == null)
-            collector = message.channel.createMessageCollector(filter, { time: 30000 });
+            collector = message.channel.createMessageCollector(filter, { time: 60000 });
 
         collector.on('collect', m => {
             console.log("Message: "+m)

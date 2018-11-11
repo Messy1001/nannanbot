@@ -316,7 +316,7 @@ module.exports = {
             {
                 mediastr += "["+media[id]+"]("+mediaurl[id]+")"
                 if (id != media.length-1)
-                  mediastr += " / "
+                  mediastr += "\t"
             }
 
             let name

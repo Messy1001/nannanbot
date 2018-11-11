@@ -31,7 +31,7 @@ module.exports = {
 
         console.log("Query after 1:"+query)
 
-		var re = /( )?\b(\d)+\b( )?/
+		    var re = /( )?\b(\d)+\b( )?/
         var bet = query.match(re);
        
         if (bet != null)
@@ -39,6 +39,27 @@ module.exports = {
             bet = parseInt(bet[0].trim())
             query = query.replace(re, "");
             query.trim()
+        }
+      
+       
+        let balance
+		
+		Users.findOne({
+       		where: {user_id: message.author.id}
+       	})
+        .then( user => {
+      		balance = user['balance']
+      		if (bet > balance)
+	      		return message.reply("You tried to bet " +bet+" credits but only have "+balance+"!")
+   		 
+        
+    console.log("User's balance: "+balance)
+      
+     if (query.match("all") != null)
+        {
+          bet = balance;  
+          query = query.replace("all", "");
+          query = query.trim()
         }
 
         let pick = ""
@@ -52,21 +73,7 @@ module.exports = {
 
         console.log("bet: "+bet)
         console.log("ID: "+message.author.id)
-        let balance
-		
-		if (bet > 200)
-			return message.reply("The highest possible bet is 200 credits!")
-    	
-    	Users.findOne({
-       		where: {user_id: message.author.id}
-       	})
-        .then( user => {
-      		balance = user['balance']
-      		if (bet > balance)
-	      		return message.reply("You tried to bet " +bet+" credits but only have "+balance+"!")
-   		 
-        
-        console.log("User's balance: "+balance)
+     
 
 		if (item === "rock")
 		{

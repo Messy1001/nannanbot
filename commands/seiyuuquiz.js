@@ -121,7 +121,20 @@ module.exports = {
 
             let seiyuudigit = helper.data.getRandomInt(0, arrfiltered.length-1)
             
-            let quiztype = helper.data.getRandomInt(0, 1)
+            let quiztype
+
+            if (query.search(/( )?\bseiyuu( )?\b/) != -1)
+            {
+                quiztype = 1
+                query = query.replace(re, "");
+            }
+            else if (query.search(/( )?\bcharacter( )?\b/) != -1)
+            {
+                quiztype = 0
+                query = query.replace(/( )?\bcharacter( )?\b/, "")
+            }
+            else
+                quiztype = helper.data.getRandomInt(0, 1)
 
             let namesplit
             const embed = new Discord.RichEmbed()
@@ -253,23 +266,23 @@ module.exports = {
                {    
                     answered = true;
                     if (arrfiltered[seiyuudigit]["Artist Name"] != "-")
-                        embed2.setDescription(`**${m.author.username}** answered the question correctly and won 50 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Artist Name"]} (${arrfiltered[seiyuudigit]["Seiyuu Name"]})`)
+                        embed2.setDescription(`**${m.author.username}** answered the question correctly and won 250 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Artist Name"]} (${arrfiltered[seiyuudigit]["Seiyuu Name"]})`)
                     else
-                        embed2.setDescription(`**${m.author.username}** answered the question correctly and won 50 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Seiyuu Name"]}`)
+                        embed2.setDescription(`**${m.author.username}** answered the question correctly and won 250 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Seiyuu Name"]}`)
                     embed2.setImage(seiyuuimage)
                     embed2.setColor(color)
                     message.channel.send(embed2)
-                    currencyHelper.currency.add(m.author.id, 50);
+                    currencyHelper.currency.add(m.author.id, 250);
                     collector.stop();
                } 
                else if (quiztype == 1 && (m.content.toLowerCase() == westernname || m.content.toLowerCase() == jpnname || m.content.toLowerCase() == arrfiltered[seiyuudigit]["Character"].toLowerCase()))
                {
                     answered = true;
-                    embed2.setDescription(`**${m.author.username}** answered the question correctly and won 50 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Character"]}`)
+                    embed2.setDescription(`**${m.author.username}** answered the question correctly and won 250 credits!\n\nThe answer was ${arrfiltered[seiyuudigit]["Character"]}`)
                     embed2.setImage(characterimage)
                     embed2.setColor(color)
                     message.channel.send(embed2)
-                    currencyHelper.currency.add(m.author.id, 50);
+                    currencyHelper.currency.add(m.author.id, 250);
                     collector.stop();
                }
                else if(m.content.match(">si") != null || m.content.match(">seiyuuinfo") != null || m.content.match(">cv") != null || m.content.match(">va") != null)

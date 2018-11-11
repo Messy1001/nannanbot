@@ -30,7 +30,8 @@ var methods = {
     .then( user => {
 
       cash = user['balance']
-      cash = Math.ceil(Helper.data.getRandomInt(0, 8)/10 * cash);
+      cash = Math.ceil(Helper.data.getRandomInt(1, 7)/10 * cash);
+
     }).then(() => {
 
     Heists.find({
@@ -57,7 +58,7 @@ var methods = {
             }
             for (let i = 0; i < channels.length-1; i++)
             {
-              client.channels.get(channels[i]).send("The heist started by"+client.users.get(participants[0].trim()).username +" was successful! "+"The loot was "+loot+" credits\nEvery participant gets paid their share of "+cash+" credits.");
+              client.channels.get(channels[i]).send("The heist started by "+client.users.get(participants[0].trim()).username +" was successful! "+"The loot was "+loot+" credits\nEvery participant gets paid their share of "+cash+" credits.");
             }
             Heists.destroy({
               where: {id: 1}
